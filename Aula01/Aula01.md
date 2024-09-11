@@ -26,3 +26,37 @@ const  rotuloNumero = "1234" // Can't be reassigned
 
 > [!CAUTION]
 > `var` can only declare variables in Global Scope and Function Scope.
+
+## Contatenation
+
+You can contatenate values like this:
+
+```Javascript
+
+let x = "World"
+
+console.log( "Hello" + " " + "World!" ) // "Hello World!"
+console.log( "Hello" + x ) "Hello World!"
+console.log(`Hello ${x}`) // "Hello World!
+
+```
+
+## Comments
+
+You can add a comment by adding ´//´ at the start of a sentence.
+
+```Javascript
+
+// like this
+
+```
+
+### Comparing values
+
+```Javascript
+
+console.log(2 == "2") // Compares values. Parse strings to numbers and returns true.
+
+console.log(2 === "2") // Compares values and data types. Returns false.
+
+```
