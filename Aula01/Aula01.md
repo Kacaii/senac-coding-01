@@ -25,4 +25,4 @@ const  rotuloNumero = "1234" // Can't be reassigned
 ```
 
 > [!CAUTION]
-> `var` can only declare variables in Global Scope and Funcion Scope.
+> `var` can only declare variables in Global Scope and Function Scope.
