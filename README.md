@@ -12,4 +12,23 @@ For that, we can use:
 - `let`
 - `const`
 
+### Comments
 
+```Javascript
+
+// You can add comments like this
+
+```
+
+### Concatenation
+
+You can make concatenations like this:
+
+```Javascript
+
+console.log("Hello" + " " + "World!" // Using regular concatenation
+
+let x = "World!"
+console.log(`Hello ${x}`) // Using template strings
+
+```
