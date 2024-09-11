@@ -16,7 +16,7 @@ For that, we can use:
 
 ```Javascript
 
-// You can add comments like this
+// This is a Javascript comment :D
 
 ```
 
