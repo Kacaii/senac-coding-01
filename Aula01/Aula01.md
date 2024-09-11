@@ -1,11 +1,11 @@
 # Aula 01
 
-[x] Create repository
-[x] Added Node
-[ ] Updated README
+- [x] Create repository
+- [x] Added Node
+- [ ] Updated README
 
 ## Variables
-Today we learned how to create javascript ´variables´.
+Today we learned how to create javascript `variables`.
 
 ```Javascript
 
