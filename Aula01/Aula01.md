@@ -2,7 +2,7 @@
 
 - [x] Create repository
 - [x] Added Node
-- [ ] Updated README
+- [x] Updated README :like:
 
 ## Variables
 Today we learned how to create javascript `variables`.
