@@ -7,12 +7,15 @@
 ## Variables
 Today we learned how to create javascript `variables`.
 
+We used to declare variables with `var`
+
 ```Javascript
 
 var rotulo = "Ayres"
 
 ```
 
+But ES6(2015) added block scoped variables with `let` and `const`
 
 ```Javascript
 
