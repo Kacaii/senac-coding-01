@@ -1,0 +1,15 @@
+{
+  "name": "coding",
+  "version": "1.0.0",
+  "description": "This repository is going to be used during Coding classes.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "node": "^22.8.0"
+  }
+}
