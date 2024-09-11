@@ -1,6 +1,6 @@
 # Aula 01
 
-- [x] Create repository
+- [x] Created repository
 - [x] Added Node
 - [x] Updated README :like:
 
