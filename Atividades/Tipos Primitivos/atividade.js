@@ -7,7 +7,6 @@ function Idade() {
 
 function Cidade() {
   let cidade = "Olinda";
-
   console.log(`${nome} é de ${cidade}`);
 }
 
