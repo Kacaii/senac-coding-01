@@ -1,15 +1,15 @@
-let nome = "Pedro"; // Variável de escopo global
+let nome = "Pedro"; // Variável em escopo global
 
-function ProgramaIdade() {
+function Idade() {
   let idade = "22";
   console.log(`Olá, meu nome é ${nome} e eu tenho ${idade} anos.`);
 }
 
-function ProgramaCidade() {
+function Cidade() {
   let cidade = "Olinda";
 
   console.log(`${nome} é de ${cidade}`);
 }
 
-ProgramaIdade();
-ProgramaCidade();
+Idade();
+Cidade();
