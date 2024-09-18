@@ -1,9 +1,8 @@
 var prompt = require("prompt-sync")();
-
 let listaItensDisponiveis = new Set(["garrafa", "coxinha", "tapioca"]);
-console.table(listaItensDisponiveis, [1]);
 
-let itemEscolhido = prompt("O que você gostaria de comprar? ");
+console.table(listaItensDisponiveis);
+let itemEscolhido = prompt("O que você gostaria de comprar? "); // Recebe input do usuário
 
 let verificaCompra = () => {
   if (itemEscolhido == null) return; // Adicionando guard clauses
@@ -12,8 +11,6 @@ let verificaCompra = () => {
 
 function comprarItem() {
   if (verificaCompra()) {
-    listaItensDisponiveis.delete(itemEscolhido);
-
     console.log(`${itemEscolhido} foi adicionado ao seu inventário!`);
     return;
   }
