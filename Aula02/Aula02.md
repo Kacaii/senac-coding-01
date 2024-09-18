@@ -19,4 +19,4 @@ let nome = prompt("Qual o seu nome?")
 
 ```
 
-[] Consertar o código. [:link:](aula02.js)
+- [] Consertar o código. [:link:](aula02.js)
