@@ -9,5 +9,5 @@ function converteMoedas(valorEmReais, moedaEscolhida) {
 }
 
 // Use o objeto para escolher a moeda
-let resultado = converteMoedas(5, listaDeMoedas.EUR.valor).toFixed(2);
+const resultado = converteMoedas(5, listaDeMoedas.EUR.valor).toFixed(2);
 console.log(`Um total de $${resultado}`);
