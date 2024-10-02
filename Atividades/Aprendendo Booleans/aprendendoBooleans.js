@@ -1,16 +1,18 @@
 const portaAberta = true;
 const verificaPorta = () => (portaAberta ? "aberta! " : "fechada! ");
 
-console.log(`A porta esta ${verificaPorta()}`);
+const respostasPossiveis = new Set(["sim", "pode", "entre", "venha"]);
 
-const podeEntrar = prompt("Eu posso entrar?");
+console.log(` A porta esta ${verificaPorta()}`);
+
+const pedePraEntrar = prompt("Eu posso entrar?").toLocaleLowerCase();
 
 function verificaEntrada() {
-  return podeEntrar === "pode" && portaAberta;
+  return respostasPossiveis.has(pedePraEntrar) && portaAberta;
 }
 
 function tentaEntrar() {
-  return verificaEntrada() ? "Entrei! 󰩈" : "Nao pude entrar ";
+  return verificaEntrada() ? "Entrei! 󰩈" : "Não consegui entrar ";
 }
 
 console.log(tentaEntrar());
