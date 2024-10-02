@@ -10,7 +10,7 @@ function verificaEntrada() {
 }
 
 function tentaEntrar() {
-  return verificaEntrada() ? "Entrei! 󰩈" : "Nao entrei ";
+  return verificaEntrada() ? "Entrei! 󰩈" : "Nao pude entrar ";
 }
 
 console.log(tentaEntrar());
