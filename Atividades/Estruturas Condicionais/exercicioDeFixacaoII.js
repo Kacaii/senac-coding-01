@@ -1,3 +1,5 @@
+// Fiquei tanto tempo no exercicio anterior que fiquei sem energia pra esse. (╥﹏╥)
+
 console.clear();
 
 const listaDeComidas = ["Banana", "Laranja", "Beterraba"];
