@@ -8,7 +8,7 @@ const paciente = {
 
 console.clear();
 
-console.log("Bem vindo(a) ao Sistema Virtual de Saúde! \n");
+console.log("Bem vindo(a) ao %cSistema Virtual de Saúde! \n", "color: green");
 paciente.nome = prompt("Qual o nome do beneficiário? \n \n>");
 
 if (!paciente.nome) throw new Error("O nome não pode ficar vazio!");
