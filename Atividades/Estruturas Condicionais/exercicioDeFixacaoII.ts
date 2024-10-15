@@ -1,30 +1,44 @@
+type Result<T> = [T, null] | [null, Error];
+
 console.clear();
 
 const listaDeComidas: string[] = ["Banana", "Laranja", "Beterraba"];
 
 console.table(listaDeComidas);
-const frutaDesejada: string | null = prompt("Escolha uma das opções: \n \n>");
+const inputFruta: string | null = prompt("Escolha uma das opções: \n \n>");
 
-if (frutaDesejada === null)
-  throw new Error("Você esqueceu de digitar a fruta.");
+const verificaInput = (inputFruta: string | null): Result<string> => {
+  if (inputFruta === null || inputFruta.trim() === "") {
+    return [null, new Error("Input vazio!  ")];
+  } else {
+    return [inputFruta, null];
+  }
+};
 
-switch (frutaDesejada.toLowerCase()) {
-  case "banana":
-    console.clear();
-    console.info("%cRica em potássio!", "color: yellow");
-    break;
+console.clear();
+const [frutaDesejada, erro]: Result<string> = verificaInput(inputFruta);
 
-  case "laranja":
-    console.clear();
-    console.info("%cRica em vitamina C!", "color: orange");
-    break;
+if (erro) {
+  console.error(erro);
+} else {
+  switch (frutaDesejada!.toLowerCase()) {
+    case "banana":
+      console.clear();
+      console.info("%cRica em potássio!", "color: yellow");
+      break;
 
-  case "beterraba":
-    console.clear();
-    console.info("%cFaz bem pra circulação!", "color: purple");
-    break;
+    case "laranja":
+      console.clear();
+      console.info("%cRica em vitamina C!", "color: orange");
+      break;
 
-  default:
-    console.warn("Precisa ser um item da lista!");
-    break;
+    case "beterraba":
+      console.clear();
+      console.info("%cFaz bem pra circulação!", "color: purple");
+      break;
+
+    default:
+      console.warn("Precisa ser um item da lista!");
+      break;
+  }
 }
