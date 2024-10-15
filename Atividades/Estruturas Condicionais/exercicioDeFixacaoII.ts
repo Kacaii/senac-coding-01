@@ -1,7 +1,6 @@
 type Result<T> = [T, null] | [null, Error];
 
 console.clear();
-
 const listaDeComidas: string[] = ["Banana", "Laranja", "Beterraba"];
 
 console.table(listaDeComidas);
@@ -11,7 +10,7 @@ const verificaInput = (inputFruta: string | null): Result<string> => {
   if (inputFruta === null || inputFruta.trim() === "") {
     return [null, new Error("Input vazio!  ")];
   } else {
-    return [inputFruta, null];
+    return [inputFruta.toLowerCase(), null];
   }
 };
 
@@ -21,7 +20,7 @@ const [frutaDesejada, erro]: Result<string> = verificaInput(inputFruta);
 if (erro) {
   console.error(erro);
 } else {
-  switch (frutaDesejada!.toLowerCase()) {
+  switch (frutaDesejada) {
     case "banana":
       console.clear();
       console.info("%cRica em potássio!", "color: yellow");
@@ -38,7 +37,7 @@ if (erro) {
       break;
 
     default:
-      console.warn("Precisa ser um item da lista!");
+      console.warn("Precisa ser um item da lista!  ");
       break;
   }
 }
