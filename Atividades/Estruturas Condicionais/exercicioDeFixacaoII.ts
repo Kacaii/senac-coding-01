@@ -1,10 +1,12 @@
-type Result<T> = [T, null] | [null, Error];
+type Result<T> = [T, null] | [null, Error]; // Devolve uma array de tamanho fixo
 
 console.clear();
-const listaDeComidas: string[] = ["Banana", "Laranja", "Beterraba"];
+const listaDeComidas: string[] = ["Banana", "Laranja", "Beterraba"]; // Apresentadas em uma tabela
 
 console.table(listaDeComidas);
-const inputFruta: string | null = prompt("Escolha uma das opções: \n \n>");
+const inputFruta: string | null = prompt(
+  "\nInsira o nome da fruta escolhida: \n \n>",
+);
 
 const verificaInput = (inputFruta: string | null): Result<string> => {
   if (inputFruta === null || inputFruta.trim() === "") {
@@ -15,11 +17,12 @@ const verificaInput = (inputFruta: string | null): Result<string> => {
 };
 
 console.clear();
-const [frutaDesejada, erro]: Result<string> = verificaInput(inputFruta);
+const [frutaDesejada, error]: Result<string> = verificaInput(inputFruta);
 
-if (erro) {
-  console.error(erro);
+if (error) {
+  console.error(error.message);
 } else {
+  console.log("\n");
   switch (frutaDesejada) {
     case "banana":
       console.clear();
@@ -33,10 +36,11 @@ if (erro) {
 
     case "beterraba":
       console.clear();
-      console.info("%cFaz bem pra circulação!", "color: purple");
+      console.info("%cFaz bem pra circulação!", "color: red");
       break;
 
     default:
+      console.clear();
       console.warn("Precisa ser um item da lista!  ");
       break;
   }
