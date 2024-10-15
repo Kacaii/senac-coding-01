@@ -49,7 +49,7 @@ if (erroIdade) {
   const parsedIdade = Number(idade);
   typeof parsedIdade === "number" && !isNaN(parsedIdade)
     ? (paciente.idade = parsedIdade)
-    : console.error("\nIdade Inválida");
+    : console.error("Idade Inválida");
 }
 
 const inputServico = prompt("\nEntendido, como posso lhe ajudar? \n\n>");
