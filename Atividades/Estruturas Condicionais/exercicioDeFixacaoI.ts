@@ -2,11 +2,16 @@ import { toPascalCase } from "@std/text/to-pascal-case";
 
 type Result<T> = [T, null] | [null, Error];
 
-const paciente: {
-  nome: string | null;
-  idade: number | null;
-  servico: string | null;
-} = {
+type DadosPaciente = string | number | null;
+type DadosValidos = Exclude<DadosPaciente, null>;
+
+type Paciente = {
+  nome: DadosPaciente;
+  idade: DadosPaciente;
+  servico: DadosPaciente;
+};
+
+const paciente: Paciente = {
   nome: null,
   idade: null,
   servico: null,
@@ -17,7 +22,7 @@ const inputNome = prompt(
   "\nBem vindo ao Sistema de Saúde!  \nQual o seu nome? \n\n>",
 );
 
-function validaInput(input: string | number | null): Result<string | number> {
+function validaInput(input: DadosPaciente): Result<DadosValidos> {
   // Limpando o Console
   console.clear();
   if (input === null || input === "") {
@@ -32,7 +37,7 @@ const [nome, erroNome] = validaInput(inputNome);
 if (erroNome) {
   console.error(erroNome);
 } else {
-  typeof nome === "string"
+  typeof nome === "string" && isNaN(Number(nome))
     ? (paciente.nome = toPascalCase(nome))
     : console.error("\nNome Inválido");
 }
