@@ -1,7 +1,12 @@
 /**
  * Objeto que armazena as informações do paciente.
- * @type {{nome: string | null, idade: number | null, servico: string | null}}
+ * @typedef {Object} Paciente
+ * @property {string | null} nome - O nome do Paciente
+ * @property {number | null} idade - O nome do Paciente
+ * @property {string | null} servico - O serviço que o paciente solicitou.
  */
+
+/** @type {Paciente} */
 const paciente = {
   nome: null,
   idade: null,
