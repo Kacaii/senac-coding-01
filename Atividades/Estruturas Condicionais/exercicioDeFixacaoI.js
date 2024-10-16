@@ -1,3 +1,7 @@
+/**
+ * Objeto que armazena as informações do paciente.
+ * @type {{nome: string | null, idade: number | null, servico: string | null}}
+ */
 const paciente = {
   nome: null,
   idade: null,
@@ -5,10 +9,22 @@ const paciente = {
 };
 
 console.clear();
+
+/**
+ * Solicita e guarda o nome do paciente.
+ * @type {string|null}
+ */
 const inputNome = prompt(
   "\nBem vindo(a) ao Sistema de Saúde!  \nQual o seu nome? \n\n>",
 );
 
+/**
+ * - Valida o input fornecido pelo usuário.
+ * - Verifica se o input não está vazio ou nulo.
+ *
+ * @param {string | null} input - O valor do input fornecido.
+ * @returns {[string | null, Error | null]} Retorna o input e um erro, se houver.
+ */
 function validaInput(input) {
   // Limpando o Console
   console.clear();
@@ -29,6 +45,10 @@ if (erroNome) {
     : console.error("\nNome Inválido ");
 }
 
+/**
+ * Solicita e guarda a idade do paciente.
+ * @type {string | null}
+ */
 const inputIdade = prompt(
   `\nOi ${paciente.nome}! Seja bem vindo(a) <3 \nQual a sua idade? \n\n>`,
 );
@@ -44,6 +64,10 @@ if (erroIdade) {
     : console.error("\nIdade Inválida ");
 }
 
+/**
+ * Solicita e guarda o serviço desejado pelo paciente.
+ * @type {string | null}
+ */
 const inputServico = prompt("\nEntendido, como posso lhe ajudar? \n\n>");
 
 const [servico, erroServico] = validaInput(inputServico);
@@ -59,15 +83,23 @@ if (erroServico) {
 console.clear();
 console.log("\n");
 
+/**
+ * Verifica e exibe as informações fornecidas pelo paciente.
+ * Se algum valor estiver faltando, exibe um erro correspondente.
+ */
 Object.entries(paciente).forEach(([key, value]) => {
   value === null
     ? console.error(`Faltaram algumas informações  ( ${key} )`)
     : console.log(`%c${key} verificado(a)! `, "color:green");
 });
 
-const validaPaciente = Object.values(paciente).every((value) => value != null);
+/**
+ * Valida se todas as informações do paciente foram preenchidas.
+ * @type {boolean}
+ */
+const pacienteValido = Object.values(paciente).every((value) => value != null);
 
-validaPaciente
+pacienteValido
   ? console.log("\n%cPaciente valido! ", "color: blue")
   : console.error("\n%cPaciente Invalido! ", "color: red");
 
