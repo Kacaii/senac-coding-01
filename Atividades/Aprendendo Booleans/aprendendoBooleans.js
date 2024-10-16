@@ -1,6 +1,6 @@
 // Defina o estado da porta aqui
 const portaAberta = true;
-const respostasPossiveis = new Set(["sim", "pode", "entre", "venha, chegue"]);
+const respostasPossiveis = new Set(["sim", "pode", "entre", "venha, "chegue"]);
 const verificaPorta = () => (portaAberta ? "aberta! " : "fechada! ");
 
 console.clear();
