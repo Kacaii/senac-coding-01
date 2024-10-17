@@ -1,5 +1,10 @@
 // Atividade 04
 
+/**
+ * @param {number} base -  Base do triângulo
+ * @param {number} altura -  Altura do triângulo
+ * @returns {number} Retorna a área do triângulo
+ */
 function calculaAreaDoTriangulo(base, altura) {
   return (base * altura) / 2;
 }

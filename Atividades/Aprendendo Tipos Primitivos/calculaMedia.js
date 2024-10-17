@@ -1,6 +1,10 @@
 // Atividade 05
 
-// Experimentei passar um operador de espalhamento nos argumentos
+/**
+ * Calcula a media das notas, independente do número de **argumentos** passados
+ * @param {number[]} notas - Notas do aluno
+ * @returns {number} Retorna a média das notas
+ */
 function calcularMedia(...notas) {
   return (
     notas.reduce((acumulador, valorAtual) => acumulador + valorAtual, 0) /

@@ -1,5 +1,10 @@
 // Atividade 08
 
+/**
+ * Converte uma temperatura de celsius para fahrenheit
+ * @param {number} celsius - Valor em graus Celsius
+ * @returns {number} Valor convertido em graus Fahrenheit
+ */
 function celsiusPraFahrenheit(celsius) {
   return (celsius + 9 / 5 + 32).toFixed(2);
 }
