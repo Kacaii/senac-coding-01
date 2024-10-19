@@ -1,9 +1,13 @@
 // Atividade 02
 
 /**
- * Mostra o nome e a cidade que foram passados como argumentos.
- * @param {string} - Nome da pessoa.
- * @param {string} - Nome da cidade onde a pessoa mora.
+ * Exibe o nome e a cidade fornecidos como argumentos.
+ * Se nenhum argumento for passado, exibe nome e cidade do autor.
+ *
+ * @param {string} nome - Nome da pessoa.
+ * @param {string} cidade - Nome da cidade onde a pessoa mora.
+ *
+ * @author [Kacaii](https://github.com/Kacaii)
  */
 function mostraCidade(nome = "Pedro", cidade = "Olinda") {
   console.log(`${nome} é de ${cidade}`);

@@ -1,5 +1,3 @@
-// @ts-check
-
 /**
  * Indica se a porta está aberta
  * @type {boolean}

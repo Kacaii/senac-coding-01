@@ -1,5 +1,13 @@
 // Atividade 03
 
+/**
+ * Calculadora que realiza operações matemáticas básicas
+ * utilizando os números passados como argumentos
+ * e as exibe no terminal.
+ *
+ * @param {number} x - Primeiro Número
+ * @param {number} y - Segundo Número
+ */
 function operacoesBasicas(x, y) {
   const adicao = x + y;
   const subtracao = x - y;

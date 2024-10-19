@@ -6,7 +6,8 @@
  * @returns {number} Valor convertido em graus Fahrenheit
  */
 function celsiusPraFahrenheit(celsius) {
-  return (celsius + 9 / 5 + 32).toFixed(2);
+  const temperatura = (celsius + 9 / 5 + 32).toFixed(2);
+  return Number(temperatura);
 }
 
 // Atualize os graus aqui

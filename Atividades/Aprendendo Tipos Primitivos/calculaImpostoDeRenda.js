@@ -1,5 +1,3 @@
-// @ts-check
-
 // Atividade 07
 
 let impostoDeRenda = 0;
