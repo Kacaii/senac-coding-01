@@ -1,3 +1,5 @@
+// @ts-check
+
 // Atividade 05
 
 /**
@@ -6,12 +8,14 @@
  * @returns {number} Retorna a média das notas
  */
 function calcularMedia(...notas) {
-  return (
+  const media = (
     notas.reduce((acumulador, valorAtual) => acumulador + valorAtual, 0) /
     notas.length
-  ).toFixed();
+  ).toFixed(2);
+
+  return Number(media);
 }
 
 // Tente com mais argumentos, funciona até com mais de 3 notas
 const resultado = calcularMedia(10, 3, 7, 10);
-console.log(`Sua média é de ${resultado}`);
+console.log(`Sua média é de ${resultado} `);

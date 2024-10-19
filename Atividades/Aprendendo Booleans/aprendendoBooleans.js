@@ -1,3 +1,5 @@
+// @ts-check
+
 /**
  * Indica se a porta está aberta
  * @type {boolean}
@@ -8,7 +10,15 @@ const portaAberta = true;
  * Conjunto de respostas possíveis que concedem permissão para entrar.
  * @type {Set<string>}
  */
-const respostasPossiveis = new Set(["sim", "pode", "entre", "venha", "chegue"]);
+const respostasPossiveis = new Set([
+  "sim",
+  "claro",
+  "pode",
+  "entre",
+  "venha",
+  "vem",
+  "chegue",
+]);
 
 /**
  * Verifica o estado atual da porta (aberta ou fechada).
@@ -19,7 +29,10 @@ const verificaPorta = () => (portaAberta ? "aberta! " : "fechada! ");
 console.clear();
 console.log(`\n A porta esta ${verificaPorta()}`);
 
-const pedePraEntrar = prompt("Eu posso entrar? \n\n>").toLocaleLowerCase();
+/**
+ * @type {string | null}
+ */
+const respostaOuNull = prompt("\nEu posso entrar? \n\n>");
 
 /**
  * Verifica se a pessoa pode entrar.
@@ -31,10 +44,13 @@ const pedePraEntrar = prompt("Eu posso entrar? \n\n>").toLocaleLowerCase();
  *
  * @returns {boolean} Retorna `true` se a pessoa pode entrar, caso contrário `false`.
  */
-function verificaEntrada() {
-  return respostasPossiveis.has(pedePraEntrar) && portaAberta;
+function verificaSePodeEntrar() {
+  if (respostaOuNull == null || respostaOuNull.trim() === "") {
+    throw new Error("Mensagem vazia ").message;
+  }
+  return respostasPossiveis.has(respostaOuNull.toLowerCase()) && portaAberta;
 }
 
-verificaEntrada()
-  ? console.log("%cEntrei! 󰩈", "color:green")
-  : console.log("%cNão consegui entrar ", "color:red");
+verificaSePodeEntrar()
+  ? console.log("\n%cEntrei! 󰩈\n", "color:green")
+  : console.log("\n%cNão consegui entrar \n", "color:red");

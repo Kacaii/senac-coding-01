@@ -1,7 +1,13 @@
+// @ts-check
+
 // Atividade 07
 
 let impostoDeRenda = 0;
 
+/**
+ * Calcula o imposto de renda
+ * @param {number} salarioBruto - Valor do salario bruto
+ */
 function calculaImpostoDeRenda(salarioBruto) {
   if (salarioBruto >= 6000) {
     impostoDeRenda = 0.3;
