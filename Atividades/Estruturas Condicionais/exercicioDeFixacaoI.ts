@@ -1,5 +1,3 @@
-import { toPascalCase } from "@std/text/to-pascal-case";
-
 type Result<T> = [T, null] | [null, Error];
 
 type DadosPaciente = string | number | null;
@@ -38,7 +36,7 @@ if (erroNome) {
   console.error(erroNome.message);
 } else {
   typeof nome === "string" && isNaN(Number(nome))
-    ? (paciente.nome = toPascalCase(nome))
+    ? (paciente.nome = nome)
     : console.error("\nNome Inválido ");
 }
 
@@ -74,8 +72,8 @@ console.log("\n");
 
 Object.entries(paciente).forEach(([key, value]) => {
   value === null
-    ? console.error(`Faltaram algumas informações  ( ${toPascalCase(key)} )`)
-    : console.log(`%c${toPascalCase(key)} verificado(a)! `, "color:green");
+    ? console.error(`Faltaram algumas informações  ( ${key} )`)
+    : console.log(`%c${key} verificado(a)! `, "color:green");
 });
 
 const validaPaciente: boolean = Object.values(paciente).every(
