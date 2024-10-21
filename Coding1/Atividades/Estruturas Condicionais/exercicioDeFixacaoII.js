@@ -65,6 +65,5 @@ if (error) {
     default:
       console.clear();
       console.warn("Precisa ser um item da lista!  ");
-      break;
   }
 }
