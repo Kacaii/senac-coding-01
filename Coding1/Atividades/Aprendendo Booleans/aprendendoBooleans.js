@@ -22,7 +22,9 @@ const respostasPossiveis = new Set([
  * Verifica o estado atual da porta (aberta ou fechada).
  * @returns {string} O estado da porta: "aberta! " ou "fechada! ".
  */
-const verificaPorta = () => (portaAberta ? "aberta! " : "fechada! ");
+function verificaPorta() {
+  return portaAberta ? "aberta! " : "fechada! ";
+}
 
 console.clear();
 console.log(`\n A porta esta ${verificaPorta()}`);
