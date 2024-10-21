@@ -21,13 +21,13 @@ const inputFruta = prompt("\nInsira o nome da fruta escolhida: \n \n>");
  * @param {string | null} inputFruta - O nome da fruta fornecida pelo usuário.
  * @returns {[string | null, Error | null]} Retorna a fruta em minúsculas ou um erro se o input for inválido.
  */
-const verificaInput = (inputFruta) => {
+function verificaInput(inputFruta) {
   if (inputFruta === null || inputFruta.trim() === "") {
     return [null, new Error("Input vazio!  ")];
   } else {
     return [inputFruta.toLowerCase(), null];
   }
-};
+}
 
 console.clear();
 
