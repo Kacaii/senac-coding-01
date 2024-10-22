@@ -15,7 +15,6 @@ and exercises developed as part of my studies at SENAC-PE.
 
 - **Deno**: A modern JavaScript and TypeScript runtime.
 - **JavaScript**: A programming language that enables interactive web pages.
-- **TypeScript**: A typed superset of JavaScript that compiles to plain JavaScript.
 
 ## Project Structure
 
