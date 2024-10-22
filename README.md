@@ -3,7 +3,6 @@
 <!--toc:start-->
 
 - [SENAC Coding Repository](#senac-coding-repository)
-  - [Table of Contents](#table-of-contents)
   - [Technologies Used](#technologies-used)
   - [Project Structure](#project-structure)
   - [Contributing](#contributing)
@@ -11,10 +10,6 @@
 
 Welcome to the SENAC Coding Repository! This repository contains various coding projects
 and exercises developed as part of my studies at SENAC-PE.
-
-## Table of Contents
-
-- [Technologies Used](#technologies-used)
 
 ## Technologies Used
 
