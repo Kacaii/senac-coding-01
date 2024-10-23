@@ -14,7 +14,7 @@
  *
  * ```
  */
-function calculaAreaDoTriangulo(base, altura) {
+export default function calculaAreaDoTriangulo(base, altura) {
   return (base * altura) / 2;
 }
 
