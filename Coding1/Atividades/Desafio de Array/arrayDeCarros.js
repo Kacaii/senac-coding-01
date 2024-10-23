@@ -1,14 +1,8 @@
 /**
- * `prompt()` sempre retorna uma string, ou null.
- *
  * @typedef {string | null} respostaPrompt
  */
 
-/**
- * Uma array com vários carros
- *
- * @type {string[]}
- */
+/** @type {string[]} */
 const listaDeCarros = [
   "Toyota Camry",
   "Honda Accord",
@@ -22,16 +16,10 @@ const listaDeCarros = [
   "Volkswagen Passat",
 ];
 
-/**
- * Nome do carro a ser removido.
- * Inicia como `null`
- */
+/** Nome do carro a ser removido. Inicia como `null`. */
 let nomeCarroRemovido = null;
 
-/**
- * Limpa e tela, e então exibe a tabela de carros disponíveis
- * Vai ser usado bastante.
- */
+/** Limpa e tela, e então exibe a tabela de carros disponíveis. */
 function limpaTelaEExibeTabelaDeCarros() {
   console.clear();
   console.log(`\nLista de carros disponíveis:\n`);
@@ -42,7 +30,7 @@ limpaTelaEExibeTabelaDeCarros();
 
 /**
  * Resposta que o usuário passou para o prompt.
- * Pode conter o ID do carro em formato de `string`, ou `null`.
+ * Contém o ID do carro em formato de `string`, ou `null`.
  *
  * @type {respostaPrompt}
  */
@@ -52,10 +40,10 @@ const idCarroPrompt = prompt(
 
 /**
  * Valida o ID que o usuário passou para o prompt.
- * Precisa retornar um número, ou NaN.
+ * Retorna um número, ou `NaN`.
  *
  * @param {respostaPrompt} id - ID do Carro a ser removido.
- * @returns {number} Retorna um número, ou NaN.
+ * @returns {number} Retorna um número, ou `NaN`.
  */
 function validaIdCarro(id) {
   if (idCarroPrompt === null || idCarroPrompt.trim() === "") {
@@ -83,6 +71,7 @@ if (
 
 limpaTelaEExibeTabelaDeCarros();
 
+// Feedback para o usuário.
 if (nomeCarroRemovido != null) {
   if (idCarroRemovido < listaDeCarros.length && idCarroRemovido >= 0)
     console.log(
@@ -107,13 +96,13 @@ const nomeCarroPrompt = prompt(
 
 /**
  * Valida o imput passado para o prompt.
- * Devolve uma das duas opcoes:
+ * Devolve uma das duas opções:
  *
- * - Uma array contendo string com o nome do carro, e null
- * - Um array contendo null e um Erro
+ * - Uma array contendo string com o nome do carro, e `null`
+ * - Um array contendo `null` e um Erro
  *
- * @param {respostaPrompt} input
- * @returns { string | null }
+ * @param {respostaPrompt} input - Nome do carro.
+ * @returns { string | null } Nome do carro, ou `null`
  */
 function validaNomeCarro(input) {
   if (input === null || input.trim() === "") {
@@ -125,12 +114,14 @@ function validaNomeCarro(input) {
 
 const nomeCarroNovo = validaNomeCarro(nomeCarroPrompt);
 
+// Verifica se o usuário digitou o nome do carro.
 if (nomeCarroNovo != null) {
   listaDeCarros.push(nomeCarroNovo); // Adiciona o carro novo no final da lista
 }
 
 limpaTelaEExibeTabelaDeCarros();
 
+// Feedback para o usuário.
 if (nomeCarroNovo != null) {
   console.log(`\n%c${nomeCarroNovo} %cadicionado!`, "color:green", "color:)");
 }

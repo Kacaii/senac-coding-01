@@ -1,6 +1,6 @@
 # Desafio de Array
 
-Grupo:
+## Grupo
 
 - [Eloi](https://github.com/Eloi-0001)
 - [Ayres](https://github.com/Kacaii)
@@ -16,17 +16,10 @@ Crie um `array` de carros. Em seguida, realize as seguintes operações:
 - [x] Crie as variáveis, use a função `prompt()` e o `console.log()`
       para interagir com o usuário.
 
-## TODO List
+## Instruções
 
-- [x] Deixar o código mais bonitinho.
-- [x] Verificar se ele continua funcionando.
-- [ ] Adicionar todos os membros da equipe na documentação.
-- [x] Enviar o código para a professora.
-
-## Tabela
-
-- Adicionar ou remover carros da tabela é opcional.
-- Não é possível usar valores **negativos**,
+- Adicionar ou remover carros da tabela é **opcional**.
+- Não é possível usar números **negativos**.
 - Durante a execução do código, os carros são exibidos em tabelas assim:
 
 | ID  |  Nomes dos Carros  |
@@ -36,3 +29,11 @@ Crie um `array` de carros. Em seguida, realize as seguintes operações:
 |  2  |   "Ford Mustang"   |
 |  3  | "Chevrolet Malibu" |
 | ... |        ...         |
+| ... |        ...         |
+
+## TODO List
+
+- [x] Deixar o código mais bonitinho.
+- [x] Verificar se ele continua funcionando.
+- [ ] Adicionar todos os membros da equipe na documentação.
+- [x] Enviar o código para a professora.
