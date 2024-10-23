@@ -25,8 +25,9 @@ Crie um `array` de carros. Em seguida, realize as seguintes operações:
 
 ## Tabela
 
-Adicionar ou remover carros da tabela é opcional.
-Durante a execução do código, os carros são exibidos em tabelas assim:
+- Adicionar ou remover carros da tabela é opcional.
+- Não é possível usar valores **negativos**,
+- Durante a execução do código, os carros são exibidos em tabelas assim:
 
 | ID  |  Nomes dos Carros  |
 | :-: | :----------------: |

@@ -22,10 +22,15 @@ const listaDeCarros = [
   "Volkswagen Passat",
 ];
 
-let carroRemovido = null;
+/**
+ * Nome do carro a ser removido.
+ * Inicia como `null`
+ */
+let nomeCarroRemovido = null;
 
 /**
  * Limpa e tela, e então exibe a tabela de carros disponíveis
+ * Vai ser usado bastante.
  */
 function limpaTelaEExibeTabelaDeCarros() {
   console.clear();
@@ -37,7 +42,8 @@ limpaTelaEExibeTabelaDeCarros();
 
 /**
  * Resposta que o usuário passou para o prompt.
- * Pode conter o ID em formato de string, ou null.
+ * Pode conter o ID do carro em formato de `string`, ou `null`.
+ *
  * @type {respostaPrompt}
  */
 const idCarroPrompt = prompt(
@@ -47,8 +53,9 @@ const idCarroPrompt = prompt(
 /**
  * Valida o ID que o usuário passou para o prompt.
  * Precisa retornar um número, ou NaN.
+ *
  * @param {respostaPrompt} id - ID do Carro a ser removido.
- * @returns {number} Retorna um número, ou NaN
+ * @returns {number} Retorna um número, ou NaN.
  */
 function validaIdCarro(id) {
   if (idCarroPrompt === null || idCarroPrompt.trim() === "") {
@@ -60,26 +67,31 @@ function validaIdCarro(id) {
 /**
  * ID do carro, ou um `NaN`.
  * Por algum motivo, NaN também é do tipo número (?)
+ *
  * @type {number}
  */
-const parsedIdCarro = validaIdCarro(idCarroPrompt);
+const idCarroRemovido = validaIdCarro(idCarroPrompt);
 
-// Remove o carro, dado o ID
-if (!isNaN(parsedIdCarro)) {
-  carroRemovido = listaDeCarros.splice(parsedIdCarro, 1);
+// Remove o carro, dado o ID. Não aceita números negativos.
+if (
+  !isNaN(idCarroRemovido) &&
+  idCarroRemovido >= 0 &&
+  idCarroRemovido < listaDeCarros.length
+) {
+  nomeCarroRemovido = listaDeCarros.splice(idCarroRemovido, 1);
 }
 
 limpaTelaEExibeTabelaDeCarros();
 
-if (carroRemovido != null) {
-  if (parsedIdCarro < listaDeCarros.length)
+if (nomeCarroRemovido != null) {
+  if (idCarroRemovido < listaDeCarros.length && idCarroRemovido >= 0)
     console.log(
-      `\n%c${carroRemovido} %cfoi removido da lista!`,
+      `\n%c${nomeCarroRemovido} %cfoi removido da lista!`,
       "color: red",
       "color:",
     );
   else {
-    console.log("Nenhum carro foi removido da lista");
+    console.log("\nNenhum carro foi removido da lista");
   }
 }
 
@@ -89,7 +101,7 @@ if (carroRemovido != null) {
  *
  * @type {respostaPrompt}
  */
-const carroPrompt = prompt(
+const nomeCarroPrompt = prompt(
   "\nGostaria de adicionar algum carro na lista? \n\nInsira o nome do carro ou deixe em branco. \n>",
 );
 
@@ -111,11 +123,18 @@ function validaNomeCarro(input) {
   }
 }
 
-const nomeDoCarro = validaNomeCarro(carroPrompt);
+const nomeCarroNovo = validaNomeCarro(nomeCarroPrompt);
 
-if (nomeDoCarro != null) {
-  listaDeCarros.push(nomeDoCarro);
+if (nomeCarroNovo != null) {
+  listaDeCarros.push(nomeCarroNovo); // Adiciona o carro novo no final da lista
 }
 
 limpaTelaEExibeTabelaDeCarros();
-console.log(`\nTemos um total de ${listaDeCarros.length} carros disponíveis!`);
+
+if (nomeCarroNovo != null) {
+  console.log(`\n%c${nomeCarroNovo} %cadicionado!`, "color:green", "color:)");
+}
+
+console.log(
+  `\nTemos um total de ${listaDeCarros.length} carros disponíveis!\n`,
+);
