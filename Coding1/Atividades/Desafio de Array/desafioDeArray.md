@@ -2,16 +2,16 @@
 
 ## Enunciado: Um sistema de aluguel de carros
 
-Crie um array de carros. Em seguida, realize as seguintes operacoes:
+Crie um `array` de carros. Em seguida, realize as seguintes operações:
 
 - [x] **Remover** um carro da lista.
 - [x] **Adicionar** um novo carro na lista
-- [x] **Mostrar** o numero de total de carros na lista
-- [x] Crie as variaveis, use a funcao `prompt()` e o `console.log()`
-      para interagir com o usuario.
+- [x] **Mostrar** o número de total de carros na lista
+- [x] Crie as variáveis, use a função `prompt()` e o `console.log()`
+      para interagir com o usuário.
 
 ---
 
-- [ ] Deixar o codigo mais bonitinho.
-- [ ] Verificar se ele continua funcionando.
-- [ ] Enviar o codigo para a professora.
+- [x] Deixar o código mais bonitinho.
+- [x] Verificar se ele continua funcionando.
+- [ ] Enviar o código para a professora.

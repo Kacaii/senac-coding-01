@@ -1,11 +1,12 @@
-console.clear();
-
 /**
+ * `prompt()` sempre retorna uma string, ou null.
+ *
  * @typedef {string | null} respostaPrompt
  */
 
 /**
- * Array com varios carros
+ * Uma array com vários carros
+ *
  * @type {string[]}
  */
 const listaDeCarros = [
@@ -21,34 +22,64 @@ const listaDeCarros = [
   "Volkswagen Passat",
 ];
 
-// TODO: Deixar mais bonitinho
-listaDeCarros.forEach((carro, index) => {
-  console.log(`Nome: ${carro}, posicao: ${index}`);
-});
+/**
+ * Esta função realiza os seguintes comandos:
+ *
+ * 1. Limpa a tela do terminal.
+ * 2. Exibe a tabela de carros disponíveis
+ */
+function exibeTabelaDeCarros() {
+  console.clear();
+  console.log(`\nLista de carros disponíveis:\n`);
+  console.table(listaDeCarros);
+}
+
+exibeTabelaDeCarros();
 
 /**
- * Resposta que o usuario passou para o prompt.
- * Pode conter o numero em formato de string, ou null
- * @type {string | null}
+ * Resposta que o usuário passou para o prompt.
+ * Pode conter o ID em formato de string, ou null.
+ * @type {respostaPrompt}
  */
-const removeCarroPrompt = prompt(
-  "\nBom dia! Escreva o numero do carro que voce gostaria de remover \n\n>",
+const idCarroPrompt = prompt(
+  "\n( Opcional ) Gostaria de remover algum carro da lista? \n\nInsira o ID do carro.\n>",
 );
 
-const parsedRemoveCarroPrompt = Number(removeCarroPrompt); // Vai retornar um numero, ou NaN
-
-if (!isNaN(Number(parsedRemoveCarroPrompt))) {
-  listaDeCarros.splice(parsedRemoveCarroPrompt, 1);
+/**
+ * Valida o ID que o usuário passou para o prompt.
+ * Precisa retornar um número, ou NaN.
+ * @param {respostaPrompt} id - ID do Carro a ser removido.
+ * @returns {number} Retorna um número, ou NaN
+ */
+function validaIdCarro(id) {
+  if (idCarroPrompt === null || idCarroPrompt.trim() === "") {
+    return NaN;
+  }
+  return Number(id);
 }
 
 /**
- * Resposta que o usuario passou para o prompt.
+ * ID do carro, ou um `NaN`.
+ * Por algum motivo, NaN também é do tipo número (?)
+ * @type {number}
+ */
+const parsedRemoveCarroPrompt = validaIdCarro(idCarroPrompt);
+
+// Remove o carro, dado o ID
+if (!isNaN(parsedRemoveCarroPrompt)) {
+  listaDeCarros.splice(parsedRemoveCarroPrompt, 1);
+}
+
+exibeTabelaDeCarros();
+
+/**
+ * Resposta que o usuário passou para o prompt.
  * Pode conter o nome de um carro, ou null
  *
  * @type {respostaPrompt}
  */
 const carroPrompt = prompt(
-  "\nQual carro voce gostaria de adicionar a lista?\n\n>",
+  "\nGostaria de adicionar algum carro na lista? \n\nInsira o nome do carro. \n>",
 );
 
 /**
@@ -61,9 +92,7 @@ const carroPrompt = prompt(
  * @param {respostaPrompt} input
  * @returns { [string, null] | [null, Error] }
  */
-function validaCarro(input) {
-  // Limpando o Console
-  console.clear();
+function validaNomeCarro(input) {
   if (input === null || input === "") {
     return [null, new Error("\nInput vazio!")];
   } else {
@@ -71,7 +100,7 @@ function validaCarro(input) {
   }
 }
 
-const [nomeDoCarro, erro] = validaCarro(carroPrompt);
+const [nomeDoCarro, erro] = validaNomeCarro(carroPrompt);
 
 if (erro) {
   console.error(erro.message);
@@ -80,6 +109,5 @@ if (erro) {
   console.log("\n%cCarro adicionado a lista! \n", "color:green");
 }
 
-// TODO: Deixar mais bonitinho
-console.log(`Temos um total de ${listaDeCarros.length} disponiveis`);
-console.log(listaDeCarros);
+exibeTabelaDeCarros();
+console.log(`\nTemos um total de ${listaDeCarros.length} carros disponíveis!`);
