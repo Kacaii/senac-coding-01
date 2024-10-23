@@ -9,3 +9,9 @@ Crie um array de carros. Em seguida, realize as seguintes operacoes:
 - [x] **Mostrar** o numero de total de carros na lista
 - [x] Crie as variaveis, use a funcao `prompt()` e o `console.log()`
       para interagir com o usuario.
+
+---
+
+- [ ] Deixar o codigo mais bonitinho.
+- [ ] Verificar se ele continua funcionando.
+- [ ] Enviar o codigo para a professora.

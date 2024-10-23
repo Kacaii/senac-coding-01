@@ -21,6 +21,7 @@ const listaDeCarros = [
   "Volkswagen Passat",
 ];
 
+// TODO: Deixar mais bonitinho
 listaDeCarros.forEach((carro, index) => {
   console.log(`Nome: ${carro}, posicao: ${index}`);
 });
@@ -79,5 +80,6 @@ if (erro) {
   console.log("\n%cCarro adicionado a lista! \n", "color:green");
 }
 
+// TODO: Deixar mais bonitinho
 console.log(`Temos um total de ${listaDeCarros.length} disponiveis`);
 console.log(listaDeCarros);
