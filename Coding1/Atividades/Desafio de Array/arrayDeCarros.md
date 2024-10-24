@@ -4,7 +4,7 @@
 
 - [Eloi](https://github.com/Eloi-0001)
 - [Ayres](https://github.com/Kacaii)
-- [#](https://github.com/)
+- [Matheus](https://github.com/eumatheuslucena)
 
 ## Enunciado: Um sistema de aluguel de carros
 
@@ -35,5 +35,5 @@ Crie um `array` de carros. Em seguida, realize as seguintes operações:
 
 - [x] Deixar o código mais bonitinho.
 - [x] Verificar se ele continua funcionando.
-- [ ] Adicionar todos os membros da equipe na documentação.
+- [x] Adicionar todos os membros da equipe na documentação.
 - [x] Enviar o código para a professora.
