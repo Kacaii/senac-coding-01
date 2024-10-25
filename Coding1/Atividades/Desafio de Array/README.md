@@ -42,6 +42,7 @@
 - [x] Evitar a _repetição_ de código.
 - [x] Melhorar a legibilidade.
 
-> [!NOTE] Consegui reduzir cerca de 40 linhas.
+> [!NOTE]
+> Consegui reduzir cerca de 40 linhas.
 
 ![Cat Coding](https://c.tenor.com/g3y2q5VQxvAAAAAC/cat-computer.gif)
