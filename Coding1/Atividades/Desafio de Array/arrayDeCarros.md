@@ -41,3 +41,7 @@ Crie um `array` de carros. Em seguida, realize as seguintes operações:
 ## Extras
 
 - [ ] Escrever unit tests pra o arquivo.
+
+> [!WARNING]
+> Por padrão, `Deno test` executa o código
+> de onde a função foi exportada.
