@@ -26,6 +26,16 @@ function limpaTelaEExibeTabelaDeCarros() {
   console.table(listaDeCarros);
 }
 
+/**
+ * Remove o carro da lista passando o ID como argumento
+ * @param {number} id - ID do carro a ser removido
+ */
+function removeIdCarro(id) {
+  if (!isNaN(id) && id >= 0 && id < listaDeCarros.length) {
+    nomeCarroRemovido = listaDeCarros.splice(id, 1);
+  }
+}
+
 limpaTelaEExibeTabelaDeCarros();
 
 /**
@@ -61,13 +71,7 @@ function validaIdCarro(id) {
 const idCarroRemovido = validaIdCarro(idCarroPrompt);
 
 // Remove o carro, dado o ID. Não aceita números negativos.
-if (
-  !isNaN(idCarroRemovido) &&
-  idCarroRemovido >= 0 &&
-  idCarroRemovido < listaDeCarros.length
-) {
-  nomeCarroRemovido = listaDeCarros.splice(idCarroRemovido, 1);
-}
+removeIdCarro(idCarroRemovido);
 
 limpaTelaEExibeTabelaDeCarros();
 

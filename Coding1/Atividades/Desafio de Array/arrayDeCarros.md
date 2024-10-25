@@ -37,3 +37,7 @@ Crie um `array` de carros. Em seguida, realize as seguintes operações:
 - [x] Verificar se ele continua funcionando.
 - [x] Adicionar todos os membros da equipe na documentação.
 - [x] Enviar o código para a professora.
+
+## Extras
+
+- [ ] Escrever unit tests pra o arquivo.
