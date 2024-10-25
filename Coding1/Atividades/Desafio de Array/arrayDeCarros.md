@@ -44,4 +44,5 @@ Crie um `array` de carros. Em seguida, realize as seguintes operações:
 
 > [!WARNING]
 > Por padrão, `Deno test` executa o código
-> de onde a função foi exportada.
+> de onde a função foi exportada. Talvez
+> Orientação a Objetos possa ajudar?
