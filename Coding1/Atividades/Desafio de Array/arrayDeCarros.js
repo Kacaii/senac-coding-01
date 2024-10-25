@@ -16,11 +16,8 @@ const listaDeCarros = [
   "Volkswagen Passat",
 ];
 
-/** Nome do carro a ser removido. Inicia como `null`. */
-let nomeCarroRemovido = null;
-
-/** Limpa e tela, e então exibe a tabela de carros disponíveis. */
-function limpaTelaEExibeTabelaDeCarros() {
+/** Limpa a tela, e então exibe a tabela de carros disponíveis. */
+function atualizaTabela() {
   console.clear();
   console.log(`\nLista de carros disponíveis:\n`);
   console.table(listaDeCarros);
@@ -28,15 +25,33 @@ function limpaTelaEExibeTabelaDeCarros() {
 
 /**
  * Remove o carro da lista passando o ID como argumento
- * @param {number} id - ID do carro a ser removido
+ * @param {string[]} lista - Lista de carros.
+ * @param {respostaPrompt} id - ID do carro a ser removido
  */
-function removeIdCarro(id) {
-  if (!isNaN(id) && id >= 0 && id < listaDeCarros.length) {
-    nomeCarroRemovido = listaDeCarros.splice(id, 1);
+function removeCarro(lista, id) {
+  // Verifica se o input está vazio.
+  if (id === null || id.trim() === "") {
+    atualizaTabela();
+    console.log("\nNenhum carro foi removido."); // Early return.
+    return;
+  }
+  const parsedID = parseInt(id); // Transforma ID em número.
+
+  if (parsedID >= 0 && parsedID < lista.length) {
+    const [nomeCarroRemovido] = lista.splice(parsedID, 1); // Remove o carro da lista.
+    atualizaTabela(); // Exibe a lista atualizada.
+    console.log(
+      `\n%c${nomeCarroRemovido} %cfoi removido da lista!`, // Feedback para o usuário.
+      "color: red",
+      "color: white",
+    );
+  } else {
+    atualizaTabela(); // Exibe a lista atualizada.
+    console.log("\nNenhum carro foi removido."); // Caso seja um número inválido.
   }
 }
 
-limpaTelaEExibeTabelaDeCarros();
+atualizaTabela(); // Inicia o código.
 
 /**
  * Resposta que o usuário passou para o prompt.
@@ -48,49 +63,11 @@ const idCarroPrompt = prompt(
   "\n( Opcional ) Gostaria de remover algum carro da lista? \n\nInsira o ID do carro ou deixe em branco.\n>",
 );
 
-/**
- * Valida o ID que o usuário passou para o prompt.
- * Retorna um número, ou `NaN`.
- *
- * @param {respostaPrompt} id - ID do Carro a ser removido.
- * @returns {number} Retorna um número, ou `NaN`.
- */
-function validaIdCarro(id) {
-  if (idCarroPrompt === null || idCarroPrompt.trim() === "") {
-    return NaN;
-  }
-  return Number(id);
-}
-
-/**
- * ID do carro, ou um `NaN`.
- * Por algum motivo, NaN também é do tipo número (?)
- *
- * @type {number}
- */
-const idCarroRemovido = validaIdCarro(idCarroPrompt);
-
-// Remove o carro, dado o ID. Não aceita números negativos.
-removeIdCarro(idCarroRemovido);
-
-limpaTelaEExibeTabelaDeCarros();
-
-// Feedback para o usuário.
-if (nomeCarroRemovido != null) {
-  if (idCarroRemovido < listaDeCarros.length && idCarroRemovido >= 0)
-    console.log(
-      `\n%c${nomeCarroRemovido} %cfoi removido da lista!`,
-      "color: red",
-      "color:",
-    );
-  else {
-    console.log("\nNenhum carro foi removido da lista");
-  }
-}
+removeCarro(listaDeCarros, idCarroPrompt);
 
 /**
  * Resposta que o usuário passou para o prompt.
- * Pode conter o nome de um carro, ou null
+ * Pode conter o nome do carro em formato de `string`, ou `null`.
  *
  * @type {respostaPrompt}
  */
@@ -99,36 +76,22 @@ const nomeCarroPrompt = prompt(
 );
 
 /**
- * Valida o imput passado para o prompt.
- * Devolve uma das duas opções:
- *
- * - Uma array contendo string com o nome do carro, e `null`
- * - Um array contendo `null` e um Erro
- *
- * @param {respostaPrompt} input - Nome do carro.
- * @returns { string | null } Nome do carro, ou `null`
+ * Adiciona o carro da lista.
+ * @param {string[]} lista - Lista de carros.
+ * @param {respostaPrompt} nomeCarro - Nome do carro a ser adicionado.
  */
-function validaNomeCarro(input) {
-  if (input === null || input.trim() === "") {
-    return null;
-  } else {
-    return input;
+function adicionaNomeCarro(lista, nomeCarro) {
+  // Verifica se o input está vazio.
+  if (nomeCarro === null || nomeCarro.trim() === "") {
+    atualizaTabela();
+    return; // Early return
   }
+  lista.push(nomeCarro); // Adiciona o carro na lista
+  atualizaTabela();
+  console.log(`\n%c${nomeCarro} %cadicionado!`, "color:green", "color:)"); // Feedback
 }
 
-const nomeCarroNovo = validaNomeCarro(nomeCarroPrompt);
-
-// Verifica se o usuário digitou o nome do carro.
-if (nomeCarroNovo != null) {
-  listaDeCarros.push(nomeCarroNovo); // Adiciona o carro novo no final da lista
-}
-
-limpaTelaEExibeTabelaDeCarros();
-
-// Feedback para o usuário.
-if (nomeCarroNovo != null) {
-  console.log(`\n%c${nomeCarroNovo} %cadicionado!`, "color:green", "color:)");
-}
+adicionaNomeCarro(listaDeCarros, nomeCarroPrompt);
 
 console.log(
   `\nTemos um total de ${listaDeCarros.length} carros disponíveis!\n`,

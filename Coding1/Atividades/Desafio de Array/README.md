@@ -1,4 +1,4 @@
-# Desafio de Array
+# Desafio de Array 2024-10-23
 
 ## Grupo
 
@@ -8,12 +8,12 @@
 
 ## Enunciado: Um sistema de aluguel de carros
 
-Crie um `array` de carros. Em seguida, realize as seguintes operações:
+> Crie um `array` de carros. Em seguida, realize as seguintes operações:
 
 - [x] **Remover** um carro da lista.
-- [x] **Adicionar** um novo carro na lista
-- [x] **Mostrar** o número de total de carros na lista
-- [x] Crie as variáveis, use a função `prompt()` e o `console.log()`
+- [x] **Adicionar** um novo carro na lista.
+- [x] **Mostrar** o número de total de carros na lista.
+- [x] Crie as variáveis, use a função `prompt()` e o `console.log()`.
       para interagir com o usuário.
 
 ## Instruções
@@ -29,7 +29,6 @@ Crie um `array` de carros. Em seguida, realize as seguintes operações:
 |  2  |   "Ford Mustang"   |
 |  3  | "Chevrolet Malibu" |
 | ... |        ...         |
-| ... |        ...         |
 
 ## TODO List
 
@@ -40,9 +39,9 @@ Crie um `array` de carros. Em seguida, realize as seguintes operações:
 
 ## Extras
 
-- [ ] Escrever unit tests pra o arquivo.
+- [x] Evitar a _repetição_ de código.
+- [x] Melhorar a legibilidade.
 
-> [!WARNING]
-> Por padrão, `Deno test` executa o código
-> de onde a função foi exportada. Talvez
-> Orientação a Objetos possa ajudar?
+> [!NOTE] Consegui reduzir cerca de 40 linhas.
+
+![Cat Coding](https://c.tenor.com/g3y2q5VQxvAAAAAC/cat-computer.gif)
