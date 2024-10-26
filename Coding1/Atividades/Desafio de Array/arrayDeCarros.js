@@ -37,11 +37,12 @@ function removeCarro(lista, id) {
   }
   const parsedID = parseInt(id); // Transforma ID em número.
 
+  // Precisa sem um número positivo, e menor do que o tamanho da lista.
   if (parsedID >= 0 && parsedID < lista.length) {
     const [nomeCarroRemovido] = lista.splice(parsedID, 1); // Remove o carro da lista.
     atualizaTabela(); // Exibe a lista atualizada.
     console.log(
-      `\n%c${nomeCarroRemovido} %cfoi removido da lista!`, // Feedback para o usuário.
+      `\n%c${nomeCarroRemovido} %cfoi removido da lista!`, // Feedback
       "color: red",
       "color: white",
     );
@@ -64,6 +65,32 @@ const idCarroPrompt = prompt(
 );
 
 removeCarro(listaDeCarros, idCarroPrompt);
+
+/** @type {boolean} */
+let continuarRemovendo = confirm("\nGostaria de REMOVER mais alguns?");
+
+atualizaTabela(); // Limpando de novo
+
+let inputUsuarioID; // Declarando fora para poder mudar o  valor dentro do loop.
+
+// Remova quantos carros quanto quiser, um de cada vez.
+while (continuarRemovendo) {
+  inputUsuarioID = prompt("\nInsira o ID do carro ou deixe em branco. \n\n>");
+
+  if (
+    inputUsuarioID == null ||
+    inputUsuarioID.trim() === "" ||
+    inputUsuarioID.trim() === "exit" ||
+    inputUsuarioID.trim() === "q"
+  ) {
+    continuarRemovendo = false;
+    break;
+  }
+
+  removeCarro(listaDeCarros, inputUsuarioID);
+}
+
+atualizaTabela(); // Atualizando após o loop.
 
 /**
  * Resposta que o usuário passou para o prompt.
@@ -96,23 +123,25 @@ adicionaNomeCarro(listaDeCarros, nomeCarroPrompt);
 /** @type {boolean} */
 let continuarAdicionando = confirm("\nGostaria de adicionar mais alguns?");
 
-let inputUsuario; // Declarando fora para poder mudar o  valor dentro do loop.
+let inputUsuarioNome; // Declarando fora para poder mudar o  valor dentro do loop.
 
-// Adicione o quanto quiser
+// Adicione quantos carros quanto quiser, um de cada vez.
 while (continuarAdicionando) {
-  inputUsuario = prompt("\nInsira o nome do carro ou deixe em branco. \n\n>");
+  inputUsuarioNome = prompt(
+    "\nInsira o nome do carro ou deixe em branco. \n\n>",
+  );
 
   if (
-    inputUsuario == null ||
-    inputUsuario.trim() === "" ||
-    inputUsuario.trim() === "exit" ||
-    inputUsuario.trim() === "q"
+    inputUsuarioNome == null ||
+    inputUsuarioNome.trim() === "" ||
+    inputUsuarioNome.trim() === "exit" ||
+    inputUsuarioNome.trim() === "q"
   ) {
     continuarAdicionando = false;
     break;
   }
 
-  adicionaNomeCarro(listaDeCarros, inputUsuario);
+  adicionaNomeCarro(listaDeCarros, inputUsuarioNome);
 }
 
 atualizaTabela();

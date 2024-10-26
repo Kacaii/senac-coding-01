@@ -41,6 +41,6 @@
 
 - [x] Evitar a _repetição_ de código.
 - [x] Melhorar a legibilidade.
-- [x] Agora é possível adicionar vários carros à lista!
+- [x] Agora é possível **adicionar** ou **remover** vários carros da lista!
 
 ![Cat Coding](https://c.tenor.com/g3y2q5VQxvAAAAAC/cat-computer.gif)
