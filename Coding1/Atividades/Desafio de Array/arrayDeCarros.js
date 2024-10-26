@@ -32,7 +32,7 @@ function removeCarro(lista, id) {
   // Verifica se o input está vazio.
   if (id === null || id.trim() === "") {
     atualizaTabela();
-    console.log("\nNenhum carro foi removido."); // Early return.
+    console.log("\n%cNenhum carro %cfoi removido.", "color: yellow", "color:"); // Early return.
     return;
   }
   const parsedID = parseInt(id); // Transforma ID em número.
@@ -47,7 +47,7 @@ function removeCarro(lista, id) {
     );
   } else {
     atualizaTabela(); // Exibe a lista atualizada.
-    console.log("\nNenhum carro foi removido."); // Caso seja um número inválido.
+    console.log("\n%cNenhum carro %cfoi removido.", "color: yellow", "color:");
   }
 }
 
@@ -60,7 +60,7 @@ atualizaTabela(); // Inicia o código.
  * @type {respostaPrompt}
  */
 const idCarroPrompt = prompt(
-  "\n( Opcional ) Gostaria de remover algum carro da lista? \n\nInsira o ID do carro ou deixe em branco.\n>",
+  "\n( Opcional ) Gostaria de REMOVER algum carro da lista? \n\nInsira o ID do carro ou deixe em branco.\n>",
 );
 
 removeCarro(listaDeCarros, idCarroPrompt);
@@ -72,7 +72,7 @@ removeCarro(listaDeCarros, idCarroPrompt);
  * @type {respostaPrompt}
  */
 const nomeCarroPrompt = prompt(
-  "\nGostaria de adicionar algum carro na lista? \n\nInsira o nome do carro ou deixe em branco. \n>",
+  "\nGostaria de ADICIONAR algum carro na lista? \n\nInsira o nome do carro ou deixe em branco. \n>",
 );
 
 /**
@@ -83,16 +83,42 @@ const nomeCarroPrompt = prompt(
 function adicionaNomeCarro(lista, nomeCarro) {
   // Verifica se o input está vazio.
   if (nomeCarro === null || nomeCarro.trim() === "") {
-    atualizaTabela();
+    atualizaTabela(); // Atualizando
     return; // Early return
   }
   lista.push(nomeCarro); // Adiciona o carro na lista
-  atualizaTabela();
+  atualizaTabela(); // Atualizando
   console.log(`\n%c${nomeCarro} %cadicionado!`, "color:green", "color:)"); // Feedback
 }
 
 adicionaNomeCarro(listaDeCarros, nomeCarroPrompt);
 
+/** @type {boolean} */
+let continuarAdicionando = confirm("\nGostaria de adicionar mais alguns?");
+
+let inputUsuario; // Declarando fora para poder mudar o  valor dentro do loop.
+
+// Adicione o quanto quiser
+while (continuarAdicionando) {
+  inputUsuario = prompt("\nInsira o nome do carro ou deixe em branco. \n\n>");
+
+  if (
+    inputUsuario == null ||
+    inputUsuario.trim() === "" ||
+    inputUsuario.trim() === "exit" ||
+    inputUsuario.trim() === "q"
+  ) {
+    continuarAdicionando = false;
+    break;
+  }
+
+  adicionaNomeCarro(listaDeCarros, inputUsuario);
+}
+
+atualizaTabela();
+
 console.log(
-  `\nTemos um total de ${listaDeCarros.length} carros disponíveis!\n`,
+  `\nTemos um total de %c${listaDeCarros.length} %ccarros disponíveis!\n`,
+  "color:green",
+  "color:",
 );

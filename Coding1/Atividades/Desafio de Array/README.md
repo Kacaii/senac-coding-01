@@ -41,8 +41,6 @@
 
 - [x] Evitar a _repetição_ de código.
 - [x] Melhorar a legibilidade.
-
-> [!NOTE]
-> Consegui reduzir cerca de 40 linhas.
+- [x] Agora é possível adicionar vários carros à lista!
 
 ![Cat Coding](https://c.tenor.com/g3y2q5VQxvAAAAAC/cat-computer.gif)
