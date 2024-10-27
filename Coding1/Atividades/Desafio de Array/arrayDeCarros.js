@@ -67,14 +67,14 @@ const idCarroPrompt = prompt(
 removeCarro(listaDeCarros, idCarroPrompt);
 
 /** @type {boolean} */
-let continuarRemovendo = confirm("\nGostaria de REMOVER mais alguns?");
+let removerMais = confirm("\nGostaria de REMOVER mais alguns?");
 
 atualizaTabela(); // Limpando de novo
 
 let inputUsuarioID; // Declarando fora para poder mudar o  valor dentro do loop.
 
 // Remova quantos carros quanto quiser, um de cada vez.
-while (continuarRemovendo) {
+while (removerMais) {
   inputUsuarioID = prompt("\nInsira o ID do carro ou deixe em branco. \n\n>");
 
   if (
@@ -83,7 +83,7 @@ while (continuarRemovendo) {
     inputUsuarioID.trim() === "exit" ||
     inputUsuarioID.trim() === "q"
   ) {
-    continuarRemovendo = false;
+    removerMais = false;
     break;
   }
 
@@ -121,12 +121,12 @@ function adicionaNomeCarro(lista, nomeCarro) {
 adicionaNomeCarro(listaDeCarros, nomeCarroPrompt);
 
 /** @type {boolean} */
-let continuarAdicionando = confirm("\nGostaria de adicionar mais alguns?");
+let adicionarMais = confirm("\nGostaria de adicionar mais alguns?");
 
 let inputUsuarioNome; // Declarando fora para poder mudar o  valor dentro do loop.
 
 // Adicione quantos carros quanto quiser, um de cada vez.
-while (continuarAdicionando) {
+while (adicionarMais) {
   inputUsuarioNome = prompt(
     "\nInsira o nome do carro ou deixe em branco. \n\n>",
   );
@@ -137,7 +137,7 @@ while (continuarAdicionando) {
     inputUsuarioNome.trim() === "exit" ||
     inputUsuarioNome.trim() === "q"
   ) {
-    continuarAdicionando = false;
+    adicionarMais = false;
     break;
   }
 
