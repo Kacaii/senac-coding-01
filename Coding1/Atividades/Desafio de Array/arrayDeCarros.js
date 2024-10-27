@@ -19,7 +19,12 @@ const listaDeCarros = [
 /** Limpa a tela, e então exibe a tabela de carros disponíveis. */
 function atualizaTabela() {
   console.clear();
-  console.log(`\nLista de carros disponíveis:\n`);
+  console.log(`
+█░░ █▀▀█ █▀▀ █▀▀█ █▀▀▄ █▀▀█ █▀▀█ █▀▀█ 
+█░░ █░░█ █░░ █▄▄█ █░░█ █░░█ █▄▄▀ █▄▄█ 
+▀▀▀ ▀▀▀▀ ▀▀▀ ▀░░▀ ▀▀▀░ ▀▀▀▀ ▀░▀▀ ▀░░▀
+`);
+  console.log(` Lista de carros disponíveis:`);
   console.table(listaDeCarros);
 }
 
