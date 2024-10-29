@@ -29,9 +29,25 @@ function atualizaTabela() {
 }
 
 /**
- * Remove o carro da lista passando o ID como argumento
- * @param {string[]} lista - Lista de carros.
- * @param {respostaPrompt} id - ID do carro a ser removido
+ * Remove o carro da lista passando o ID como argumento.
+ * Durante a execução, o input é *transformado* em número.
+ * Pode ser utilizado em qualquer lista.
+ *
+ *
+ * ### Exemplo
+ *
+ * ```Javascript
+ * const listaDeCarros = ["Toyota Camry", "Honda Accord", "Ford Mustang"]
+ * removecarro(listaDeCarros, "1")
+ *
+ * console.log(listaDeCarros) = ["Toyota Camry", "Ford Mustang"]
+ *
+ * ```
+ * ---
+ *
+ * @param {string[]} lista - Lista de carros a ser alterada.
+ * @param {respostaPrompt} id - ID do carro a ser removido.
+ * @returns {void} - Não retorna nada, ao menos não por enquanto.
  */
 function removeCarro(lista, id) {
   // Verifica se o input está vazio.
@@ -69,6 +85,7 @@ const idCarroPrompt = prompt(
   "\n( Opcional ) Gostaria de REMOVER algum carro da lista? \n\nInsira o ID do carro ou deixe em branco.\n>",
 );
 
+// Removendo carro da lista.
 removeCarro(listaDeCarros, idCarroPrompt);
 
 /** @type {boolean} */
@@ -108,9 +125,23 @@ const nomeCarroPrompt = prompt(
 );
 
 /**
- * Adiciona o carro da lista.
+ * Adiciona o carro na lista passando o nome como argumento.
+ * Pode ser utilizado em qualquer lista.
+ *
+ * ### Exemplo
+ *
+ * ```Javascript
+ * const listaDeCarros = ["Toyota Camry", "Ford Mustang"]
+ * adicionaNomeCarro(listaDeCarros, "Fusquinha")
+ *
+ * console.log(listaDeCarros) = ["Toyota Camry", "Ford Mustang", "Fusquinha"]
+ *
+ * ```
+ * ---
+ *
  * @param {string[]} lista - Lista de carros.
  * @param {respostaPrompt} nomeCarro - Nome do carro a ser adicionado.
+ * @returns {void} - Não retorna nada, ao menos não por enquanto.
  */
 function adicionaNomeCarro(lista, nomeCarro) {
   // Verifica se o input está vazio.
@@ -123,6 +154,7 @@ function adicionaNomeCarro(lista, nomeCarro) {
   console.log(`\n%c${nomeCarro} %cadicionado!`, "color:green", "color:)"); // Feedback
 }
 
+// Adicionando carro á lista.
 adicionaNomeCarro(listaDeCarros, nomeCarroPrompt);
 
 /** @type {boolean} */
