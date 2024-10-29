@@ -60,6 +60,7 @@ function atualizaTabela() {
  * @param {respostaPrompt} id - ID do carro a ser removido.
  */
 function removeCarro(lista, id) {
+  // Verifica se o input está vazio.
   if (id === null || id.trim() === "") {
     atualizaTabela();
     console.log("\n%cNenhum carro %cfoi removido.", "color: yellow", "color:"); // Early return.
