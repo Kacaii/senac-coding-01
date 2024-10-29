@@ -82,6 +82,36 @@ function removeCarro(lista, id) {
   }
 }
 
+/**
+ * Adiciona o carro no *final* da lista, passando um nome como argumento.
+ * Pode ser utilizado em qualquer lista.
+ *
+ * > [!NOTE]
+ * > Nada será adicionado se lhe for passado uma string vazia.
+ *
+ * ### Exemplo
+ *
+ * @example Adicionando um fusquinha.
+ * ```Javascript
+ * const listaDeCarros = ["Toyota Camry", "Ford Mustang"]
+ * adicionaNomeCarro(listaDeCarros, "Fusquinha")
+ * console.log(listaDeCarros) = ["Toyota Camry", "Ford Mustang", "Fusquinha"] // :D
+ * ```
+ *
+ * @param {string[]} lista - Lista de carros.
+ * @param {respostaPrompt} nomeCarro - Nome do carro a ser adicionado.
+ */
+function adicionaNomeCarro(lista, nomeCarro) {
+  // Verifica se o input está vazio.
+  if (nomeCarro === null || nomeCarro.trim() === "") {
+    atualizaTabela(); // Atualizando
+    return; // Early return
+  }
+  lista.push(nomeCarro); // Adiciona o carro na lista
+  atualizaTabela(); // Atualizando
+  console.log(`\n%c${nomeCarro} %cadicionado!`, "color:green", "color:)"); // Feedback
+}
+
 atualizaTabela(); // Inicia o código.
 
 /**
@@ -134,36 +164,6 @@ atualizaTabela(); // Atualizando após o loop.
 const nomeCarroPrompt = prompt(
   "\nGostaria de ADICIONAR algum carro na lista? \n\nInsira o nome do carro ou deixe em branco. \n>",
 );
-
-/**
- * Adiciona o carro no *final* da lista, passando um nome como argumento.
- * Pode ser utilizado em qualquer lista.
- *
- * > [!NOTE]
- * > Nada será adicionado se lhe for passado uma string vazia.
- *
- * ### Exemplo
- *
- * @example Adicionando um fusquinha.
- * ```Javascript
- * const listaDeCarros = ["Toyota Camry", "Ford Mustang"]
- * adicionaNomeCarro(listaDeCarros, "Fusquinha")
- * console.log(listaDeCarros) = ["Toyota Camry", "Ford Mustang", "Fusquinha"] // :D
- * ```
- *
- * @param {string[]} lista - Lista de carros.
- * @param {respostaPrompt} nomeCarro - Nome do carro a ser adicionado.
- */
-function adicionaNomeCarro(lista, nomeCarro) {
-  // Verifica se o input está vazio.
-  if (nomeCarro === null || nomeCarro.trim() === "") {
-    atualizaTabela(); // Atualizando
-    return; // Early return
-  }
-  lista.push(nomeCarro); // Adiciona o carro na lista
-  atualizaTabela(); // Atualizando
-  console.log(`\n%c${nomeCarro} %cadicionado!`, "color:green", "color:)"); // Feedback
-}
 
 // Adicionando carro á lista.
 adicionaNomeCarro(listaDeCarros, nomeCarroPrompt);

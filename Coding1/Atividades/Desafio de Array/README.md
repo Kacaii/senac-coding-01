@@ -1,3 +1,5 @@
+<!-- markdownlint-disable MD033 -->
+
 # Desafio de Array 2024-10-23
 
 ## Grupo
