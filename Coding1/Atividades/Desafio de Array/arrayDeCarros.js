@@ -1,8 +1,19 @@
 /**
+ * Input passado pelo usuário utilizando a função `prompt()`.
+ * Pode conter os seguintes valores:
+ *
+ * - Uma `string`.
+ * - Uma `string` **VAZIA**.
+ * - `null`.
+ *
  * @typedef {string | null} respostaPrompt
  */
 
-/** @type {string[]} */
+/**
+ * Lista com a qual iremos interagir.
+ * Contém um montão de carros.
+ *
+ * @type {string[]} */
 const listaDeCarros = [
   "Toyota Camry",
   "Honda Accord",
@@ -31,34 +42,32 @@ function atualizaTabela() {
 /**
  * Remove o carro da lista passando o ID como argumento.
  * Durante a execução, o input é *transformado* em número.
- * Pode ser utilizado em qualquer lista.
  *
+ * > [!NOTE]
+ * > Nada será removido se lhe for passado um ID vazio ou um número **negativo**.
+ * > O número precisa ser menor do que o tamanho da lista.
  *
  * ### Exemplo
  *
+ * @example Removendo o segundo carro da lista.
  * ```Javascript
  * const listaDeCarros = ["Toyota Camry", "Honda Accord", "Ford Mustang"]
  * removecarro(listaDeCarros, "1")
- *
- * console.log(listaDeCarros) = ["Toyota Camry", "Ford Mustang"]
- *
+ * console.log(listaDeCarros) = ["Toyota Camry", "Ford Mustang"] // "Honda Accord" removido
  * ```
- * ---
  *
  * @param {string[]} lista - Lista de carros a ser alterada.
  * @param {respostaPrompt} id - ID do carro a ser removido.
- * @returns {void} - Não retorna nada, ao menos não por enquanto.
  */
 function removeCarro(lista, id) {
-  // Verifica se o input está vazio.
   if (id === null || id.trim() === "") {
     atualizaTabela();
     console.log("\n%cNenhum carro %cfoi removido.", "color: yellow", "color:"); // Early return.
     return;
   }
+
   const parsedID = parseInt(id); // Transforma ID em número.
 
-  // Precisa sem um número positivo, e menor do que o tamanho da lista.
   if (parsedID >= 0 && parsedID < lista.length) {
     const [nomeCarroRemovido] = lista.splice(parsedID, 1); // Remove o carro da lista.
     atualizaTabela(); // Exibe a lista atualizada.
@@ -69,7 +78,7 @@ function removeCarro(lista, id) {
     );
   } else {
     atualizaTabela(); // Exibe a lista atualizada.
-    console.log("\n%cNenhum carro %cfoi removido.", "color: yellow", "color:");
+    console.log("\n%cNenhum carro %cfoi removido.", "color: yellow", "color:"); // Feedback
   }
 }
 
@@ -88,7 +97,9 @@ const idCarroPrompt = prompt(
 // Removendo carro da lista.
 removeCarro(listaDeCarros, idCarroPrompt);
 
-/** @type {boolean} */
+/**
+ * Inicia un `while` loop caso valor seja `true`.
+ * @type {boolean} */
 let removerMais = confirm("\nGostaria de REMOVER mais alguns?");
 
 atualizaTabela(); // Limpando de novo
@@ -125,23 +136,23 @@ const nomeCarroPrompt = prompt(
 );
 
 /**
- * Adiciona o carro na lista passando o nome como argumento.
+ * Adiciona o carro no *final* da lista, passando um nome como argumento.
  * Pode ser utilizado em qualquer lista.
+ *
+ * > [!NOTE]
+ * > Nada será adicionado se lhe for passado uma string vazia.
  *
  * ### Exemplo
  *
+ * @example Adicionando um fusquinha.
  * ```Javascript
  * const listaDeCarros = ["Toyota Camry", "Ford Mustang"]
  * adicionaNomeCarro(listaDeCarros, "Fusquinha")
- *
- * console.log(listaDeCarros) = ["Toyota Camry", "Ford Mustang", "Fusquinha"]
- *
+ * console.log(listaDeCarros) = ["Toyota Camry", "Ford Mustang", "Fusquinha"] // :D
  * ```
- * ---
  *
  * @param {string[]} lista - Lista de carros.
  * @param {respostaPrompt} nomeCarro - Nome do carro a ser adicionado.
- * @returns {void} - Não retorna nada, ao menos não por enquanto.
  */
 function adicionaNomeCarro(lista, nomeCarro) {
   // Verifica se o input está vazio.
@@ -157,7 +168,9 @@ function adicionaNomeCarro(lista, nomeCarro) {
 // Adicionando carro á lista.
 adicionaNomeCarro(listaDeCarros, nomeCarroPrompt);
 
-/** @type {boolean} */
+/**
+ * Inicia un `while` loop caso valor seja `true`.
+ * @type {boolean} */
 let adicionarMais = confirm("\nGostaria de adicionar mais alguns?");
 
 let inputUsuarioNome; // Declarando fora para poder mudar o  valor dentro do loop.
