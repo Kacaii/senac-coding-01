@@ -39,11 +39,16 @@
 - [x] Adicionar todos os membros da equipe na documentação.
 - [x] Enviar o código para a professora.
 
-## Extras
+<details>
+<summary>Extras</summary>
 
 - [x] Evitar a _repetição_ de código.
 - [x] Melhorar a legibilidade.
 - [x] Agora é possível **adicionar** ou **remover** vários carros da lista!
 - [x] Documentação adicionada.
+
+</details>
+
+---
 
 ![Cat Coding](https://c.tenor.com/g3y2q5VQxvAAAAAC/cat-computer.gif)
