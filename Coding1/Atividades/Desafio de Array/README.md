@@ -40,12 +40,12 @@
 - [x] Enviar o código para a professora.
 
 <details>
-<summary>Extras</summary>
+<summary>Extras ✅</summary>
 
 - [x] Evitar a _repetição_ de código.
 - [x] Melhorar a legibilidade.
 - [x] Agora é possível **adicionar** ou **remover** vários carros da lista!
-- [x] Documentação adicionada.
+- [x] README adicionado. 📑
 
 </details>
 
