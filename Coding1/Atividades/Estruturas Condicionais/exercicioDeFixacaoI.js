@@ -1,16 +1,16 @@
 /**
  * Objeto que armazena as informações do paciente.
  * @typedef {Object} Paciente
- * @property {string | null} nome - O nome do Paciente
- * @property {number | null} idade - O nome do Paciente
- * @property {string | null} servico - O serviço que o paciente solicitou.
+ * @property {string} [ nome ] - O nome do Paciente
+ * @property {number} [ idade ] -  A idade do Paciente
+ * @property {string} [ servico ] - O serviço solicitado pelo paciente.
  */
 
 /** @type {Paciente} */
 const paciente = {
-  nome: null,
-  idade: null,
-  servico: null,
+  nome: "",
+  idade: undefined,
+  servico: "",
 };
 
 console.clear();
@@ -33,6 +33,7 @@ const inputNome = prompt(
 function validaInput(input) {
   // Limpando o Console
   console.clear();
+
   if (input === null || input === "") {
     return [null, new Error("\nInput vazio!")];
   } else {
@@ -55,7 +56,7 @@ if (erroNome) {
  * @type {string | null}
  */
 const inputIdade = prompt(
-  `\nOi ${paciente.nome}! Seja bem vindo(a) <3 \nQual a sua idade? \n\n>`,
+  `\nOlá ${paciente.nome || "Paciente"}! Seja bem vindo(a) <3 \nQual a sua idade? \n\n>`,
 );
 
 const [idade, erroIdade] = validaInput(inputIdade);
@@ -88,21 +89,20 @@ if (erroServico) {
 console.clear();
 console.log("\n");
 
-/**
- * Verifica e exibe as informações fornecidas pelo paciente.
- * Se algum valor estiver faltando, exibe um erro correspondente.
- */
+// Verifica e exibe as informações fornecidas pelo paciente.
+// Se algum valor estiver faltando, exibe um erro correspondente.
 Object.entries(paciente).forEach(([key, value]) => {
-  value === null
+  !value
     ? console.error(`Faltaram algumas informações  ( ${key} )`)
     : console.log(`%c${key} verificado(a)! `, "color:green");
 });
 
 /**
- * Valida se todas as informações do paciente foram preenchidas.
+ * Retorna false se alguma das propriedades do Paciente for `falsy`.
+ * @see {Paciente}
  * @type {boolean}
  */
-const pacienteValido = Object.values(paciente).every((value) => value != null);
+const pacienteValido = Object.values(paciente).every((value) => value);
 
 pacienteValido
   ? console.log("\n%cPaciente valido! ", "color: blue")
