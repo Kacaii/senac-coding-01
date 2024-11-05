@@ -27,8 +27,12 @@ const listaDeCarros = [
   "Volkswagen Passat",
 ];
 
-/** Limpa a tela, e então exibe a tabela de carros disponíveis. */
-function atualizaTabela() {
+/**
+ * Limpa a tela, e então exibe a tabela passada como argumento.
+ *
+ * @param {string[]} tabela
+ */
+function exibeTabela(tabela) {
   console.clear();
   console.log(`
 █░░ █▀▀█ █▀▀ █▀▀█ █▀▀▄ █▀▀█ █▀▀█ █▀▀█ 
@@ -36,7 +40,7 @@ function atualizaTabela() {
 ▀▀▀ ▀▀▀▀ ▀▀▀ ▀░░▀ ▀▀▀░ ▀▀▀▀ ▀░▀▀ ▀░░▀
 `);
   console.log(` Lista de carros disponíveis:`);
-  console.table(listaDeCarros);
+  console.table(tabela);
 }
 
 /**
@@ -62,7 +66,7 @@ function atualizaTabela() {
 function removeCarro(lista, id) {
   // Verifica se o input está vazio.
   if (id === null || id.trim() === "") {
-    atualizaTabela();
+    exibeTabela(listaDeCarros);
     console.log("\n%cNenhum carro %cfoi removido.", "color: yellow", "color:"); // Early return.
     return;
   }
@@ -71,14 +75,14 @@ function removeCarro(lista, id) {
 
   if (parsedID >= 0 && parsedID < lista.length) {
     const [nomeCarroRemovido] = lista.splice(parsedID, 1); // Remove o carro da lista.
-    atualizaTabela(); // Exibe a lista atualizada.
+    exibeTabela(listaDeCarros); // Exibe a lista atualizada.
     console.log(
       `\n%c${nomeCarroRemovido} %cfoi removido da lista!`, // Feedback
       "color: red",
       "color: white",
     );
   } else {
-    atualizaTabela(); // Exibe a lista atualizada.
+    exibeTabela(listaDeCarros); // Exibe a lista atualizada.
     console.log("\n%cNenhum carro %cfoi removido.", "color: yellow", "color:"); // Feedback
   }
 }
@@ -105,15 +109,15 @@ function removeCarro(lista, id) {
 function adicionaNomeCarro(lista, nomeCarro) {
   // Verifica se o input está vazio.
   if (nomeCarro === null || nomeCarro.trim() === "") {
-    atualizaTabela(); // Atualizando
+    exibeTabela(listaDeCarros); // Atualizando
     return; // Early return
   }
   lista.push(nomeCarro); // Adiciona o carro na lista
-  atualizaTabela(); // Atualizando
+  exibeTabela(listaDeCarros); // Atualizando
   console.log(`\n%c${nomeCarro} %cadicionado!`, "color:green", "color:)"); // Feedback
 }
 
-atualizaTabela(); // Inicia o código.
+exibeTabela(listaDeCarros); // Inicia o código.
 
 /**
  * Resposta que o usuário passou para o prompt.
@@ -133,7 +137,7 @@ removeCarro(listaDeCarros, idCarroPrompt);
  * @type {boolean} */
 let removerMais = confirm("\nGostaria de REMOVER mais alguns?");
 
-atualizaTabela(); // Limpando de novo
+exibeTabela(listaDeCarros); // Limpando de novo
 
 let inputUsuarioID; // Declarando fora para poder mudar o  valor dentro do loop.
 
@@ -154,7 +158,7 @@ while (removerMais) {
   removeCarro(listaDeCarros, inputUsuarioID);
 }
 
-atualizaTabela(); // Atualizando após o loop.
+exibeTabela(listaDeCarros); // Atualizando após o loop.
 
 /**
  * Resposta que o usuário passou para o prompt.
@@ -195,7 +199,7 @@ while (adicionarMais) {
   adicionaNomeCarro(listaDeCarros, inputUsuarioNome);
 }
 
-atualizaTabela();
+exibeTabela(listaDeCarros);
 
 console.log(
   `\nTemos um total de %c${listaDeCarros.length} %ccarros disponíveis!\n`,
