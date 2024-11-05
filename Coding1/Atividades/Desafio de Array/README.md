@@ -32,6 +32,9 @@
 |  3  | "Chevrolet Malibu" |
 | ... |        ...         |
 
+> [!NOTE]
+> O usuário pode optar por **sair** do loop ao digitar `":exit"` ou `":q"`
+
 ## TODO List
 
 - [x] Deixar o código mais bonitinho.
