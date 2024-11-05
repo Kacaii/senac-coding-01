@@ -109,4 +109,5 @@ pacienteValido
   : console.error("\n%cPaciente Invalido! ", "color: red");
 
 console.log("\n"); // Apenas adicionando um espaço 󰯖
-console.info(paciente, "\n");
+console.table(paciente);
+console.log("\n");
