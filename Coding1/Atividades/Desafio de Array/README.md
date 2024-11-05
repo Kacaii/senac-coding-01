@@ -15,7 +15,7 @@
 - [x] **Remover** um carro da lista.
 - [x] **Adicionar** um novo carro na lista.
 - [x] **Mostrar** o número de total de carros na lista.
-- [x] Crie as variáveis, use a função `prompt()` e o `console.log()`.
+- [x] Crie as variáveis, use a função `prompt()` e o `console.log()`
       para interagir com o usuário.
 
 ## Instruções
