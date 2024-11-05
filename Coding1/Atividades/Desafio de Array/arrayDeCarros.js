@@ -1,15 +1,4 @@
 /**
- * Input passado pelo usuário utilizando a função `prompt()`.
- * Pode conter os seguintes valores:
- *
- * - Uma `string`.
- * - Uma `string` **VAZIA**.
- * - `null`.
- *
- * @typedef {string | null} respostaPrompt
- */
-
-/**
  * Lista com a qual iremos interagir.
  * Contém um montão de carros.
  *
@@ -28,6 +17,12 @@ const listaDeCarros = [
 ];
 
 /**
+ * @readonly
+ * @type {string[]} - Comandos para interromper o loop.
+ */
+const EXIT_COMMANDS = [":q", ":exit"];
+
+/**
  * Limpa a tela, e então exibe a tabela passada como argumento.
  *
  * @param {string[]} tabela
@@ -44,6 +39,51 @@ function exibeTabela(tabela) {
 }
 
 /**
+ * Exibe uma mensagem de feedback no console sobre a adição ou remoção de um carro.
+ *
+ * @param {string} [nomeDoCarro="Nenhum carro"] - Nome do carro removido ou adicionado.
+ * @param {string} [corTexto="yellow"] - Cor do texto do **nome** do carro, em _inglês_.
+ * @param {string} [mensagem=""] - Mensagem a ser exibida no console.
+ *
+ * @example Após adicionar um carro.
+ *
+ * ```javascript
+ * exibeMensagemFeedback("Toyota Camry", "green", "adicionado!");
+ * ```
+ *
+ * Exibe uma mensagem no console com o nome do carro em VERDE.
+ *
+ * @example Após remover um carro.
+ *
+ * ```javascript
+ * exibeMensagemFeedback("Honda Accord", "red", "foi removido da lista!");
+ * ```
+ *
+ * Exibe uma mensagem no console com o nome do carro em VERMELHO.
+ *
+ * @example Comportamento padrão.
+ *
+ * ```
+ * exibeMensagemFeedback(undefined, undefined, "foi removido da lista!")
+ *
+ * exibeMensagemFeedback(undefined, undefined, "foi adicionado!")
+ * ```
+ *
+ * Exibe uma mensagem no console escrito "Nenhum carro foi removido" (ou adicionado).
+ */
+function exibeMensagemFeedback(
+  nomeDoCarro = "Nenhum carro",
+  corTexto = "yellow",
+  mensagem = "",
+) {
+  console.log(
+    `%c${nomeDoCarro} %c${mensagem}`,
+    `color:${corTexto}`,
+    "color:white",
+  );
+}
+
+/**
  * Remove o carro da lista passando o ID como argumento.
  * Durante a execução, o input é *transformado* em número.
  *
@@ -54,20 +94,20 @@ function exibeTabela(tabela) {
  * ### Exemplo
  *
  * @example Removendo o segundo carro da lista.
- * ```Javascript
+ * ```javascript
  * const listaDeCarros = ["Toyota Camry", "Honda Accord", "Ford Mustang"]
  * removecarro(listaDeCarros, "1")
  * console.log(listaDeCarros) = ["Toyota Camry", "Ford Mustang"] // "Honda Accord" removido
  * ```
  *
  * @param {string[]} lista - Lista de carros a ser alterada.
- * @param {respostaPrompt} id - ID do carro a ser removido.
+ * @param {string} [id] - ID do carro a ser removido.
  */
 function removeCarro(lista, id) {
   // Verifica se o input está vazio.
-  if (id === null || id.trim() === "") {
+  if (!id?.trim()) {
     exibeTabela(listaDeCarros);
-    console.log("\n%cNenhum carro %cfoi removido.", "color: yellow", "color:"); // Early return.
+    exibeMensagemFeedback(undefined, undefined, "foi removido.");
     return;
   }
 
@@ -76,11 +116,7 @@ function removeCarro(lista, id) {
   if (parsedID >= 0 && parsedID < lista.length) {
     const [nomeCarroRemovido] = lista.splice(parsedID, 1); // Remove o carro da lista.
     exibeTabela(listaDeCarros); // Exibe a lista atualizada.
-    console.log(
-      `\n%c${nomeCarroRemovido} %cfoi removido da lista!`, // Feedback
-      "color: red",
-      "color: white",
-    );
+    exibeMensagemFeedback(nomeCarroRemovido, "red", "foi removido da lista!");
   } else {
     exibeTabela(listaDeCarros); // Exibe a lista atualizada.
     console.log("\n%cNenhum carro %cfoi removido.", "color: yellow", "color:"); // Feedback
@@ -97,24 +133,24 @@ function removeCarro(lista, id) {
  * ### Exemplo
  *
  * @example Adicionando um fusquinha.
- * ```Javascript
+ * ```javascript
  * const listaDeCarros = ["Toyota Camry", "Ford Mustang"]
  * adicionaNomeCarro(listaDeCarros, "Fusquinha")
  * console.log(listaDeCarros) = ["Toyota Camry", "Ford Mustang", "Fusquinha"] // :D
  * ```
  *
  * @param {string[]} lista - Lista de carros.
- * @param {respostaPrompt} nomeCarro - Nome do carro a ser adicionado.
+ * @param {string} [ nomeCarro ] - Nome do carro a ser adicionado.
  */
 function adicionaNomeCarro(lista, nomeCarro) {
   // Verifica se o input está vazio.
-  if (nomeCarro === null || nomeCarro.trim() === "") {
+  if (!nomeCarro?.trim()) {
     exibeTabela(listaDeCarros); // Atualizando
     return; // Early return
   }
   lista.push(nomeCarro); // Adiciona o carro na lista
   exibeTabela(listaDeCarros); // Atualizando
-  console.log(`\n%c${nomeCarro} %cadicionado!`, "color:green", "color:)"); // Feedback
+  exibeMensagemFeedback(nomeCarro, "green", "adicionado!");
 }
 
 exibeTabela(listaDeCarros); // Inicia o código.
@@ -122,12 +158,10 @@ exibeTabela(listaDeCarros); // Inicia o código.
 /**
  * Resposta que o usuário passou para o prompt.
  * Contém o ID do carro em formato de `string`, ou `null`.
- *
- * @type {respostaPrompt}
  */
 const idCarroPrompt = prompt(
   "\n( Opcional ) Gostaria de REMOVER algum carro da lista? \n\nInsira o ID do carro ou deixe em branco.\n>",
-);
+)?.trim();
 
 // Removendo carro da lista.
 removeCarro(listaDeCarros, idCarroPrompt);
@@ -144,14 +178,9 @@ while (removerMais) {
   // `const` pode ser declarada aqui pois é descartada após cada iteração do loop.
   const inputUsuarioID = prompt(
     "\nInsira o ID do carro ou deixe em branco. \n\n>",
-  );
+  )?.trim();
 
-  if (
-    inputUsuarioID == null ||
-    inputUsuarioID.trim() === "" ||
-    inputUsuarioID.trim() === ":exit" ||
-    inputUsuarioID.trim() === ":q"
-  ) {
+  if (!inputUsuarioID || EXIT_COMMANDS.includes(inputUsuarioID)) {
     removerMais = false;
     break;
   }
@@ -164,12 +193,10 @@ exibeTabela(listaDeCarros); // Atualizando após o loop.
 /**
  * Resposta que o usuário passou para o prompt.
  * Pode conter o nome do carro em formato de `string`, ou `null`.
- *
- * @type {respostaPrompt}
  */
 const nomeCarroPrompt = prompt(
   "\nGostaria de ADICIONAR algum carro na lista? \n\nInsira o nome do carro ou deixe em branco. \n>",
-);
+)?.trim();
 
 // Adicionando carro á lista.
 adicionaNomeCarro(listaDeCarros, nomeCarroPrompt);
@@ -184,14 +211,9 @@ while (adicionarMais) {
   // `const` pode ser declarada aqui pois é descartada após cada iteração do loop.
   const inputUsuarioCarro = prompt(
     "\nInsira o nome do carro ou deixe em branco. \n\n>",
-  );
+  )?.trim();
 
-  if (
-    inputUsuarioCarro == null ||
-    inputUsuarioCarro.trim() === "" ||
-    inputUsuarioCarro.trim() === ":exit" ||
-    inputUsuarioCarro.trim() === ":q"
-  ) {
+  if (!inputUsuarioCarro || EXIT_COMMANDS.includes(inputUsuarioCarro)) {
     adicionarMais = false;
     break;
   }
