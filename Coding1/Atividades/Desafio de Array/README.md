@@ -87,7 +87,7 @@
  *
  * Exibe uma mensagem no console escrito "Nenhum carro foi removido" (ou adicionado).
  */
-function exibeMensagemFeedback(
+exibeMensagemFeedback(
   nomeDoCarro = "Nenhum carro",
   corTexto = "yellow",
   mensagem = "",
@@ -97,7 +97,7 @@ function exibeMensagemFeedback(
     `color:${corTexto}`,
     "color:white",
   );
-}
+},
 ````
 
   </details>
