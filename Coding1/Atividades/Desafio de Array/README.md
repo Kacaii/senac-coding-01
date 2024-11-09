@@ -18,21 +18,43 @@
 - [x] Crie as variáveis, use a função `prompt()` e o `console.log()`
       para interagir com o usuário.
 
+---
+
+```javascript
+/**
+ * Lista com a qual iremos interagir.
+ * Contém um montão de carros.
+ *
+ * @type {string[]} */
+const listaDeCarros = [
+  "Toyota Camry",
+  "Honda Accord",
+  "Ford Mustang",
+  "Chevrolet Malibu",
+  "BMW 3 Series",
+  "Audi A4",
+  "Nissan Altima",
+  "Hyundai Sonata",
+  "Kia Optima",
+  "Volkswagen Passat",
+];
+```
+
 ## Instruções
 
 - Adicionar ou remover carros da tabela é **opcional**.
-- Durante a execução do código, os carros são exibidos em tabelas assim:
-
-| ID  |  Nomes dos Carros  |
-| :-: | :----------------: |
-|  0  |   "Toyota Camry"   |
-|  1  |   "Honda Accord"   |
-|  2  |   "Ford Mustang"   |
-|  3  | "Chevrolet Malibu" |
-| ... |        ...         |
+- Durante a execução do código, os carros são exibidos no terminal em forma de tabelas.
 
 > [!NOTE]
 > O usuário pode optar por **sair** do loop ao digitar `":exit"` ou `":q"`
+> durante a interação.
+
+```javascript
+const LocadoraDeCarros = {
+  EXIT_COMMANDS: [":q", ":exit"],
+  // Restante do código.
+};
+```
 
 ## TODO List ✅
 

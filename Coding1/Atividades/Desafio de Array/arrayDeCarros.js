@@ -16,12 +16,12 @@ const listaDeCarros = [
   "Volkswagen Passat",
 ];
 
+/** Coleção de métodos e recursos necessários para interação do usuário com a lista de carros. */
 const LocadoraDeCarros = {
   /**
    * @readonly
-   * @type {string[]} - Comandos para interromper o loop.
    */
-  EXIT_COMMANDS: [":q", ":exit"],
+  EXIT_COMMANDS: new Set([":q", ":exit"]),
 
   /**
    * Limpa a tela, e então exibe a tabela passada como argumento.
@@ -105,14 +105,15 @@ const LocadoraDeCarros = {
    * @param {string} [id] - ID do carro a ser removido.
    */
   removeCarro(lista, id) {
-    // Verifica se o input está vazio.
-    if (!id?.trim()) {
+    // Verifica se o input está vazio antes de remover.
+    if (!id?.trim() || this.EXIT_COMMANDS.has(id)) {
       this.exibeTabela(listaDeCarros);
       this.exibeMensagemFeedback(undefined, undefined, "foi removido.");
       return;
     }
 
-    const parsedID = parseInt(id); // Transforma ID em número.
+    /** @type {number} ID do carro a ser removido */
+    const parsedID = parseInt(id);
 
     if (parsedID >= 0 && parsedID < lista.length) {
       const [nomeCarroRemovido] = lista.splice(parsedID, 1); // Remove o carro da lista.
@@ -124,12 +125,50 @@ const LocadoraDeCarros = {
       );
     } else {
       this.exibeTabela(listaDeCarros); // Exibe a lista atualizada.
-      console.log(
-        "\n%cNenhum carro %cfoi removido.",
-        "color: yellow",
-        "color:",
-      ); // Feedback
+      this.exibeMensagemFeedback(undefined, undefined, "foi removido");
     }
+  },
+
+  /**
+   * Inicia a interação com o usuário
+   *
+   * @param {string[]} lista - Lista de Carros
+   */
+  iniciarRemocaoDeCarros(lista) {
+    const idCarroInicial = prompt(
+      "\n( Opcional ) Gostaria de REMOVER algum carro da lista? \n\nInsira o ID do carro ou deixe em branco.\n>",
+    )?.trim();
+
+    // Removendo carro da lista.
+    this.removeCarro(lista, idCarroInicial);
+
+    if (!idCarroInicial?.trim() || this.EXIT_COMMANDS.has(idCarroInicial))
+      return;
+
+    /**
+     * Inicia um `while` loop caso valor seja `true`.
+     * @type {boolean} */
+    let continuarRemocao = confirm("\nGostaria de REMOVER mais alguns?");
+
+    this.exibeTabela(lista); // Limpando de novo
+
+    // Remova quantos carros quanto quiser, um de cada vez.
+    while (continuarRemocao) {
+      // `const` pode ser declarada aqui pois é descartada após cada iteração do loop.
+      const idCarroSelecionado = prompt(
+        "\nInsira o ID do carro ou deixe em branco. \n\n>",
+      )?.trim();
+
+      if (!idCarroSelecionado || this.EXIT_COMMANDS.has(idCarroSelecionado)) {
+        continuarRemocao = false;
+        break;
+      }
+
+      this.removeCarro(lista, idCarroSelecionado);
+    }
+
+    // Exibindo a tabela no final.
+    this.exibeTabela(lista);
   },
 
   /**
@@ -151,93 +190,61 @@ const LocadoraDeCarros = {
    * @param {string[]} lista - Lista de carros.
    * @param {string} [ nomeCarro ] - Nome do carro a ser adicionado.
    */
-  adicionaNomeCarro(lista, nomeCarro) {
-    // Verifica se o input está vazio.
-    if (!nomeCarro?.trim()) {
+  adicionaCarro(lista, nomeCarro) {
+    // Verifica se o input está vazio antes de adicionar.
+    if (!nomeCarro?.trim() || this.EXIT_COMMANDS.has(nomeCarro)) {
       this.exibeTabela(listaDeCarros); // Atualizando
       return; // Early return
     }
     lista.push(nomeCarro); // Adiciona o carro na lista
-    this.exibeTabela(listaDeCarros); // Atualizando
+    this.exibeTabela(listaDeCarros);
     this.exibeMensagemFeedback(nomeCarro, "green", "adicionado!");
+  },
+
+  /**
+   * Inicia a interação com o usuário
+   *
+   * @param {string[]} lista - Lista de Carros.
+   */
+  iniciarAdicaoDeCarros(lista) {
+    const nomeCarroInicial = prompt(
+      "\nGostaria de ADICIONAR algum carro na lista? \n\nInsira o nome do carro ou deixe em branco. \n>",
+    )?.trim();
+
+    // Adicionando carro á lista.
+    this.adicionaCarro(lista, nomeCarroInicial);
+
+    if (!nomeCarroInicial?.trim() || this.EXIT_COMMANDS.has(nomeCarroInicial))
+      return;
+
+    /**
+     * Inicia um `while` loop caso valor seja `true`.
+     * @type {boolean} */
+    let continuarAdicao = confirm("\nGostaria de adicionar mais alguns?");
+
+    // Adicione quantos carros quanto quiser, um de cada vez.
+    while (continuarAdicao) {
+      // `const` pode ser declarada aqui pois é descartada após cada iteração do loop.
+      const carroParaAdicionar = prompt(
+        "\nInsira o nome do carro ou deixe em branco. \n\n>",
+      )?.trim();
+
+      if (!carroParaAdicionar || this.EXIT_COMMANDS.has(carroParaAdicionar)) {
+        continuarAdicao = false;
+        break;
+      }
+
+      this.adicionaCarro(lista, carroParaAdicionar);
+    }
+
+    // Exibindo a tabela no final.
+    this.exibeTabela(lista);
   },
 };
 
 LocadoraDeCarros.exibeTabela(listaDeCarros); // Inicia o código.
-
-/**
- * Resposta que o usuário passou para o prompt.
- * Contém o ID do carro em formato de `string`, ou `null`.
- */
-const idCarroPrompt = prompt(
-  "\n( Opcional ) Gostaria de REMOVER algum carro da lista? \n\nInsira o ID do carro ou deixe em branco.\n>",
-)?.trim();
-
-// Removendo carro da lista.
-LocadoraDeCarros.removeCarro(listaDeCarros, idCarroPrompt);
-
-/**
- * Inicia um `while` loop caso valor seja `true`.
- * @type {boolean} */
-let removerMais = confirm("\nGostaria de REMOVER mais alguns?");
-
-LocadoraDeCarros.exibeTabela(listaDeCarros); // Limpando de novo
-
-// Remova quantos carros quanto quiser, um de cada vez.
-while (removerMais) {
-  // `const` pode ser declarada aqui pois é descartada após cada iteração do loop.
-  const inputUsuarioID = prompt(
-    "\nInsira o ID do carro ou deixe em branco. \n\n>",
-  )?.trim();
-
-  if (
-    !inputUsuarioID ||
-    LocadoraDeCarros.EXIT_COMMANDS.includes(inputUsuarioID)
-  ) {
-    removerMais = false;
-    break;
-  }
-
-  LocadoraDeCarros.removeCarro(listaDeCarros, inputUsuarioID);
-}
-
-LocadoraDeCarros.exibeTabela(listaDeCarros); // Atualizando após o loop.
-
-/**
- * Resposta que o usuário passou para o prompt.
- * Pode conter o nome do carro em formato de `string`, ou `null`.
- */
-const nomeCarroPrompt = prompt(
-  "\nGostaria de ADICIONAR algum carro na lista? \n\nInsira o nome do carro ou deixe em branco. \n>",
-)?.trim();
-
-// Adicionando carro á lista.
-LocadoraDeCarros.adicionaNomeCarro(listaDeCarros, nomeCarroPrompt);
-
-/**
- * Inicia um `while` loop caso valor seja `true`.
- * @type {boolean} */
-let adicionarMais = confirm("\nGostaria de adicionar mais alguns?");
-
-// Adicione quantos carros quanto quiser, um de cada vez.
-while (adicionarMais) {
-  // `const` pode ser declarada aqui pois é descartada após cada iteração do loop.
-  const inputUsuarioCarro = prompt(
-    "\nInsira o nome do carro ou deixe em branco. \n\n>",
-  )?.trim();
-
-  if (
-    !inputUsuarioCarro ||
-    LocadoraDeCarros.EXIT_COMMANDS.includes(inputUsuarioCarro)
-  ) {
-    adicionarMais = false;
-    break;
-  }
-
-  LocadoraDeCarros.adicionaNomeCarro(listaDeCarros, inputUsuarioCarro);
-}
-
-LocadoraDeCarros.exibeTabela(listaDeCarros);
+LocadoraDeCarros.iniciarRemocaoDeCarros(listaDeCarros);
+LocadoraDeCarros.iniciarAdicaoDeCarros(listaDeCarros);
 
 console.log(
   `\nTemos um total de %c${listaDeCarros.length} %ccarros disponíveis!\n`,
