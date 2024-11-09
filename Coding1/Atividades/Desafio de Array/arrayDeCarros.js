@@ -148,8 +148,7 @@ const LocadoraDeCarros = {
     // Removendo carro da lista.
     this.removeCarro(lista, idCarroInicial);
 
-    if (!idCarroInicial?.trim() || this.EXIT_COMMANDS.has(idCarroInicial))
-      return;
+    if (!idCarroInicial || this.EXIT_COMMANDS.has(idCarroInicial)) return;
 
     console.log(
       "\nGostaria de %cREMOVER %cmais alguns? ",
@@ -220,7 +219,7 @@ const LocadoraDeCarros = {
    */
   iniciarAdicaoDeCarros(lista) {
     console.log(
-      "\nGostaria de %cADICIONAR %calgum carro na lista? ",
+      "\nGostaria de %cADICIONAR %calgum carro na lista? ",
       "color:green",
       "color:",
     );
@@ -232,8 +231,7 @@ const LocadoraDeCarros = {
     // Adicionando carro á lista.
     this.adicionaCarro(lista, nomeCarroInicial);
 
-    if (!nomeCarroInicial?.trim() || this.EXIT_COMMANDS.has(nomeCarroInicial))
-      return;
+    if (!nomeCarroInicial || this.EXIT_COMMANDS.has(nomeCarroInicial)) return;
 
     console.log(
       "\nGostaria de %cADICIONAR %cmais alguns? ",
