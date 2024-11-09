@@ -28,7 +28,7 @@ const LocadoraDeCarros = {
    *
    * @param {string[]} tabela
    */
-  exibeTabela(tabela) {
+  exibeLista(tabela) {
     console.clear();
     console.log(`
 █░░ █▀▀█ █▀▀ █▀▀█ █▀▀▄ █▀▀█ █▀▀█ █▀▀█ 
@@ -107,7 +107,7 @@ const LocadoraDeCarros = {
   removeCarro(lista, id) {
     // Verifica se o input está vazio antes de remover.
     if (!id?.trim() || this.EXIT_COMMANDS.has(id)) {
-      this.exibeTabela(listaDeCarros);
+      this.exibeLista(listaDeCarros);
       this.exibeMensagemFeedback(undefined, undefined, "foi removido.");
       return;
     }
@@ -117,14 +117,14 @@ const LocadoraDeCarros = {
 
     if (parsedID >= 0 && parsedID < lista.length) {
       const [nomeCarroRemovido] = lista.splice(parsedID, 1); // Remove o carro da lista.
-      this.exibeTabela(listaDeCarros); // Exibe a lista atualizada.
+      this.exibeLista(listaDeCarros); // Exibe a lista atualizada.
       this.exibeMensagemFeedback(
         nomeCarroRemovido,
         "red",
         "foi removido da lista!",
       );
     } else {
-      this.exibeTabela(listaDeCarros); // Exibe a lista atualizada.
+      this.exibeLista(listaDeCarros); // Exibe a lista atualizada.
       this.exibeMensagemFeedback(undefined, undefined, "foi removido");
     }
   },
@@ -135,8 +135,14 @@ const LocadoraDeCarros = {
    * @param {string[]} lista - Lista de Carros
    */
   iniciarRemocaoDeCarros(lista) {
+    console.log(
+      "\nGostaria de %cREMOVER %calgum carro da lista? ",
+      "color:red",
+      "color:",
+    );
+
     const idCarroInicial = prompt(
-      "\n( Opcional ) Gostaria de REMOVER algum carro da lista? \n\nInsira o ID do carro ou deixe em branco.\n>",
+      "\nInsira o ID do carro ou deixe em branco.\n>",
     )?.trim();
 
     // Removendo carro da lista.
@@ -145,12 +151,18 @@ const LocadoraDeCarros = {
     if (!idCarroInicial?.trim() || this.EXIT_COMMANDS.has(idCarroInicial))
       return;
 
+    console.log(
+      "\nGostaria de %cREMOVER %cmais alguns? ",
+      "color:red",
+      "color:",
+    );
+
     /**
      * Inicia um `while` loop caso valor seja `true`.
      * @type {boolean} */
-    let continuarRemocao = confirm("\nGostaria de REMOVER mais alguns?");
+    let continuarRemocao = confirm("");
 
-    this.exibeTabela(lista); // Limpando de novo
+    this.exibeLista(lista); // Limpando de novo
 
     // Remova quantos carros quanto quiser, um de cada vez.
     while (continuarRemocao) {
@@ -168,7 +180,7 @@ const LocadoraDeCarros = {
     }
 
     // Exibindo a tabela no final.
-    this.exibeTabela(lista);
+    this.exibeLista(lista);
   },
 
   /**
@@ -193,11 +205,11 @@ const LocadoraDeCarros = {
   adicionaCarro(lista, nomeCarro) {
     // Verifica se o input está vazio antes de adicionar.
     if (!nomeCarro?.trim() || this.EXIT_COMMANDS.has(nomeCarro)) {
-      this.exibeTabela(listaDeCarros); // Atualizando
+      this.exibeLista(listaDeCarros); // Atualizando
       return; // Early return
     }
     lista.push(nomeCarro); // Adiciona o carro na lista
-    this.exibeTabela(listaDeCarros);
+    this.exibeLista(listaDeCarros);
     this.exibeMensagemFeedback(nomeCarro, "green", "adicionado!");
   },
 
@@ -207,8 +219,14 @@ const LocadoraDeCarros = {
    * @param {string[]} lista - Lista de Carros.
    */
   iniciarAdicaoDeCarros(lista) {
+    console.log(
+      "\nGostaria de %cADICIONAR %calgum carro na lista? ",
+      "color:green",
+      "color:",
+    );
+
     const nomeCarroInicial = prompt(
-      "\nGostaria de ADICIONAR algum carro na lista? \n\nInsira o nome do carro ou deixe em branco. \n>",
+      "\nInsira o nome do carro ou deixe em branco. \n>",
     )?.trim();
 
     // Adicionando carro á lista.
@@ -217,10 +235,18 @@ const LocadoraDeCarros = {
     if (!nomeCarroInicial?.trim() || this.EXIT_COMMANDS.has(nomeCarroInicial))
       return;
 
+    console.log(
+      "\nGostaria de %cADICIONAR %cmais alguns? ",
+      "color:green",
+      "color:",
+    );
+
     /**
      * Inicia um `while` loop caso valor seja `true`.
      * @type {boolean} */
-    let continuarAdicao = confirm("\nGostaria de adicionar mais alguns?");
+    let continuarAdicao = confirm("");
+
+    this.exibeLista(lista);
 
     // Adicione quantos carros quanto quiser, um de cada vez.
     while (continuarAdicao) {
@@ -238,11 +264,11 @@ const LocadoraDeCarros = {
     }
 
     // Exibindo a tabela no final.
-    this.exibeTabela(lista);
+    this.exibeLista(lista);
   },
 };
 
-LocadoraDeCarros.exibeTabela(listaDeCarros); // Inicia o código.
+LocadoraDeCarros.exibeLista(listaDeCarros); // Inicia o código.
 LocadoraDeCarros.iniciarRemocaoDeCarros(listaDeCarros);
 LocadoraDeCarros.iniciarAdicaoDeCarros(listaDeCarros);
 

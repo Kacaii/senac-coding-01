@@ -44,6 +44,20 @@ const listaDeCarros = [
 
 - Adicionar ou remover carros da tabela é **opcional**.
 - Durante a execução do código, os carros são exibidos no terminal em forma de tabelas.
+- Recomendo executar o código no **terminal**,
+  apesar dele também funcionar no [CodePen](https://codepen.io/pen/).
+
+---
+
+- Lista de Dependências:
+
+  - Um ambiente de execução Javascript com suporte ao método [`prompt()`](https://developer.mozilla.org/en-US/docs/Web/API/Window/prompt).
+  - Um ambiente de execução Javascript com suporte ao método [`console.table()`](https://developer.mozilla.org/en-US/docs/Web/API/console/table_static).
+
+- Lista de Recomendações
+
+  - [Nerd Fonts](https://www.nerdfonts.com/font-downloads). (Suporte para ícones)
+  - [Deno](https://deno.com/) NodeJS, só que melhor. 😸
 
 > [!NOTE]
 > O usuário pode optar por **sair** do loop ao digitar `":exit"` ou `":q"`
