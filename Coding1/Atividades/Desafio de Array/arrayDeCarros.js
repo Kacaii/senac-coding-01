@@ -106,7 +106,7 @@ const LocadoraDeCarros = {
    */
   removeCarro(lista, id) {
     // Verifica se o input está vazio antes de remover.
-    if (!id?.trim() || this.EXIT_COMMANDS.has(id)) {
+    if (!id || this.EXIT_COMMANDS.has(id)) {
       this.exibeLista(listaDeCarros);
       this.exibeMensagemFeedback(undefined, undefined, "foi removido.");
       return;
@@ -203,7 +203,7 @@ const LocadoraDeCarros = {
    */
   adicionaCarro(lista, nomeCarro) {
     // Verifica se o input está vazio antes de adicionar.
-    if (!nomeCarro?.trim() || this.EXIT_COMMANDS.has(nomeCarro)) {
+    if (!nomeCarro || this.EXIT_COMMANDS.has(nomeCarro)) {
       this.exibeLista(listaDeCarros); // Atualizando
       return; // Early return
     }
