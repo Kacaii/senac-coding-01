@@ -5,7 +5,7 @@
  */
 class LocadoraDeCarros {
   /** @type {string[]} */
-  listaParaInteragir = [];
+  #listaParaInteragir = [];
 
   /**
    * @readonly
@@ -18,7 +18,7 @@ class LocadoraDeCarros {
    * @param {string[]} listaParaInteragir - Lista de carros a ser usada.
    */
   constructor(listaParaInteragir) {
-    this.listaParaInteragir = listaParaInteragir;
+    this.#listaParaInteragir = listaParaInteragir;
   }
 
   /**
@@ -32,7 +32,7 @@ class LocadoraDeCarros {
 ▀▀▀ ▀▀▀▀ ▀▀▀ ▀░░▀ ▀▀▀░ ▀▀▀▀ ▀░▀▀ ▀░░▀
 `);
     console.log(` Lista de carros disponíveis:`);
-    console.table(this.listaParaInteragir);
+    console.table(this.#listaParaInteragir);
   }
 
   /**
@@ -68,8 +68,8 @@ class LocadoraDeCarros {
 
     const parsedID = parseInt(id); // ID do carro a ser removido
 
-    if (parsedID >= 0 && parsedID < this.listaParaInteragir.length) {
-      const [nomeCarroRemovido] = this.listaParaInteragir.splice(parsedID, 1); // Remove o carro da lista.
+    if (parsedID >= 0 && parsedID < this.#listaParaInteragir.length) {
+      const [nomeCarroRemovido] = this.#listaParaInteragir.splice(parsedID, 1); // Remove o carro da lista.
       this.exibeLista(); // Exibe a lista atualizada.
       this.#exibeMensagemFeedback(
         nomeCarroRemovido,
@@ -163,7 +163,7 @@ class LocadoraDeCarros {
     )?.trim();
 
     // Adicionando carro á lista.
-    this.#adicionaCarro(this.listaParaInteragir, nomeCarroInicial);
+    this.#adicionaCarro(this.#listaParaInteragir, nomeCarroInicial);
 
     if (!nomeCarroInicial || this.#EXIT_COMMANDS.has(nomeCarroInicial)) return;
 
@@ -191,7 +191,7 @@ class LocadoraDeCarros {
         break;
       }
 
-      this.#adicionaCarro(this.listaParaInteragir, carroParaAdicionar);
+      this.#adicionaCarro(this.#listaParaInteragir, carroParaAdicionar);
     }
 
     this.exibeLista();
