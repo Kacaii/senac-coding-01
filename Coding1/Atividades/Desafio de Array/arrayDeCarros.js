@@ -91,7 +91,7 @@ class LocadoraDeCarros {
     );
 
     const idCarroInicial = prompt(
-      "\nInsira o ID do carro ou deixe em branco.\n>",
+      "\nInsira o ID do carro ou deixe em branco.\n\n>",
     )?.trim();
 
     // Removendo carro da lista.
@@ -157,7 +157,7 @@ class LocadoraDeCarros {
     );
 
     const nomeCarroInicial = prompt(
-      "\nInsira o nome do carro ou deixe em branco. \n>",
+      "\nInsira o nome do carro ou deixe em branco.\n\n>",
     )?.trim();
 
     // Adicionando carro á lista.
@@ -184,7 +184,7 @@ class LocadoraDeCarros {
     // Adicione quantos carros quanto quiser, um de cada vez.
     while (continuarAdicao) {
       const carroParaAdicionar = prompt(
-        "\nInsira o nome do carro ou deixe em branco. \n\n>",
+        "\nInsira o nome do carro ou deixe em branco.\n\n>",
       )?.trim();
 
       if (!carroParaAdicionar || this.#EXIT_COMMANDS.has(carroParaAdicionar)) {
