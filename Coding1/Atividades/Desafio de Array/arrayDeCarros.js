@@ -1,25 +1,19 @@
 /**
- * Coleção de métodos e recursos necessários para interação do usuário com a lista de carros.
- * @class
- * @property {string[]} listaParaInteragir
+ * Módulo contendo métodos e recursos necessários para interação do usuário com a lista de carros.
  */
-class LocadoraDeCarros {
-  /** @type {string[]} */
-  #listaParaInteragir = [];
+const LocadoraDeCarros = {
+  /**
+   * Lista de carros para interação.
+   * @type {string[]}
+   */
+  listaParaInteragir: [],
 
   /**
-   * @readonly
+   * Comandos para interromper a execução do loop.
+   *
    * @type {Set<string>}
    */
-  #EXIT_COMMANDS = new Set([":q", ":quit", ":exit"]);
-
-  /**
-   * @constructor
-   * @param {string[]} listaParaInteragir - Lista de carros a ser usada.
-   */
-  constructor(listaParaInteragir) {
-    this.#listaParaInteragir = listaParaInteragir;
-  }
+  EXIT_COMMANDS: new Set([":q", ":quit", ":exit"]),
 
   /** Limpa a tela, e então exibe a lista de carros. */
   exibeLista() {
@@ -27,11 +21,13 @@ class LocadoraDeCarros {
     console.log(`
 █░░ █▀▀█ █▀▀ █▀▀█ █▀▀▄ █▀▀█ █▀▀█ █▀▀█ 
 █░░ █░░█ █░░ █▄▄█ █░░█ █░░█ █▄▄▀ █▄▄█ 
-▀▀▀ ▀▀▀▀ ▀▀▀ ▀░░▀ ▀▀▀░ ▀▀▀▀ ▀░▀▀ ▀░░▀
-`);
-    console.log(` Lista de carros disponíveis:`);
-    console.table(this.#listaParaInteragir);
-  }
+▀▀▀ ▀▀▀▀ ▀▀▀ ▀░░▀ ▀▀▀░ ▀▀▀▀ ▀░▀▀ ▀░░▀ `);
+    console.log(`
+┌─────────────────────────────┐
+│ Lista de carros disponíveis │
+└─────────────────────────────┘ `);
+    console.table(this.listaParaInteragir);
+  },
 
   /**
    * Exibe uma mensagem de feedback no console sobre a adição ou remoção de um carro.
@@ -40,27 +36,27 @@ class LocadoraDeCarros {
    * @param {string} [nomeDoCarro="Nenhum carro"] - Nome do carro removido ou adicionado.
    * @param {string} [corTexto="yellow"] - Cor do texto do **nome** do carro, em _inglês_.
    */
-  #exibeMensagemFeedback(
+  exibeMensagemFeedback(
     mensagem,
     nomeDoCarro = "Nenhum carro",
     corTexto = "yellow",
   ) {
     console.log(
       `%c${nomeDoCarro} %c${mensagem}`,
-      `color:${corTexto}`,
+      `color:${corTexto};text-weight: bold`,
       "color:white",
     );
-  }
+  },
 
   /**
    * Remove o carro da lista passando o ID como argumento.
    *
    * @param {string} [id] - ID do carro a ser removido.
    */
-  #removeCarro(id) {
-    if (!id || this.#EXIT_COMMANDS.has(id)) {
+  removeCarro(id) {
+    if (!id || this.EXIT_COMMANDS.has(id)) {
       this.exibeLista();
-      this.#exibeMensagemFeedback("foi removido."); // Mensagem padrão.
+      this.exibeMensagemFeedback("foi removido."); // Mensagem padrão.
       return; // Early return
     }
 
@@ -69,25 +65,27 @@ class LocadoraDeCarros {
     if (
       !isNaN(parsedID) &&
       parsedID >= 0 &&
-      parsedID < this.#listaParaInteragir.length
+      parsedID < this.listaParaInteragir.length
     ) {
-      const [nomeCarroRemovido] = this.#listaParaInteragir.splice(parsedID, 1); // Remove o carro da lista.
+      const [nomeCarroRemovido] = this.listaParaInteragir.splice(parsedID, 1); // Remove o carro da lista.
       this.exibeLista(); // Exibe a lista atualizada.
-      this.#exibeMensagemFeedback(
+      this.exibeMensagemFeedback(
         "foi removido da lista!",
         nomeCarroRemovido,
         "red",
       );
     } else {
       this.exibeLista();
-      this.#exibeMensagemFeedback("foi removido"); // Mensagem padrão.
+      this.exibeMensagemFeedback("foi removido"); // Mensagem padrão.
     }
-  }
+  },
 
   /**
    * Inicia a interação com o usuário.
    */
   iniciarRemocaoDeCarros() {
+    this.exibeLista();
+
     console.log(
       "\nGostaria de %cREMOVER %calgum carro da lista? ",
       "color:red",
@@ -99,9 +97,9 @@ class LocadoraDeCarros {
     )?.trim();
 
     // Removendo carro da lista.
-    this.#removeCarro(idCarroInicial);
+    this.removeCarro(idCarroInicial);
 
-    if (!idCarroInicial || this.#EXIT_COMMANDS.has(idCarroInicial)) return;
+    if (!idCarroInicial || this.EXIT_COMMANDS.has(idCarroInicial)) return;
 
     console.log(
       "\nGostaria de %cREMOVER %cmais alguns? ",
@@ -121,16 +119,16 @@ class LocadoraDeCarros {
         "\nInsira o ID do carro ou deixe em branco para sair.\n\n>",
       )?.trim();
 
-      if (!idCarroSelecionado || this.#EXIT_COMMANDS.has(idCarroSelecionado)) {
+      if (!idCarroSelecionado || this.EXIT_COMMANDS.has(idCarroSelecionado)) {
         continuarRemocao = false;
         break removendoCarros;
       }
 
-      this.#removeCarro(idCarroSelecionado);
+      this.removeCarro(idCarroSelecionado);
     }
 
     this.exibeLista();
-  }
+  },
 
   /**
    * Adiciona o carro no final da lista passando o nome como argumento.
@@ -138,22 +136,24 @@ class LocadoraDeCarros {
    * @param {string[]} lista - Lista de carros.
    * @param {string} [ nomeCarro ] - Nome do carro a ser adicionado.
    */
-  #adicionaCarro(lista, nomeCarro) {
-    if (!nomeCarro || this.#EXIT_COMMANDS.has(nomeCarro)) {
+  adicionaCarro(lista, nomeCarro) {
+    if (!nomeCarro || this.EXIT_COMMANDS.has(nomeCarro)) {
       this.exibeLista(); // Atualizando
-      this.#exibeMensagemFeedback("foi adicionado");
+      this.exibeMensagemFeedback("foi adicionado");
       return; // Early return
     }
 
     lista.push(nomeCarro); // Adiciona o carro na lista
     this.exibeLista();
-    this.#exibeMensagemFeedback("adicionado!", nomeCarro, "green");
-  }
+    this.exibeMensagemFeedback("adicionado!", nomeCarro, "green");
+  },
 
   /**
    * Inicia a interação com o usuário.
    */
   iniciarAdicaoDeCarros() {
+    this.exibeLista();
+
     console.log(
       "\nGostaria de %cADICIONAR %calgum carro na lista? ",
       "color:green",
@@ -165,9 +165,9 @@ class LocadoraDeCarros {
     )?.trim();
 
     // Adicionando carro á lista.
-    this.#adicionaCarro(this.#listaParaInteragir, nomeCarroInicial);
+    this.adicionaCarro(this.listaParaInteragir, nomeCarroInicial);
 
-    if (!nomeCarroInicial || this.#EXIT_COMMANDS.has(nomeCarroInicial)) return;
+    if (!nomeCarroInicial || this.EXIT_COMMANDS.has(nomeCarroInicial)) return;
 
     console.log(
       "\nGostaria de %cADICIONAR %cmais alguns? ",
@@ -187,17 +187,17 @@ class LocadoraDeCarros {
         "\nInsira o nome do carro ou deixe em branco para sair.\n\n>",
       )?.trim();
 
-      if (!carroParaAdicionar || this.#EXIT_COMMANDS.has(carroParaAdicionar)) {
+      if (!carroParaAdicionar || this.EXIT_COMMANDS.has(carroParaAdicionar)) {
         continuarAdicao = false;
         break adicionandoCarros;
       }
 
-      this.#adicionaCarro(this.#listaParaInteragir, carroParaAdicionar);
+      this.adicionaCarro(this.listaParaInteragir, carroParaAdicionar);
     }
 
     this.exibeLista();
-  }
-}
+  },
+};
 
 /**
  * Lista com a qual iremos interagir.
@@ -217,14 +217,12 @@ const listaDeCarros = [
   "Volkswagen Passat",
 ];
 
-const locadora = new LocadoraDeCarros(listaDeCarros);
-
-locadora.exibeLista(); // Inicia o código.
-locadora.iniciarRemocaoDeCarros();
-locadora.iniciarAdicaoDeCarros();
+LocadoraDeCarros.listaParaInteragir = listaDeCarros; // Preenchendo a lista com vários carros.
+LocadoraDeCarros.iniciarRemocaoDeCarros(); // Iniciando
+LocadoraDeCarros.iniciarAdicaoDeCarros();
 
 console.log(
   `\nTemos um total de %c${listaDeCarros.length} %ccarros disponíveis!\n`,
-  "color:green",
+  "color:green; text-weight: bold",
   "color:",
 );
