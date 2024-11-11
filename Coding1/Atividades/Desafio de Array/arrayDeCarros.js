@@ -61,12 +61,16 @@ class LocadoraDeCarros {
     if (!id || this.#EXIT_COMMANDS.has(id)) {
       this.exibeLista();
       this.#exibeMensagemFeedback("foi removido."); // Mensagem padrão.
-      return;
+      return; // Early return
     }
 
     const parsedID = parseInt(id); // ID do carro a ser removido
 
-    if (parsedID >= 0 && parsedID < this.#listaParaInteragir.length) {
+    if (
+      !isNaN(parsedID) &&
+      parsedID >= 0 &&
+      parsedID < this.#listaParaInteragir.length
+    ) {
       const [nomeCarroRemovido] = this.#listaParaInteragir.splice(parsedID, 1); // Remove o carro da lista.
       this.exibeLista(); // Exibe a lista atualizada.
       this.#exibeMensagemFeedback(
@@ -91,7 +95,7 @@ class LocadoraDeCarros {
     );
 
     const idCarroInicial = prompt(
-      "\nInsira o ID do carro ou deixe em branco.\n\n>",
+      "\nInsira o ID do carro ou deixe em branco para sair.\n\n>",
     )?.trim();
 
     // Removendo carro da lista.
@@ -110,17 +114,16 @@ class LocadoraDeCarros {
      * @type {boolean} */
     let continuarRemocao = confirm("");
 
-    this.exibeLista(); // Limpando de novo
+    this.exibeLista();
 
-    // Remova quantos carros quanto quiser, um de cada vez.
-    while (continuarRemocao) {
+    removendoCarros: while (continuarRemocao) {
       const idCarroSelecionado = prompt(
-        "\nInsira o ID do carro ou deixe em branco. \n\n>",
+        "\nInsira o ID do carro ou deixe em branco para sair.\n\n>",
       )?.trim();
 
       if (!idCarroSelecionado || this.#EXIT_COMMANDS.has(idCarroSelecionado)) {
         continuarRemocao = false;
-        break;
+        break removendoCarros;
       }
 
       this.#removeCarro(idCarroSelecionado);
@@ -136,11 +139,11 @@ class LocadoraDeCarros {
    * @param {string} [ nomeCarro ] - Nome do carro a ser adicionado.
    */
   #adicionaCarro(lista, nomeCarro) {
-    // Verifica se o input está vazio antes de adicionar.
     if (!nomeCarro || this.#EXIT_COMMANDS.has(nomeCarro)) {
       this.exibeLista(); // Atualizando
       return; // Early return
     }
+
     lista.push(nomeCarro); // Adiciona o carro na lista
     this.exibeLista();
     this.#exibeMensagemFeedback("adicionado!", nomeCarro, "green");
@@ -157,7 +160,7 @@ class LocadoraDeCarros {
     );
 
     const nomeCarroInicial = prompt(
-      "\nInsira o nome do carro ou deixe em branco.\n\n>",
+      "\nInsira o nome do carro ou deixe em branco para sair.\n\n>",
     )?.trim();
 
     // Adicionando carro á lista.
@@ -181,15 +184,14 @@ class LocadoraDeCarros {
 
     this.exibeLista();
 
-    // Adicione quantos carros quanto quiser, um de cada vez.
-    while (continuarAdicao) {
+    adicionandoCarros: while (continuarAdicao) {
       const carroParaAdicionar = prompt(
-        "\nInsira o nome do carro ou deixe em branco.\n\n>",
+        "\nInsira o nome do carro ou deixe em branco para sair.\n\n>",
       )?.trim();
 
       if (!carroParaAdicionar || this.#EXIT_COMMANDS.has(carroParaAdicionar)) {
         continuarAdicao = false;
-        break;
+        break adicionandoCarros;
       }
 
       this.#adicionaCarro(this.#listaParaInteragir, carroParaAdicionar);
