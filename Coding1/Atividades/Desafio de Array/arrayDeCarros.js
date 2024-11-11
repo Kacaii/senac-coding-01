@@ -141,6 +141,7 @@ class LocadoraDeCarros {
   #adicionaCarro(lista, nomeCarro) {
     if (!nomeCarro || this.#EXIT_COMMANDS.has(nomeCarro)) {
       this.exibeLista(); // Atualizando
+      this.#exibeMensagemFeedback("foi adicionado");
       return; // Early return
     }
 
@@ -166,10 +167,7 @@ class LocadoraDeCarros {
     // Adicionando carro á lista.
     this.#adicionaCarro(this.#listaParaInteragir, nomeCarroInicial);
 
-    if (!nomeCarroInicial || this.#EXIT_COMMANDS.has(nomeCarroInicial)) {
-      this.#exibeMensagemFeedback("foi adicionado.");
-      return;
-    }
+    if (!nomeCarroInicial || this.#EXIT_COMMANDS.has(nomeCarroInicial)) return;
 
     console.log(
       "\nGostaria de %cADICIONAR %cmais alguns? ",
