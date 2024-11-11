@@ -11,7 +11,7 @@ class LocadoraDeCarros {
    * @readonly
    * @type {Set<string>}
    */
-  #EXIT_COMMANDS = new Set([":q", ":exit"]);
+  #EXIT_COMMANDS = new Set([":q", ":quit", ":exit"]);
 
   /**
    * @constructor
@@ -21,9 +21,7 @@ class LocadoraDeCarros {
     this.#listaParaInteragir = listaParaInteragir;
   }
 
-  /**
-   * Limpa a tela, e então exibe a lista de carros.
-   */
+  /** Limpa a tela, e então exibe a lista de carros. */
   exibeLista() {
     console.clear();
     console.log(`
@@ -38,14 +36,14 @@ class LocadoraDeCarros {
   /**
    * Exibe uma mensagem de feedback no console sobre a adição ou remoção de um carro.
    *
+   * @param {string} mensagem - Mensagem a ser exibida no console.
    * @param {string} [nomeDoCarro="Nenhum carro"] - Nome do carro removido ou adicionado.
    * @param {string} [corTexto="yellow"] - Cor do texto do **nome** do carro, em _inglês_.
-   * @param {string} [mensagem=""] - Mensagem a ser exibida no console.
    */
   #exibeMensagemFeedback(
+    mensagem,
     nomeDoCarro = "Nenhum carro",
     corTexto = "yellow",
-    mensagem = "",
   ) {
     console.log(
       `%c${nomeDoCarro} %c${mensagem}`,
@@ -62,7 +60,7 @@ class LocadoraDeCarros {
   #removeCarro(id) {
     if (!id || this.#EXIT_COMMANDS.has(id)) {
       this.exibeLista();
-      this.#exibeMensagemFeedback(undefined, undefined, "foi removido."); // Mensagem padrão.
+      this.#exibeMensagemFeedback("foi removido."); // Mensagem padrão.
       return;
     }
 
@@ -72,13 +70,13 @@ class LocadoraDeCarros {
       const [nomeCarroRemovido] = this.#listaParaInteragir.splice(parsedID, 1); // Remove o carro da lista.
       this.exibeLista(); // Exibe a lista atualizada.
       this.#exibeMensagemFeedback(
+        "foi removido da lista!",
         nomeCarroRemovido,
         "red",
-        "foi removido da lista!",
       );
     } else {
       this.exibeLista();
-      this.#exibeMensagemFeedback(undefined, undefined, "foi removido"); // Mensagem padrão.
+      this.#exibeMensagemFeedback("foi removido"); // Mensagem padrão.
     }
   }
 
@@ -145,7 +143,7 @@ class LocadoraDeCarros {
     }
     lista.push(nomeCarro); // Adiciona o carro na lista
     this.exibeLista();
-    this.#exibeMensagemFeedback(nomeCarro, "green", "adicionado!");
+    this.#exibeMensagemFeedback("adicionado!", nomeCarro, "green");
   }
 
   /**
@@ -165,7 +163,10 @@ class LocadoraDeCarros {
     // Adicionando carro á lista.
     this.#adicionaCarro(this.#listaParaInteragir, nomeCarroInicial);
 
-    if (!nomeCarroInicial || this.#EXIT_COMMANDS.has(nomeCarroInicial)) return;
+    if (!nomeCarroInicial || this.#EXIT_COMMANDS.has(nomeCarroInicial)) {
+      this.#exibeMensagemFeedback("foi adicionado.");
+      return;
+    }
 
     console.log(
       "\nGostaria de %cADICIONAR %cmais alguns? ",

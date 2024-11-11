@@ -89,52 +89,26 @@ const LocadoraDeCarros = {
 
 ---
 
-````javascript
+```javascript
 /**
  * Exibe uma mensagem de feedback no console sobre a adição ou remoção de um carro.
  *
+ * @param {string} mensagem - Mensagem a ser exibida no console.
  * @param {string} [nomeDoCarro="Nenhum carro"] - Nome do carro removido ou adicionado.
  * @param {string} [corTexto="yellow"] - Cor do texto do **nome** do carro, em _inglês_.
- * @param {string} [mensagem=""] - Mensagem a ser exibida no console.
- *
- * @example Após adicionar um carro.
- *
- * ```javascript
- * exibeMensagemFeedback("Toyota Camry", "green", "adicionado!");
- * ```
- *
- * Exibe uma mensagem no console com o nome do carro em VERDE.
- *
- * @example Após remover um carro.
- *
- * ```javascript
- * exibeMensagemFeedback("Honda Accord", "red", "foi removido da lista!");
- * ```
- *
- * Exibe uma mensagem no console com o nome do carro em VERMELHO.
- *
- * @example Comportamento padrão.
- *
- * ```
- * exibeMensagemFeedback(undefined, undefined, "foi removido da lista!")
- *
- * exibeMensagemFeedback(undefined, undefined, "foi adicionado!")
- * ```
- *
- * Exibe uma mensagem no console escrito "Nenhum carro foi removido" (ou adicionado).
  */
-exibeMensagemFeedback(
+#exibeMensagemFeedback(
+  mensagem,
   nomeDoCarro = "Nenhum carro",
   corTexto = "yellow",
-  mensagem = "",
 ) {
   console.log(
     `%c${nomeDoCarro} %c${mensagem}`,
     `color:${corTexto}`,
     "color:white",
   );
-},
-````
+}
+```
 
   </details>
 
