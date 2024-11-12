@@ -48,24 +48,17 @@ const LocadoraDeCarros: {
 
 - Lista de Dependências:
 
-  - Um ambiente de execução Javascript com suporte ao método [`prompt()`](https://developer.mozilla.org/en-US/docs/Web/API/Window/prompt).
-  - Um ambiente de execução Javascript com suporte ao método [`console.table()`](https://developer.mozilla.org/en-US/docs/Web/API/console/table_static).
+  - Ambiente de execução Javascript com suporte ao método `prompt()`
+  - Ambiente de execução Javascript com suporte ao método `console.table()`
 
-- Lista de Recomendações
+- Lista de Recomendações:
 
-  - [Nerd Fonts](https://www.nerdfonts.com/font-downloads). (Suporte para ícones)
-  - [Deno](https://deno.com/) NodeJS, só que melhor. 😸
+  - [Nerd Fonts](https://www.nerdfonts.com/font-downloads) | Suporte para ícones.
+  - [Deno](https://deno.com/) | JavaScript Runtime.
 
 > [!NOTE]
 > O usuário pode optar por **sair** do loop ao digitar `":exit"` ou `":q"`
 > durante a interação.
-
-```javascript
-const LocadoraDeCarros = {
-  EXIT_COMMANDS: [":q", ":exit"],
-  // Restante do código.
-};
-```
 
 ## TODO List ✅
 
@@ -80,34 +73,6 @@ const LocadoraDeCarros = {
 - [x] Melhorar a legibilidade.
 - [x] Agora é possível **adicionar** ou **remover** vários carros da lista!
 - [x] Funções documentadas.
-
-<details>
-<summary>Exibindo feedback para o usuário 💻</summary>
-
----
-
-```javascript
-/**
- * Exibe uma mensagem de feedback no console sobre a adição ou remoção de um carro.
- *
- * @param {string} mensagem - Mensagem a ser exibida no console.
- * @param {string} [nomeDoCarro="Nenhum carro"] - Nome do carro removido ou adicionado.
- * @param {string} [corTexto="yellow"] - Cor do texto do **nome** do carro, em _inglês_.
- */
-#exibeMensagemFeedback(
-  mensagem,
-  nomeDoCarro = "Nenhum carro",
-  corTexto = "yellow",
-) {
-  console.log(
-    `%c${nomeDoCarro} %c${mensagem}`,
-    `color:${corTexto}`,
-    "color:white",
-  );
-}
-```
-
-  </details>
 
 ---
 
