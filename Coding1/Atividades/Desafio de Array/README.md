@@ -1,4 +1,5 @@
 <!-- markdownlint-disable MD033 -->
+<!-- markdownlint-disable MD013 -->
 
 # Desafio de Array 2024-10-23
 
@@ -21,23 +22,19 @@
 ---
 
 ```javascript
-/**
- * Lista com a qual iremos interagir.
- * Contém um montão de carros.
- *
- * @type {string[]} */
-const listaDeCarros = [
-  "Toyota Camry",
-  "Honda Accord",
-  "Ford Mustang",
-  "Chevrolet Malibu",
-  "BMW 3 Series",
-  "Audi A4",
-  "Nissan Altima",
-  "Hyundai Sonata",
-  "Kia Optima",
-  "Volkswagen Passat",
-];
+module LocadoraDeCarros
+const LocadoraDeCarros: {
+    listaParaInteragir: string[];
+    EXIT_COMMANDS: Set<string>; // [":q", ":quit", ":exit"]
+    exibeLista(): void;
+    exibeMensagemFeedback(mensagem: string, nomeDoCarro?: string | undefined, corTexto?: string | undefined): void;
+    removeCarro(id?: string | undefined): void;
+    iniciarRemocaoDeCarros(): void;
+    adicionaCarro(lista: string[], nomeCarro?: string | undefined): void;
+    iniciarAdicaoDeCarros(): void;
+}
+
+// Módulo contendo métodos e recursos necessários para interação do usuário com a lista de carros.
 ```
 
 ## Instruções
