@@ -4,6 +4,7 @@
 const LocadoraDeCarros = {
   /**
    * Lista de carros para interação.
+   * Adicione items antes de começar a interação.
    * @type {string[]}
    */
   listaParaInteragir: [],
