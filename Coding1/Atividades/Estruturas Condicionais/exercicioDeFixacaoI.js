@@ -1,90 +1,51 @@
 /**
  * Objeto que armazena as informações do paciente.
  * @typedef {Object} Paciente
- * @property {string} [ nome ] - O nome do Paciente
- * @property {number} [ idade ] -  A idade do Paciente
- * @property {string} [ servico ] - O serviço solicitado pelo paciente.
+ * @property {string | null} [ nome ] - O nome do Paciente
+ * @property {number | null} [ idade ] -  A idade do Paciente
+ * @property {string | null} [ servico ] - O serviço solicitado pelo paciente.
  */
 
 /** @type {Paciente} */
 const paciente = {
-  nome: "",
-  idade: undefined,
-  servico: "",
+  nome: null,
+  idade: null,
+  servico: null,
 };
 
 console.clear();
 
 /**
- * Solicita e guarda o nome do paciente.
- * @type {string|null}
+ * Solicita e guarda o **nome** do paciente.
+ * @type {string | undefined}
  */
-const inputNome = prompt(
-  "\nBem vindo(a) ao Sistema de Saúde!  \nQual o seu nome? \n\n>",
-);
+paciente.nome =
+  prompt(
+    "\nBem vindo(a) ao Sistema de Saúde!  \nQual o seu nome? \n\n>",
+  )?.trim() || null;
+
+console.clear();
 
 /**
- * - Valida o input fornecido pelo usuário.
- * - Verifica se o input não está vazio ou nulo.
- *
- * @param {string | null} input - O valor do input fornecido.
- * @returns {[string | null, Error | null]} Retorna o input e um erro, se houver.
+ * Solicita e guarda a **idade** do paciente.
+ * @type {string | undefined |  null}
  */
-function validaInput(input) {
-  // Limpando o Console
-  console.clear();
+const idade =
+  prompt(
+    `\nOlá ${paciente.nome || "Paciente"}! Seja bem vindo(a) <3 \nQual a sua idade? \n\n>`,
+  )?.trim() || null;
 
-  if (input === null || input === "") {
-    return [null, new Error("\nInput vazio!")];
-  } else {
-    return [input, null];
-  }
+if (idade && !isNaN(parseInt(idade))) {
+  paciente.idade = parseInt(idade);
 }
 
-const [nome, erroNome] = validaInput(inputNome);
-
-if (erroNome) {
-  console.error(erroNome.message);
-} else {
-  typeof nome === "string" && isNaN(Number(nome))
-    ? (paciente.nome = nome)
-    : console.error("\nNome Inválido ");
-}
+console.clear();
 
 /**
- * Solicita e guarda a idade do paciente.
- * @type {string | null}
+ * Solicita e guarda o **serviço desejado** pelo paciente.
+ * @type {string | undefined | null}
  */
-const inputIdade = prompt(
-  `\nOlá ${paciente.nome || "Paciente"}! Seja bem vindo(a) <3 \nQual a sua idade? \n\n>`,
-);
-
-const [idade, erroIdade] = validaInput(inputIdade);
-
-if (erroIdade) {
-  console.error(erroIdade.message);
-} else {
-  const parsedIdade = Number(idade);
-  typeof parsedIdade === "number" && !isNaN(parsedIdade)
-    ? (paciente.idade = parsedIdade)
-    : console.error("\nIdade Inválida ");
-}
-
-/**
- * Solicita e guarda o serviço desejado pelo paciente.
- * @type {string | null}
- */
-const inputServico = prompt("\nEntendido, como posso lhe ajudar? \n\n>");
-
-const [servico, erroServico] = validaInput(inputServico);
-
-if (erroServico) {
-  console.error(erroServico.message);
-} else {
-  typeof servico === "string" && isNaN(Number(nome))
-    ? (paciente.servico = servico)
-    : console.error("\nServiço Inválido! ");
-}
+paciente.servico = prompt("\nComo posso lhe ajudar? \n\n>")?.trim() || null;
 
 console.clear();
 console.log("\n");
@@ -108,6 +69,5 @@ pacienteValido
   ? console.log("\n%cPaciente valido! ", "color: blue")
   : console.error("\n%cPaciente Invalido! ", "color: red");
 
-console.log("\n"); // Apenas adicionando um espaço 󰯖
 console.table(paciente);
 console.log("\n");
