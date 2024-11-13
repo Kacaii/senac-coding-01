@@ -21,12 +21,13 @@
 
 ---
 
-```javascript
+```typescript
 module LocadoraDeCarros
 const LocadoraDeCarros: {
     listaParaInteragir: string[];
-    EXIT_COMMANDS: Set<string>; // [":q", ":quit", ":exit"]
+    EXIT_COMMANDS: Set<string>;
     exibeLista(): void;
+    exibeQuantidade(): void;
     exibeMensagemFeedback(mensagem: string, nomeDoCarro?: string | undefined, corTexto?: string | undefined): void;
     removeCarro(id?: string | undefined): void;
     iniciarRemocaoDeCarros(): void;

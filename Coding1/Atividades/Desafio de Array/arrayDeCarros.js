@@ -30,6 +30,14 @@ const LocadoraDeCarros = {
     console.table(this.listaParaInteragir);
   },
 
+  exibeQuantidade() {
+    console.log(
+      `\nTemos um total de %c${this.listaParaInteragir.length} %ccarros disponíveis!\n`,
+      "color:green; text-weight: bold",
+      "color:",
+    );
+  },
+
   /**
    * Exibe uma mensagem de feedback no console sobre a adição ou remoção de um carro.
    *
@@ -221,9 +229,4 @@ const listaDeCarros = [
 LocadoraDeCarros.listaParaInteragir = listaDeCarros; // Preenchendo a lista com vários carros.
 LocadoraDeCarros.iniciarRemocaoDeCarros(); // Iniciando
 LocadoraDeCarros.iniciarAdicaoDeCarros();
-
-console.log(
-  `\nTemos um total de %c${listaDeCarros.length} %ccarros disponíveis!\n`,
-  "color:green; text-weight: bold",
-  "color:",
-);
+LocadoraDeCarros.exibeQuantidade();
