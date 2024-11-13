@@ -13,7 +13,47 @@
 - [x] Crie as variáveis, use a função `prompt()` e o `console.log()`
       para interagir com o usuário.
 
+## Instruções
+
+- Adicionar ou remover carros da tabela é **opcional**.
+- Durante a execução do código, os carros são exibidos no terminal em forma de tabelas.
+- Recomendo executar o código no **terminal**,
+  apesar dele também funcionar no [CodePen](https://codepen.io/pen/).
+
+```bash
+# /Senac-Coding/Coding1/Atividades/Desafio de Array/
+deno run arrayDeCarros.js
+```
+
+## Dependências
+
+<!-- prettier-ignore -->
+> [!TIP]
+> **Por que estou usando Deno?**
+>
+> **Deno** é um ambiente de execução Javascript focado em segurança e simplicidade.
+> Possui suporte nativo pata Typescript e muitas outras ferramentas e APIs,
+> como por exemplo o método `window.prompt()` - que falta no NodeJS.
+
+<center>
+<iframe width="720" height="360" src="https://www.youtube.com/embed/M3BM9TB-8yA" title="10 coisas que lamento sobre Node.js - Ryan Dahl - JSConf EU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</center>
+
 ---
+
+- Lista de Dependências:
+
+  - Ambiente de execução Javascript com suporte ao método `prompt()`
+  - Ambiente de execução Javascript com suporte ao método `console.table()`
+
+- Lista de Recomendações:
+
+  - [Nerd Fonts](https://www.nerdfonts.com/font-downloads) | Para habilitar suporte para _ícones_  no Terminal.
+  - [Deno](https://deno.com/) | Executa scripts `.js`.
+
+> [!NOTE]
+> O usuário pode optar por **sair** do loop ao digitar `":exit"` ou `":q"`
+> durante a interação.
 
 ```typescript
 module LocadoraDeCarros
@@ -31,34 +71,6 @@ const LocadoraDeCarros: {
 
 // Módulo contendo métodos e recursos necessários para interação do usuário com a lista de carros.
 ```
-
-## Instruções
-
-- Adicionar ou remover carros da tabela é **opcional**.
-- Durante a execução do código, os carros são exibidos no terminal em forma de tabelas.
-- Recomendo executar o código no **terminal**,
-  apesar dele também funcionar no [CodePen](https://codepen.io/pen/).
-
-```bash
-# /Senac-Coding/Coding1/Atividades/Desafio de Array/
-deno run arrayDeCarros.js
-```
-
----
-
-- Lista de Dependências:
-
-  - Ambiente de execução Javascript com suporte ao método `prompt()`
-  - Ambiente de execução Javascript com suporte ao método `console.table()`
-
-- Lista de Recomendações:
-
-  - [Nerd Fonts](https://www.nerdfonts.com/font-downloads) | Suporte para ícones.
-  - [Deno](https://deno.com/) | JavaScript Runtime.
-
-> [!NOTE]
-> O usuário pode optar por **sair** do loop ao digitar `":exit"` ou `":q"`
-> durante a interação.
 
 ## Grupo
 
