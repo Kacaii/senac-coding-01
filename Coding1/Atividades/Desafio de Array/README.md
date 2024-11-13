@@ -3,12 +3,6 @@
 
 # Desafio de Array 2024-10-23
 
-## Grupo
-
-- [Eloi](https://github.com/Eloi-0001)
-- [Ayres](https://github.com/Kacaii)
-- [Matheus](https://github.com/eumatheuslucena)
-
 ## Enunciado: Um sistema de aluguel de carros
 
 > Crie um `array` de carros. Em seguida, realize as seguintes operações:
@@ -45,6 +39,11 @@ const LocadoraDeCarros: {
 - Recomendo executar o código no **terminal**,
   apesar dele também funcionar no [CodePen](https://codepen.io/pen/).
 
+```bash
+# /Senac-Coding/Coding1/Atividades/Desafio de Array/
+deno run arrayDeCarros.js
+```
+
 ---
 
 - Lista de Dependências:
@@ -60,6 +59,12 @@ const LocadoraDeCarros: {
 > [!NOTE]
 > O usuário pode optar por **sair** do loop ao digitar `":exit"` ou `":q"`
 > durante a interação.
+
+## Grupo
+
+- [Eloi](https://github.com/Eloi-0001)
+- [Ayres](https://github.com/Kacaii)
+- [Matheus](https://github.com/eumatheuslucena)
 
 ## TODO List ✅
 
