@@ -36,7 +36,9 @@ deno run arrayDeCarros.js
 > como por exemplo o método `window.prompt()` - que falta no NodeJS.
 
 <center>
-<iframe width="720" height="360" src="https://www.youtube.com/embed/M3BM9TB-8yA" title="10 coisas que lamento sobre Node.js - Ryan Dahl - JSConf EU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+[![10 Coisas que lamento sobre NodeJS - Ryan Dahl](https://img.youtube.com/vi/M3BM9TB-8yA/0.jpg)](https://www.youtube.com/watch?v=M3BM9TB-8yA)
+
 </center>
 
 ---
