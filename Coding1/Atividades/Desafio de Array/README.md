@@ -25,7 +25,7 @@
 deno run arrayDeCarros.js
 ```
 
-## Dependências
+## Deno
 
 <!-- prettier-ignore -->
 > [!TIP]
@@ -35,13 +35,15 @@ deno run arrayDeCarros.js
 > Possui suporte nativo pata Typescript e muitas outras ferramentas e APIs,
 > como por exemplo o método `window.prompt()` - que falta no NodeJS.
 
+### 10 Coisas que lamento sobre NodeJS - Ryan Dahl
+
 <center>
 
 [![10 Coisas que lamento sobre NodeJS - Ryan Dahl](https://img.youtube.com/vi/M3BM9TB-8yA/0.jpg)](https://www.youtube.com/watch?v=M3BM9TB-8yA)
 
 </center>
 
----
+## Dependências
 
 - Lista de Dependências:
 
