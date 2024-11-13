@@ -1,5 +1,6 @@
 <!-- markdownlint-disable MD033 -->
 <!-- markdownlint-disable MD013 -->
+<!-- markdownlint-disable MD036 -->
 
 # Desafio de Array 2024-10-23
 
@@ -41,16 +42,23 @@ deno run arrayDeCarros.js
 
 [![10 Coisas que lamento sobre NodeJS - Ryan Dahl](https://img.youtube.com/vi/M3BM9TB-8yA/0.jpg)](https://www.youtube.com/watch?v=M3BM9TB-8yA)
 
+**Instalar no Windows**
+
+```ps1
+irm https://deno.land/install.ps1 | iex
+```
+
+**Instalar no MacOS/Linux**
+
+```bash
+curl -fsSL https://deno.land/install.sh | sh
+```
+
 </center>
 
 ## Dependências
 
 - Lista de Dependências:
-
-  - Ambiente de execução Javascript com suporte ao método `prompt()`
-  - Ambiente de execução Javascript com suporte ao método `console.table()`
-
-- Lista de Recomendações:
 
   - [Nerd Fonts](https://www.nerdfonts.com/font-downloads) | Para habilitar suporte para _ícones_  no Terminal.
   - [Deno](https://deno.com/) | Executa scripts `.js`.
@@ -58,23 +66,6 @@ deno run arrayDeCarros.js
 > [!NOTE]
 > O usuário pode optar por **sair** do loop ao digitar `":exit"` ou `":q"`
 > durante a interação.
-
-```typescript
-module LocadoraDeCarros
-const LocadoraDeCarros: {
-    listaParaInteragir: string[];
-    EXIT_COMMANDS: Set<string>;
-    exibeLista(): void;
-    exibeQuantidade(): void;
-    exibeMensagemFeedback(mensagem: string, nomeDoCarro?: string | undefined, corTexto?: string | undefined): void;
-    removeCarro(id?: string | undefined): void;
-    iniciarRemocaoDeCarros(): void;
-    adicionaCarro(lista: string[], nomeCarro?: string | undefined): void;
-    iniciarAdicaoDeCarros(): void;
-}
-
-// Módulo contendo métodos e recursos necessários para interação do usuário com a lista de carros.
-```
 
 ## Grupo
 
@@ -95,6 +86,25 @@ const LocadoraDeCarros: {
 - [x] Melhorar a legibilidade.
 - [x] Agora é possível **adicionar** ou **remover** vários carros da lista!
 - [x] Funções documentadas.
+
+---
+
+```typescript
+module LocadoraDeCarros
+const LocadoraDeCarros: {
+    listaParaInteragir: string[];
+    EXIT_COMMANDS: Set<string>;
+    exibeLista(): void;
+    exibeQuantidade(): void;
+    exibeMensagemFeedback(mensagem: string, nomeDoCarro?: string | undefined, corTexto?: string | undefined): void;
+    removeCarro(id?: string | undefined): void;
+    iniciarRemocaoDeCarros(): void;
+    adicionaCarro(lista: string[], nomeCarro?: string | undefined): void;
+    iniciarAdicaoDeCarros(): void;
+}
+
+// Módulo contendo métodos e recursos necessários para interação do usuário com a lista de carros.
+```
 
 ---
 
