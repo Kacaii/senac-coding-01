@@ -1,29 +1,39 @@
 // Atividade 07
 
-let impostoDeRenda = 0;
+console.clear();
 
 /**
- * Calcula o imposto de renda
- * @param {number} salarioBruto - Valor do salario bruto
+ * Imprime o resultado no console.
+ * @param {number} salarioBruto - Valor do salario bruto.
  */
 function calculaImpostoDeRenda(salarioBruto) {
+  if (!salarioBruto) return;
+
+  console.log("");
+
   if (salarioBruto >= 6000) {
-    impostoDeRenda = 0.3;
-    console.log(`Primeiro IF`);
+    const impostoDeRenda = 0.3;
+    console.log(`Entrou no primeiro IF\n`);
     console.log(`Imposto de Renda: R$ ${impostoDeRenda * salarioBruto}`);
     return;
   } else if (salarioBruto >= 4000) {
-    impostoDeRenda = 0.2;
-    console.log("Segundo IF");
+    const impostoDeRenda = 0.2;
+    console.log("Entrou no segundo IF\n");
     console.log(`Imposto de Renda: R$ ${impostoDeRenda * salarioBruto}`);
     return;
   } else if (salarioBruto >= 2000) {
-    impostoDeRenda = 0.1;
-    console.log("Terceiro IF");
+    const impostoDeRenda = 0.1;
+    console.log("Entrou no terceiro IF");
     console.log(`Imposto de Renda: R$ ${impostoDeRenda * salarioBruto}`);
     return;
+  } else {
+    console.log("Sem imposto!💰");
   }
 }
 
-// Atualize o valor aqui
-calculaImpostoDeRenda(7100);
+/** @type {string | undefined | null} */
+const input = prompt("\nInsira o seu salário bruto:\n\n>")?.trim() || null;
+
+input && !isNaN(parseInt(input))
+  ? calculaImpostoDeRenda(parseInt(input))
+  : null;
