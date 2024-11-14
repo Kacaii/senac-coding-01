@@ -33,7 +33,7 @@ deno run arrayDeCarros.js
 > **Por que estou usando Deno?**
 >
 > **Deno** é um ambiente de execução Javascript focado em segurança e simplicidade.
-> Possui suporte nativo pata Typescript e muitas outras ferramentas e APIs,
+> Possui suporte nativo para Typescript e muitas outras ferramentas e APIs,
 > como por exemplo o método `window.prompt()` - que falta no NodeJS.
 
 ### 10 Coisas que lamento sobre NodeJS - Ryan Dahl
