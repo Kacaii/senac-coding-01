@@ -1,8 +1,10 @@
+console.clear();
+
 /**
  * Indica se a porta está aberta
  * @type {boolean}
  */
-const portaAberta = true;
+const portaAberta = confirm("A porta está aberta? 󰠚");
 
 /**
  * Conjunto de respostas possíveis que concedem permissão para entrar.
@@ -18,37 +20,27 @@ const respostasPossiveis = new Set([
   "chegue",
 ]);
 
-/**
- * Verifica o estado atual da porta (aberta ou fechada).
- * @returns {string} O estado da porta: "aberta! " ou "fechada! ".
- */
-function verificaPorta() {
-  return portaAberta ? "aberta! " : "fechada! ";
-}
-
 console.clear();
-console.log(`\n A porta esta ${verificaPorta()}`);
+console.log(`\n A porta está ${portaAberta ? "aberta! " : "fechada! "}`);
 
 /**
- * @type {string | null}
- */
-const respostaOuNull = prompt("\nEu posso entrar? \n\n>");
-
-/**
- * Verifica se a pessoa pode entrar.
- *
- * A verificação consiste em duas condições:
+ * Verifica se o _visitante_ pode entrar.
+ * A verificação precisa de duas condições:
  *
  * 1. A porta precisa estar aberta.
- * 2. A resposta dada precisa estar dentro das respostas permitidas.
+ * 2. A resposta do usuário precisa estar dentro das respostas permitidas.
  *
  * @returns {boolean} Retorna `true` se a pessoa pode entrar, caso contrário `false`.
  */
 function verificaSePodeEntrar() {
-  if (respostaOuNull == null || respostaOuNull.trim() === "") {
-    throw new Error("Mensagem vazia ").message;
-  }
-  return respostasPossiveis.has(respostaOuNull.toLowerCase()) && portaAberta;
+  // Se a porta estiver fechada, nem adianta tentar.
+  const resposta = portaAberta
+    ? prompt("\nEu posso entrar? \n\n>")?.trim()?.toLowerCase()
+    : undefined;
+
+  if (!resposta) return false;
+
+  return respostasPossiveis.has(resposta);
 }
 
 verificaSePodeEntrar()
