@@ -1,5 +1,10 @@
 // Atividade 01
 
+console.clear();
+
+import { parseArgs } from "@std/cli";
+import { Spinner } from "@std/cli/unstable-spinner";
+
 /**
  * Exibe o nome e a idade fornecidos como argumentos.
  * Se nenhum argumento for passado, exibe nome e idade do autor.
@@ -13,7 +18,18 @@ function mostraIdade(nome = "Pedro", idade = "22") {
   console.log(`Olá, meu nome é ${nome} e eu tenho ${idade} anos.`);
 }
 
-mostraIdade();
+const spinner = new Spinner({ message: "Carregando..", color: "green" });
+spinner.start();
 
-// Passe argumentos aqui se não quiser usar os argumentos padrão
-mostraIdade("Maria", "28");
+const args = parseArgs(Deno.args, {
+  alias: {
+    nome: "n",
+    idade: "i",
+  },
+});
+
+setTimeout(() => {
+  spinner.stop();
+
+  mostraIdade(args.nome, args.idade);
+}, 2000);

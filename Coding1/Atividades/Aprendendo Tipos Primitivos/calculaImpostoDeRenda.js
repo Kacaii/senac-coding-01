@@ -31,9 +31,9 @@ function calculaImpostoDeRenda(salarioBruto) {
   }
 }
 
-/** @type {string | undefined | null} */
-const input = prompt("\nInsira o seu salário bruto:\n\n>")?.trim() || null;
+/** @type {string | undefined } */
+const input = prompt("\nInsira o seu salário bruto:\n\n>")?.trim();
 
 input && !isNaN(parseInt(input))
   ? calculaImpostoDeRenda(parseInt(input))
-  : null;
+  : console.error("Input vazio!");
