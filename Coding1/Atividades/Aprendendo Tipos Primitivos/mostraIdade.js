@@ -13,15 +13,23 @@ const args = parseArgs(Deno.args, {
   },
 });
 
-if (args.help) {
+/** Exibe uma mensagem de ajuda no terminal. */
+function exibeAjuda() {
   console.log(`
-  Como utilizar: mostraIdade --nome <nome> --idade <idade>
-
-  -h, --help    Exibe Ajuda  (Opcional)
-  -n, --nome    Seu Nome     (Opcional)
-  -i, --idade   Seua idade   (Opcional)
+┌───────────────────────────────────────────────────────────────────────┐
+│ Como utilizar: mostraIdade [--nome <nome>] [--idade <idade>]          │
+│                                                                       │
+│ Opções:                                                               │
+│ -h, --help    Exibe Ajuda  (Opcional)                                 │
+│ -n, --nome    Seu Nome     (Opcional)                                 │
+│ -i, --idade   Seua idade   (Opcional)                                 │
+└───────────────────────────────────────────────────────────────────────┘
 `);
   Deno.exit();
+}
+
+if (args.help) {
+  exibeAjuda();
 }
 
 const spinner = new Spinner({ message: "Carregando..", color: "green" });
@@ -40,7 +48,7 @@ function mostraIdade(nome, idade) {
   } else if (!nome && idade) {
     console.log(`Olá! Eu tenho ${idade} anos!`);
   } else {
-    console.log("Olá! Eu não tenho nem nome nem idade.");
+    console.log(exibeAjuda());
   }
 }
 
