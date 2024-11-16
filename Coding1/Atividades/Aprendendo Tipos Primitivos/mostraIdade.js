@@ -16,6 +16,7 @@ const args = parseArgs(Deno.args, {
 if (args.help) {
   console.log(`
   Como utilizar: mostraIdade --nome <nome> --idade <idade>
+
   -h, --help    Exibe Ajuda  (Opcional)
   -n, --nome    Seu Nome     (Opcional)
   -i, --idade   Seua idade   (Opcional)
@@ -50,4 +51,4 @@ setTimeout(() => {
   spinner.stop();
 
   mostraIdade(args.nome, args.idade);
-}, 1500);
+}, 1_000);
