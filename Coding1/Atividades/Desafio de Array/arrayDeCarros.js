@@ -230,3 +230,5 @@ LocadoraDeCarros.listaParaInteragir = listaDeCarros; // Preenchendo a lista com 
 LocadoraDeCarros.iniciarRemocaoDeCarros(); // Iniciando
 LocadoraDeCarros.iniciarAdicaoDeCarros();
 LocadoraDeCarros.exibeQuantidade();
+
+// TODO: E se eu usasse um banco de dados? (sqlite )
