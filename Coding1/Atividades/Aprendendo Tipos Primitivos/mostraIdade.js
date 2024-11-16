@@ -28,7 +28,6 @@ const spinner = new Spinner({ message: "Carregando..", color: "green" });
 
 /**
  * Exibe o nome e a idade fornecidos como argumentos.
- * Se nenhum argumento for passado, exibe nome e idade do autor.
  *
  * @param {string} nome - Nome da pessoa.
  * @param {number} idade - Nome da idade onde a pessoa mora.

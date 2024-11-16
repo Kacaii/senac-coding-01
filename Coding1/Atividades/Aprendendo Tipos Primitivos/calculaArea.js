@@ -1,9 +1,9 @@
 // Atividade 04
 
+console.clear();
+
 import { parseArgs } from "@std/cli";
 import { Spinner } from "@std/cli/unstable-spinner";
-
-console.clear();
 
 const args = parseArgs(Deno.args, {
   alias: {
@@ -27,7 +27,7 @@ if (args.help) {
 const spinner = new Spinner({ message: "Calculando..", color: "green" });
 
 /**
- * Calcula a área de um triângulo utilizando os argumentos passados.
+ * Calcula a área de um triângulo.
  *
  * @param {number} base -  Base do triângulo
  * @param {number} altura -  Altura do triângulo
