@@ -26,7 +26,7 @@ const LocadoraDeCarros = {
 █░░ █▀▀█ █▀▀ █▀▀█ █▀▀▄ █▀▀█ █▀▀█ █▀▀█ 
 █░░ █░░█ █░░ █▄▄█ █░░█ █░░█ █▄▄▀ █▄▄█ 
 ▀▀▀ ▀▀▀▀ ▀▀▀ ▀░░▀ ▀▀▀░ ▀▀▀▀ ▀░▀▀ ▀░░▀ `);
-    console.log("Lista de carros disponíveis");
+    console.log("\nLista de carros disponíveis:");
     console.table(this.listaParaInteragir);
   },
 
