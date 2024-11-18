@@ -238,8 +238,10 @@ const LocadoraDeCarros = {
       ) {
         this.listaParaInteragir = []; // Definindo a lista como vazia em caso de erro.
         console.clear();
+
         log.critical(
-          "Erro ao ler o arquivo de dados.\nExiste um arquivo JSON na pasta atual? \n",
+          "Erro ao ler o arquivo de dados.\nExiste um arquivo JSON na pasta atual?  \n\n" +
+            erro.name,
         );
         Deno.exit(1);
       }
