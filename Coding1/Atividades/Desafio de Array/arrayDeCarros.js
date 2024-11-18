@@ -44,19 +44,19 @@ const LocadoraDeCarros = {
    * Recebe input do usuário.
    *
    * @param {string} mensagemPrompt - Mensagem a ser exibida ao usuário.
-   * @returns {string | undefined} Retorna o input do usuário ou undefined se o usuário inserir um comando de saída.
+   * @returns {string?} Retorna o input do usuário ou undefined se o usuário inserir um comando de saída.
    */
   recebeInput(mensagemPrompt) {
     const input = prompt(mensagemPrompt)?.trim();
-    return input && !this.EXIT_COMMANDS.has(input) ? input : undefined;
+    return input && !this.EXIT_COMMANDS.has(input) ? input : null;
   },
 
   /**
    * Exibe uma mensagem de feedback no console sobre a adição ou remoção de um carro.
    *
    * @param {string} mensagem - Mensagem a ser exibida no console.
-   * @param {string} [nomeDoCarro="Nenhum carro"] - Nome do carro removido ou adicionado.
-   * @param {string} [corTexto="yellow"] - Cor do texto do **nome** do carro, em _inglês_.
+   * @param {string?} [nomeDoCarro="Nenhum carro"] - Nome do carro removido ou adicionado.
+   * @param {string?} [corTexto="yellow"] - Cor do texto do **nome** do carro, em _inglês_.
    */
   exibeMensagemFeedback(
     mensagem,
@@ -73,7 +73,7 @@ const LocadoraDeCarros = {
   /**
    * Remove o carro da lista passando o ID como argumento.
    *
-   * @param {string} [id] - ID do carro a ser removido.
+   * @param {string} id - ID do carro a ser removido.
    */
   removeCarro(id) {
     // Early return
@@ -134,7 +134,7 @@ const LocadoraDeCarros = {
 
     console.log(
       "\nGostaria de %cREMOVER %calgum carro da lista? ",
-      "color:red",
+      "color:red; text-weight: bold",
       "color:",
     );
 
@@ -151,7 +151,7 @@ const LocadoraDeCarros = {
   /**
    * Adiciona o carro no final da lista passando o nome como argumento.
    *
-   * @param {string} [nomeCarro] - Nome do carro a ser adicionado.
+   * @param {string} nomeCarro - Nome do carro a ser adicionado.
    */
   adicionaCarro(nomeCarro) {
     if (!nomeCarro) {
@@ -202,7 +202,7 @@ const LocadoraDeCarros = {
 
     console.log(
       "\nGostaria de %cADICIONAR %calgum carro na lista? ",
-      "color:green",
+      "color:green; text-weight: bold",
       "color:",
     );
 
