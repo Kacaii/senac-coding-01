@@ -134,6 +134,10 @@ const LocadoraDeCarros = {
 
   /** Inicia a interação com o usuário. */
   iniciarRemocaoDeCarros() {
+    if (this.listaParaInteragir.length === 0) {
+      throw new Deno.errors.InvalidData("Não há carros na lista.");
+    }
+
     this.exibirLista();
 
     console.log(
@@ -229,21 +233,18 @@ const LocadoraDeCarros = {
    */
   carregarLista(lista) {
     try {
+      // Carregando o arquivo de dados.
       const data = Deno.readTextFileSync(lista);
       this.listaParaInteragir = JSON.parse(data);
-    } catch (erro) {
-      if (
-        // Caso arquivo não seja encontrado.
-        erro instanceof Deno.errors.NotFound
-      ) {
+    } catch (err) {
+      // Caso arquivo não seja encontrado.
+      if (err instanceof Deno.errors.NotFound) {
         this.listaParaInteragir = []; // Definindo a lista como vazia em caso de erro.
         console.clear();
-
         log.critical(
-          "Erro ao ler o arquivo de dados.\nExiste um arquivo JSON na pasta atual?  \n\n" +
-            erro.name,
+          "Erro ao ler o arquivo de dados.\nO arquivo JSON não existe na pasta atual?  \n",
         );
-        Deno.exit(1);
+        throw err;
       }
     }
   },

@@ -88,23 +88,4 @@ curl -fsSL https://deno.land/install.sh | sh
 
 ---
 
-```typescript
-module LocadoraDeCarros
-const LocadoraDeCarros: {
-    listaParaInteragir: string[];
-    EXIT_COMMANDS: Set<string>;
-    exibeLista(): void;
-    exibeQuantidade(): void;
-    exibeMensagemFeedback(mensagem: string, nomeDoCarro?: string | undefined, corTexto?: string | undefined): void;
-    removeCarro(id?: string | undefined): void;
-    iniciarRemocaoDeCarros(): void;
-    adicionaCarro(lista: string[], nomeCarro?: string | undefined): void;
-    iniciarAdicaoDeCarros(): void;
-}
-
-// Módulo contendo métodos e recursos necessários para interação do usuário com a lista de carros.
-```
-
----
-
 ![Cat Coding](https://c.tenor.com/g3y2q5VQxvAAAAAC/cat-computer.gif)
