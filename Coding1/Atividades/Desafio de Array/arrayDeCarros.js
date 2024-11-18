@@ -1,3 +1,5 @@
+import * as log from "@std/log"; // Biblioteca padrão do Deno
+
 console.clear();
 
 /**
@@ -5,15 +7,15 @@ console.clear();
  */
 const LocadoraDeCarros = {
   /**
-   * Lista de carros para interação.
-   * Adicione items antes de começar a interação.
+   * Lista de carros para interação, inicia vazia.
+   * Adicione items com `carregarLista()` antes de começar a interação.
    *
    * @type {string[]}
    */
   listaParaInteragir: [],
 
   /**
-   * Comandos para interromper a execução do loop.
+   * Digite um dos comandos abaixo para interromper a execução do loop.
    *
    * @type {Set<string>}
    */
@@ -32,9 +34,8 @@ const LocadoraDeCarros = {
 
   /** Exibe a quantidade de carros na lista. */
   exibeQuantidade() {
-    this.exibirLista();
     console.log(
-      `\nTemos um total de %c${this.listaParaInteragir.length} %ccarros disponíveis!\n`,
+      `Temos um total de %c${this.listaParaInteragir.length} %ccarros disponíveis!\n`,
       "color:green; text-weight: bold",
       "color:",
     );
@@ -65,7 +66,7 @@ const LocadoraDeCarros = {
   ) {
     console.log(
       `%c${nomeDoCarro} %c${mensagem}`,
-      `color:${corTexto};text-weight: bold`,
+      `color:${corTexto}; text-weight: bold`,
       "color:white",
     );
   },
@@ -85,22 +86,25 @@ const LocadoraDeCarros = {
     ) {
       this.exibirLista();
       this.exibeMensagemFeedback("foi removido."); // Mensagem padrão.
+      this.exibeQuantidade();
       return;
     }
 
-    const [nomeCarroRemovido] = this.listaParaInteragir.splice(parseInt(id), 1); // Remove o carro da lista.
+    // Remove o carro da lista.
+    const [nomeCarroRemovido] = this.listaParaInteragir.splice(parseInt(id), 1);
     this.exibirLista(); // Exibe a lista atualizada.
     this.exibeMensagemFeedback(
       "foi removido da lista!",
       nomeCarroRemovido,
       "red",
     );
+    this.exibeQuantidade();
   },
 
   /** Inicia um `while` loop onde o usuário pode continuar removendo os carros. */
   LoopRemovendoCarros() {
     console.log(
-      "\nGostaria de %cREMOVER %cmais alguns? ",
+      "Gostaria de %cREMOVER %cmais alguns? ",
       "color:red",
       "color:",
     );
@@ -139,7 +143,7 @@ const LocadoraDeCarros = {
     );
 
     const idCarroInicial = this.recebeInput(
-      "\nInsira o ID do carro ou deixe em branco para sair.\n\n>",
+      "Insira o ID do carro ou deixe em branco para sair.\n\n>",
     );
 
     if (idCarroInicial) {
@@ -157,18 +161,20 @@ const LocadoraDeCarros = {
     if (!nomeCarro) {
       this.exibirLista(); // Atualizando
       this.exibeMensagemFeedback("foi adicionado");
+      this.exibeQuantidade();
       return; // Early return
     }
 
     this.listaParaInteragir.push(nomeCarro); // Adiciona o carro na lista
     this.exibirLista();
     this.exibeMensagemFeedback("adicionado!", nomeCarro, "green");
+    this.exibeQuantidade();
   },
 
   /** Inicia um `while` loop onde o usuário pode continuar adicionando os carros. */
   LoopAdicionandoCarros() {
     console.log(
-      "\nGostaria de %cADICIONAR %cmais alguns? ",
+      "Gostaria de %cADICIONAR %cmais alguns? ",
       "color:green",
       "color:",
     );
@@ -225,16 +231,18 @@ const LocadoraDeCarros = {
     try {
       const data = Deno.readTextFileSync(lista);
       this.listaParaInteragir = JSON.parse(data);
-    } catch (_erro) {
-      this.listaParaInteragir = []; // Definindo a lista como vazia em caso de erro.
-      console.clear();
-      console.error("%cErro ao ler o arquivo de dados.", "color:red");
-      console.error(
-        "%cExiste um arquivo JSON na pasta atual? \n",
-        "color:red",
-      );
-
-      Deno.exit(1);
+    } catch (erro) {
+      if (
+        // Caso arquivo não seja encontrado.
+        erro instanceof Deno.errors.NotFound
+      ) {
+        this.listaParaInteragir = []; // Definindo a lista como vazia em caso de erro.
+        console.clear();
+        log.critical(
+          "Erro ao ler o arquivo de dados.\nExiste um arquivo JSON na pasta atual? \n",
+        );
+        Deno.exit(1);
+      }
     }
   },
 };
