@@ -44,7 +44,7 @@ const LocadoraDeCarros = {
    * Recebe input do usuário.
    *
    * @param {string} mensagemPrompt - Mensagem a ser exibida ao usuário.
-   * @returns {string | undefined} Retorna o input do usuário.
+   * @returns {string | undefined} Retorna o input do usuário ou undefined se o usuário inserir um comando de saída.
    */
   recebeInput(mensagemPrompt) {
     const input = prompt(mensagemPrompt)?.trim();
