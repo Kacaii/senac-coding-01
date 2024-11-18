@@ -1,5 +1,3 @@
-import * as log from "@std/log"; // Biblioteca padrão do Deno
-
 console.clear();
 
 /**
@@ -77,12 +75,14 @@ const LocadoraDeCarros = {
    * @param {string} id - ID do carro a ser removido.
    */
   removeCarro(id) {
+    const parsedID = parseInt(id);
+
     // Early return
     if (
-      !id ||
-      isNaN(parseInt(id)) ||
-      parseInt(id) < 0 ||
-      parseInt(id) > this.listaParaInteragir.length
+      parsedID == null ||
+      isNaN(parsedID) ||
+      parsedID < 0 ||
+      parsedID > this.listaParaInteragir.length
     ) {
       this.exibirLista();
       this.exibeMensagemFeedback("foi removido."); // Mensagem padrão.
@@ -91,7 +91,7 @@ const LocadoraDeCarros = {
     }
 
     // Remove o carro da lista.
-    const [nomeCarroRemovido] = this.listaParaInteragir.splice(parseInt(id), 1);
+    const [nomeCarroRemovido] = this.listaParaInteragir.splice(parsedID, 1);
     this.exibirLista(); // Exibe a lista atualizada.
     this.exibeMensagemFeedback(
       "foi removido da lista!",
@@ -118,7 +118,7 @@ const LocadoraDeCarros = {
 
     removendoCarros: while (continuarRemocao) {
       const idCarroSelecionado = this.recebeInput(
-        "\nInsira o ID do carro ou deixe em branco para sair.\n\n>",
+        "Insira o ID do carro ou deixe em branco para sair.\n\n>",
       );
 
       if (!idCarroSelecionado || this.EXIT_COMMANDS.has(idCarroSelecionado)) {
@@ -146,6 +146,7 @@ const LocadoraDeCarros = {
       "color:",
     );
 
+    /** @type {string?} */
     const idCarroInicial = this.recebeInput(
       "Insira o ID do carro ou deixe em branco para sair.\n\n>",
     );
@@ -192,7 +193,7 @@ const LocadoraDeCarros = {
 
     adicionandoCarros: while (continuarAdicao) {
       const carroParaAdicionar = this.recebeInput(
-        "\nInsira o nome do carro ou deixe em branco para sair.\n\n>",
+        "Insira o nome do carro ou deixe em branco para sair.\n\n>",
       );
 
       if (!carroParaAdicionar || this.EXIT_COMMANDS.has(carroParaAdicionar)) {
@@ -216,8 +217,9 @@ const LocadoraDeCarros = {
       "color:",
     );
 
+    /** @type {string?} */
     const nomeCarroInicial = this.recebeInput(
-      "\nInsira o nome do carro ou deixe em branco para sair.\n\n>",
+      "Insira o nome do carro ou deixe em branco para sair.\n\n>",
     );
 
     if (nomeCarroInicial) {
@@ -229,28 +231,27 @@ const LocadoraDeCarros = {
   /**
    * Carrega a lista de carros importando um arquivo JSON.
    *
+   * @async
    * @param {string | URL} lista - Arquivo JSON contendo a lista de carros.
    */
-  carregarLista(lista) {
+  async carregarLista(lista) {
     try {
       // Carregando o arquivo de dados.
-      const data = Deno.readTextFileSync(lista);
+      const data = await Deno.readTextFile(lista);
       this.listaParaInteragir = JSON.parse(data);
     } catch (err) {
       // Caso arquivo não seja encontrado.
       if (err instanceof Deno.errors.NotFound) {
         this.listaParaInteragir = []; // Definindo a lista como vazia em caso de erro.
-        console.clear();
-        log.critical(
-          "Erro ao ler o arquivo de dados.\nO arquivo JSON não existe na pasta atual?  \n",
-        );
+        console.error("Erro ao ler o arquivo de dados.  \n");
         throw err;
       }
     }
   },
 };
 
-LocadoraDeCarros.carregarLista("./data.json"); // Importando o arquivo de dados.
+await LocadoraDeCarros.carregarLista("./data.json"); // Importando o arquivo de dados.
 LocadoraDeCarros.iniciarRemocaoDeCarros(); // Iniciando
 LocadoraDeCarros.iniciarAdicaoDeCarros();
+LocadoraDeCarros.exibirLista();
 LocadoraDeCarros.exibeQuantidade();
