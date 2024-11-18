@@ -20,20 +20,21 @@ const LocadoraDeCarros = {
   EXIT_COMMANDS: new Set([":q", ":quit", ":exit"]),
 
   /** Limpa a tela, e então exibe a lista de carros. */
-  exibeLista() {
+  exibirLista() {
     console.clear();
     console.log(`
 █░░ █▀▀█ █▀▀ █▀▀█ █▀▀▄ █▀▀█ █▀▀█ █▀▀█ 
 █░░ █░░█ █░░ █▄▄█ █░░█ █░░█ █▄▄▀ █▄▄█ 
 ▀▀▀ ▀▀▀▀ ▀▀▀ ▀░░▀ ▀▀▀░ ▀▀▀▀ ▀░▀▀ ▀░░▀ `);
     console.log("\nLista de carros disponíveis:");
-    console.table(LocadoraDeCarros.listaParaInteragir);
+    console.table(this.listaParaInteragir);
   },
 
   /** Exibe a quantidade de carros na lista. */
   exibeQuantidade() {
+    this.exibirLista();
     console.log(
-      `\nTemos um total de %c${LocadoraDeCarros.listaParaInteragir.length} %ccarros disponíveis!\n`,
+      `\nTemos um total de %c${this.listaParaInteragir.length} %ccarros disponíveis!\n`,
       "color:green; text-weight: bold",
       "color:",
     );
@@ -47,9 +48,7 @@ const LocadoraDeCarros = {
    */
   recebeInput(mensagemPrompt) {
     const input = prompt(mensagemPrompt)?.trim();
-    return input && !LocadoraDeCarros.EXIT_COMMANDS.has(input)
-      ? input
-      : undefined;
+    return input && !this.EXIT_COMMANDS.has(input) ? input : undefined;
   },
 
   /**
@@ -77,33 +76,25 @@ const LocadoraDeCarros = {
    * @param {string} [id] - ID do carro a ser removido.
    */
   removeCarro(id) {
-    if (!id) {
-      LocadoraDeCarros.exibeLista();
-      LocadoraDeCarros.exibeMensagemFeedback("foi removido."); // Mensagem padrão.
-      return; // Early return
-    }
-
-    const parsedID = parseInt(id); // ID do carro a ser removido
-
+    // Early return
     if (
-      !isNaN(parsedID) &&
-      parsedID >= 0 &&
-      parsedID < LocadoraDeCarros.listaParaInteragir.length
+      !id ||
+      isNaN(parseInt(id)) ||
+      parseInt(id) < 0 ||
+      parseInt(id) > this.listaParaInteragir.length
     ) {
-      const [nomeCarroRemovido] = LocadoraDeCarros.listaParaInteragir.splice(
-        parsedID,
-        1,
-      ); // Remove o carro da lista.
-      LocadoraDeCarros.exibeLista(); // Exibe a lista atualizada.
-      LocadoraDeCarros.exibeMensagemFeedback(
-        "foi removido da lista!",
-        nomeCarroRemovido,
-        "red",
-      );
-    } else {
-      LocadoraDeCarros.exibeLista();
-      LocadoraDeCarros.exibeMensagemFeedback("foi removido"); // Mensagem padrão.
+      this.exibirLista();
+      this.exibeMensagemFeedback("foi removido."); // Mensagem padrão.
+      return;
     }
+
+    const [nomeCarroRemovido] = this.listaParaInteragir.splice(parseInt(id), 1); // Remove o carro da lista.
+    this.exibirLista(); // Exibe a lista atualizada.
+    this.exibeMensagemFeedback(
+      "foi removido da lista!",
+      nomeCarroRemovido,
+      "red",
+    );
   },
 
   /** Inicia um `while` loop onde o usuário pode continuar removendo os carros. */
@@ -119,30 +110,27 @@ const LocadoraDeCarros = {
      * @type {boolean} */
     let continuarRemocao = confirm("");
 
-    LocadoraDeCarros.exibeLista();
+    this.exibirLista();
 
     removendoCarros: while (continuarRemocao) {
-      const idCarroSelecionado = LocadoraDeCarros.recebeInput(
+      const idCarroSelecionado = this.recebeInput(
         "\nInsira o ID do carro ou deixe em branco para sair.\n\n>",
       );
 
-      if (
-        !idCarroSelecionado ||
-        LocadoraDeCarros.EXIT_COMMANDS.has(idCarroSelecionado)
-      ) {
+      if (!idCarroSelecionado || this.EXIT_COMMANDS.has(idCarroSelecionado)) {
         continuarRemocao = false;
         break removendoCarros;
       }
 
-      LocadoraDeCarros.removeCarro(idCarroSelecionado);
+      this.removeCarro(idCarroSelecionado);
     }
 
-    LocadoraDeCarros.exibeLista();
+    this.exibirLista();
   },
 
   /** Inicia a interação com o usuário. */
   iniciarRemocaoDeCarros() {
-    LocadoraDeCarros.exibeLista();
+    this.exibirLista();
 
     console.log(
       "\nGostaria de %cREMOVER %calgum carro da lista? ",
@@ -150,13 +138,13 @@ const LocadoraDeCarros = {
       "color:",
     );
 
-    const idCarroInicial = LocadoraDeCarros.recebeInput(
+    const idCarroInicial = this.recebeInput(
       "\nInsira o ID do carro ou deixe em branco para sair.\n\n>",
     );
 
     if (idCarroInicial) {
-      LocadoraDeCarros.removeCarro(idCarroInicial);
-      LocadoraDeCarros.LoopRemovendoCarros();
+      this.removeCarro(idCarroInicial);
+      this.LoopRemovendoCarros();
     }
   },
 
@@ -167,14 +155,14 @@ const LocadoraDeCarros = {
    */
   adicionaCarro(nomeCarro) {
     if (!nomeCarro) {
-      LocadoraDeCarros.exibeLista(); // Atualizando
-      LocadoraDeCarros.exibeMensagemFeedback("foi adicionado");
+      this.exibirLista(); // Atualizando
+      this.exibeMensagemFeedback("foi adicionado");
       return; // Early return
     }
 
-    LocadoraDeCarros.listaParaInteragir.push(nomeCarro); // Adiciona o carro na lista
-    LocadoraDeCarros.exibeLista();
-    LocadoraDeCarros.exibeMensagemFeedback("adicionado!", nomeCarro, "green");
+    this.listaParaInteragir.push(nomeCarro); // Adiciona o carro na lista
+    this.exibirLista();
+    this.exibeMensagemFeedback("adicionado!", nomeCarro, "green");
   },
 
   /** Inicia um `while` loop onde o usuário pode continuar adicionando os carros. */
@@ -190,30 +178,27 @@ const LocadoraDeCarros = {
      * @type {boolean} */
     let continuarAdicao = confirm("");
 
-    LocadoraDeCarros.exibeLista();
+    this.exibirLista();
 
     adicionandoCarros: while (continuarAdicao) {
-      const carroParaAdicionar = LocadoraDeCarros.recebeInput(
+      const carroParaAdicionar = this.recebeInput(
         "\nInsira o nome do carro ou deixe em branco para sair.\n\n>",
       );
 
-      if (
-        !carroParaAdicionar ||
-        LocadoraDeCarros.EXIT_COMMANDS.has(carroParaAdicionar)
-      ) {
+      if (!carroParaAdicionar || this.EXIT_COMMANDS.has(carroParaAdicionar)) {
         continuarAdicao = false;
         break adicionandoCarros;
       }
 
-      LocadoraDeCarros.adicionaCarro(carroParaAdicionar);
+      this.adicionaCarro(carroParaAdicionar);
     }
 
-    LocadoraDeCarros.exibeLista();
+    this.exibirLista();
   },
 
   /** Inicia a interação com o usuário. */
   iniciarAdicaoDeCarros() {
-    LocadoraDeCarros.exibeLista();
+    this.exibirLista();
 
     console.log(
       "\nGostaria de %cADICIONAR %calgum carro na lista? ",
@@ -221,30 +206,40 @@ const LocadoraDeCarros = {
       "color:",
     );
 
-    const nomeCarroInicial = LocadoraDeCarros.recebeInput(
+    const nomeCarroInicial = this.recebeInput(
       "\nInsira o nome do carro ou deixe em branco para sair.\n\n>",
     );
 
     if (nomeCarroInicial) {
-      LocadoraDeCarros.adicionaCarro(nomeCarroInicial);
-      LocadoraDeCarros.LoopRemovendoCarros();
+      this.adicionaCarro(nomeCarroInicial);
+      this.LoopAdicionandoCarros();
+    }
+  },
+
+  /**
+   * Carrega a lista de carros importando um arquivo JSON.
+   *
+   * @param {string | URL} lista - Arquivo JSON contendo a lista de carros.
+   */
+  carregarLista(lista) {
+    try {
+      const data = Deno.readTextFileSync(lista);
+      this.listaParaInteragir = JSON.parse(data);
+    } catch (_erro) {
+      this.listaParaInteragir = []; // Definindo a lista como vazia em caso de erro.
+      console.clear();
+      console.error("%cErro ao ler o arquivo de dados.", "color:red");
+      console.error(
+        "%cExiste um arquivo JSON na pasta atual? \n",
+        "color:red",
+      );
+
+      Deno.exit(1);
     }
   },
 };
 
-// Verifica e transforma o arquivo de dados em um objeto JSON.
-try {
-  const data = Deno.readTextFileSync("./data.json");
-  LocadoraDeCarros.listaParaInteragir = JSON.parse(data);
-  LocadoraDeCarros.iniciarRemocaoDeCarros(); // Iniciando
-  LocadoraDeCarros.iniciarAdicaoDeCarros();
-  LocadoraDeCarros.exibeQuantidade();
-} catch (_erro) {
-  LocadoraDeCarros.listaParaInteragir = []; // Definindo a lista como vazia em caso de erro.
-  console.clear();
-  console.error("%cErro ao ler o arquivo de dados.", "color:red");
-  console.error(
-    "%cExiste um arquivo chamado `data.json` na pasta atual? ",
-    "color:red",
-  );
-}
+LocadoraDeCarros.carregarLista("./data.json"); // Importando o arquivo de dados.
+LocadoraDeCarros.iniciarRemocaoDeCarros(); // Iniciando
+LocadoraDeCarros.iniciarAdicaoDeCarros();
+LocadoraDeCarros.exibeQuantidade();
