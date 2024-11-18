@@ -18,8 +18,7 @@
 
 - Adicionar ou remover carros da tabela é **opcional**.
 - Durante a execução do código, os carros são exibidos no terminal em forma de tabelas.
-- Recomendo executar o código no **terminal**,
-  apesar dele também funcionar no [CodePen](https://codepen.io/pen/).
+- Recomendo executar o código no **terminal**.
 
 ```bash
 # /Senac-Coding/Coding1/Atividades/Desafio de Array/
