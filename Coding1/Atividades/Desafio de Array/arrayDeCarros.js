@@ -7,6 +7,7 @@ const LocadoraDeCarros = {
   /**
    * Lista de carros para interação.
    * Adicione items antes de começar a interação.
+   *
    * @type {string[]}
    */
   listaParaInteragir: [],
@@ -25,13 +26,11 @@ const LocadoraDeCarros = {
 █░░ █▀▀█ █▀▀ █▀▀█ █▀▀▄ █▀▀█ █▀▀█ █▀▀█ 
 █░░ █░░█ █░░ █▄▄█ █░░█ █░░█ █▄▄▀ █▄▄█ 
 ▀▀▀ ▀▀▀▀ ▀▀▀ ▀░░▀ ▀▀▀░ ▀▀▀▀ ▀░▀▀ ▀░░▀ `);
-    console.log(`
-┌─────────────────────────────┐
-│ Lista de carros disponíveis │
-└─────────────────────────────┘ `);
+    console.log("Lista de carros disponíveis");
     console.table(this.listaParaInteragir);
   },
 
+  /** Exibe a quantidade de carros na lista. */
   exibeQuantidade() {
     console.log(
       `\nTemos um total de %c${this.listaParaInteragir.length} %ccarros disponíveis!\n`,
@@ -91,9 +90,7 @@ const LocadoraDeCarros = {
     }
   },
 
-  /**
-   * Inicia a interação com o usuário.
-   */
+  /** Inicia a interação com o usuário. */
   iniciarRemocaoDeCarros() {
     this.exibeLista();
 
@@ -144,24 +141,21 @@ const LocadoraDeCarros = {
   /**
    * Adiciona o carro no final da lista passando o nome como argumento.
    *
-   * @param {string[]} lista - Lista de carros.
-   * @param {string} [ nomeCarro ] - Nome do carro a ser adicionado.
+   * @param {string} [nomeCarro] - Nome do carro a ser adicionado.
    */
-  adicionaCarro(lista, nomeCarro) {
+  adicionaCarro(nomeCarro) {
     if (!nomeCarro || this.EXIT_COMMANDS.has(nomeCarro)) {
       this.exibeLista(); // Atualizando
       this.exibeMensagemFeedback("foi adicionado");
       return; // Early return
     }
 
-    lista.push(nomeCarro); // Adiciona o carro na lista
+    this.listaParaInteragir.push(nomeCarro); // Adiciona o carro na lista
     this.exibeLista();
     this.exibeMensagemFeedback("adicionado!", nomeCarro, "green");
   },
 
-  /**
-   * Inicia a interação com o usuário.
-   */
+  /** Inicia a interação com o usuário. */
   iniciarAdicaoDeCarros() {
     this.exibeLista();
 
@@ -176,7 +170,7 @@ const LocadoraDeCarros = {
     )?.trim();
 
     // Adicionando carro á lista.
-    this.adicionaCarro(this.listaParaInteragir, nomeCarroInicial);
+    this.adicionaCarro(nomeCarroInicial);
 
     if (!nomeCarroInicial || this.EXIT_COMMANDS.has(nomeCarroInicial)) return;
 
@@ -203,7 +197,7 @@ const LocadoraDeCarros = {
         break adicionandoCarros;
       }
 
-      this.adicionaCarro(this.listaParaInteragir, carroParaAdicionar);
+      this.adicionaCarro(carroParaAdicionar);
     }
 
     this.exibeLista();
