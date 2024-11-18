@@ -1,3 +1,5 @@
+console.clear();
+
 /**
  * Módulo contendo métodos e recursos necessários para interação do usuário com a lista de carros.
  */
@@ -208,27 +210,15 @@ const LocadoraDeCarros = {
   },
 };
 
-/**
- * Lista com a qual iremos interagir.
- * Contém um montão de carros.
- *
- * @type {string[]} */
-const listaDeCarros = [
-  "Toyota Camry",
-  "Honda Accord",
-  "Ford Mustang",
-  "Chevrolet Malibu",
-  "BMW 3 Series",
-  "Audi A4",
-  "Nissan Altima",
-  "Hyundai Sonata",
-  "Kia Optima",
-  "Volkswagen Passat",
-];
-
-LocadoraDeCarros.listaParaInteragir = listaDeCarros; // Preenchendo a lista com vários carros.
-LocadoraDeCarros.iniciarRemocaoDeCarros(); // Iniciando
-LocadoraDeCarros.iniciarAdicaoDeCarros();
-LocadoraDeCarros.exibeQuantidade();
-
-// TODO: E se eu usasse um banco de dados? (sqlite )
+// Verifica e transforma o arquivo de dados em um objeto JSON.
+try {
+  const data = Deno.readTextFileSync("./data.json");
+  LocadoraDeCarros.listaParaInteragir = JSON.parse(data);
+  LocadoraDeCarros.iniciarRemocaoDeCarros(); // Iniciando
+  LocadoraDeCarros.iniciarAdicaoDeCarros();
+  LocadoraDeCarros.exibeQuantidade();
+} catch (_erro) {
+  LocadoraDeCarros.listaParaInteragir = []; // Definindo a lista como vazia em caso de erro.
+  console.clear();
+  console.error("%cErro ao ler o arquivo de dados. 󰘦", "color:red");
+}
