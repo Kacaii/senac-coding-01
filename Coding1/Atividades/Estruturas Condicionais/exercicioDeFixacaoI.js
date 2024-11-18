@@ -1,9 +1,9 @@
 /**
  * Objeto que armazena as informações do paciente.
  * @typedef {Object} Paciente
- * @property {string | undefined} [ nome ] - O nome do Paciente
- * @property {number | undefined} [ idade ] -  A idade do Paciente
- * @property {string | undefined} [ servico ] - O serviço solicitado pelo paciente.
+ * @property {string} [nome] - O nome do Paciente
+ * @property {number} [idade] -  A idade do Paciente
+ * @property {string} [servico] - O serviço solicitado pelo paciente.
  */
 
 /** @type {Paciente} */
