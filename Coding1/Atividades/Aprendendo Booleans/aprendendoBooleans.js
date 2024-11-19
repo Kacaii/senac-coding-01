@@ -32,17 +32,16 @@ console.log(`\n A porta está ${portaAberta ? "aberta! " : "fechada! "}
  *
  * @returns {boolean} Retorna `true` se a pessoa pode entrar, caso contrário `false`.
  */
-function verificaSePodeEntrar() {
+function verificaEntrada() {
   // Se a porta estiver fechada, nem adianta tentar.
   const resposta = portaAberta
-    ? prompt("\nEu posso entrar? \n\n>")?.trim()?.toLowerCase()
-    : undefined;
+    ? prompt("\nEu posso entrar? \n\n>")?.trim()?.toLowerCase() || null
+    : null;
 
   if (!resposta) return false;
-
   return respostasPossiveis.has(resposta);
 }
 
-verificaSePodeEntrar()
+verificaEntrada()
   ? console.log("\n%cEntrei! 󰩈\n", "color:green")
   : console.log("\n%cNão consegui entrar \n", "color:red");
