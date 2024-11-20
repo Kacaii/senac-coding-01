@@ -1,4 +1,4 @@
-import { assertEquals } from "@std/assert";
+import { assertEquals, assertThrows } from "@std/assert";
 import { LocadoraDeCarros } from "../arrayDeCarros.js";
 
 // Impedindo logs inesperados.
@@ -8,52 +8,56 @@ console.clear = () => {}; // Travando console.clear()
 
 Deno.test("Validando se a lista inicia vazia", () => {
   assertEquals(
-    LocadoraDeCarros.listaParaInteragir,
-    [],
-    "Lista não inicia vazia!",
+    LocadoraDeCarros.listaParaInteragir.length,
+    0,
+    "Lista não iniciou vazia!",
   );
 });
 
 Deno.test({
   name: "Validando o método carregarLista()",
-  permissions: { read: true },
-  fn: async () => {
-    LocadoraDeCarros.listaParaInteragir = [];
+  permissions: {
+    read: true,
+  },
+  fn: async (t) => {
+    await t.step("Importando arquivo JSON", async () => {
+      LocadoraDeCarros.listaParaInteragir = [];
 
-    // Importanto lista
-    await LocadoraDeCarros.carregarLista("./data.json");
-    assertEquals(LocadoraDeCarros.listaParaInteragir, [
-      "Toyota Corolla",
-      "Ford Mustang",
-      "Tesla Model S",
-      "Honda Civic",
-      "Chevrolet Silverado",
-      "BMW X5",
-      "Audi A4",
-      "Jeep Wrangler",
-      "Mercedes-Benz E-Class",
-      "Volkswagen Golf",
-      "Nissan Altima",
-      "Hyundai Elantra",
-      "Kia Soul",
-      "Subaru Outback",
-      "Mazda CX-5",
-      "Lexus RX",
-      "Dodge Charger",
-      "Porsche 911",
-      "Volvo XC90",
-      "Ferrari 488",
-      "Lamborghini Huracan",
-      "Rolls-Royce Phantom",
-      "Bugatti Chiron",
-      "McLaren 720S",
-      "Toyota Land Cruiser",
-    ]);
+      // Importanto lista
+      await LocadoraDeCarros.carregarLista("./data.json");
+      assertEquals(LocadoraDeCarros.listaParaInteragir, [
+        "Toyota Corolla",
+        "Ford Mustang",
+        "Tesla Model S",
+        "Honda Civic",
+        "Chevrolet Silverado",
+        "BMW X5",
+        "Audi A4",
+        "Jeep Wrangler",
+        "Mercedes-Benz E-Class",
+        "Volkswagen Golf",
+        "Nissan Altima",
+        "Hyundai Elantra",
+        "Kia Soul",
+        "Subaru Outback",
+        "Mazda CX-5",
+        "Lexus RX",
+        "Dodge Charger",
+        "Porsche 911",
+        "Volvo XC90",
+        "Ferrari 488",
+        "Lamborghini Huracan",
+        "Rolls-Royce Phantom",
+        "Bugatti Chiron",
+        "McLaren 720S",
+        "Toyota Land Cruiser",
+      ]);
+    });
   },
 });
 
 Deno.test("Validando o método adicionarCarro()", async (t) => {
-  await t.step("Adicionando com input vazio", () => {
+  await t.step("Input vazio não adiciona nada", () => {
     LocadoraDeCarros.listaParaInteragir = [];
     LocadoraDeCarros.adicionarCarro("");
     assertEquals(LocadoraDeCarros.listaParaInteragir, [], "Lista não vazia!");
@@ -118,7 +122,7 @@ Deno.test("Validando o método adicionarCarro()", async (t) => {
 });
 
 Deno.test("Validando o método removerCarro()", async (t) => {
-  await t.step("Removendo com input vazio", () => {
+  await t.step("Input vazio não remove nada", () => {
     LocadoraDeCarros.listaParaInteragir = ["Carro 1", "Carro 2", "Carro 3"];
     LocadoraDeCarros.removerCarro("");
     assertEquals(
@@ -126,6 +130,13 @@ Deno.test("Validando o método removerCarro()", async (t) => {
       ["Carro 1", "Carro 2", "Carro 3"],
       "Algo mudou na lista!",
     );
+  });
+
+  await t.step("Lançando erro ao iniciar remoção com lista vazia", () => {
+    LocadoraDeCarros.listaParaInteragir = [];
+    assertThrows(() => {
+      LocadoraDeCarros.iniciarRemocaoDeCarros();
+    }, Deno.errors.InvalidData);
   });
 
   await t.step("Removendo index 0", () => {
