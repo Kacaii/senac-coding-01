@@ -1,5 +1,4 @@
 <!-- markdownlint-disable MD033 -->
-<!-- markdownlint-disable MD013 -->
 <!-- markdownlint-disable MD036 -->
 
 # Desafio de Array 2024-10-23
@@ -59,12 +58,8 @@ curl -fsSL https://deno.land/install.sh | sh
 
 - Lista de Dependências:
 
-  - [Nerd Fonts](https://www.nerdfonts.com/font-downloads) | Para habilitar suporte para _ícones_  no Terminal.
-  - [Deno](https://deno.com/) | Executa scripts `.js`.
-
-> [!NOTE]
-> O usuário pode optar por **sair** do loop ao digitar `":exit"` ou `":q"`
-> durante a interação.
+  - [Nerd Fonts](https://www.nerdfonts.com/font-downloads)
+  - [Deno](https://deno.com/)
 
 ## Grupo
 
