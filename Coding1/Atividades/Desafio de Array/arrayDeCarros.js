@@ -244,6 +244,7 @@ export const LocadoraDeCarros = {
   },
 };
 
+// Apenas executa se o script for executado diretamente.
 if (import.meta.main) {
   await LocadoraDeCarros.carregarLista("./data.json"); // Importando o arquivo de dados.
   LocadoraDeCarros.iniciarRemocaoDeCarros(); // Iniciando

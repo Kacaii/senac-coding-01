@@ -7,7 +7,11 @@ console.table = () => {}; // Travando console.table()
 console.clear = () => {}; // Travando console.clear()
 
 Deno.test("Validando se a lista inicia vazia", () => {
-  assertEquals(LocadoraDeCarros.listaParaInteragir, [], "Lista não vazia!");
+  assertEquals(
+    LocadoraDeCarros.listaParaInteragir,
+    [],
+    "Lista não inicia vazia!",
+  );
 });
 
 Deno.test("Validando o método adicionarCarro()", async (t) => {
@@ -42,6 +46,35 @@ Deno.test("Validando o método adicionarCarro()", async (t) => {
       LocadoraDeCarros.listaParaInteragir,
       ["Carro 1", "Carro 2", "Carro 3"],
       "Carro não adicionado!",
+    );
+  });
+
+  await t.step("Validando se a lista foi atualizada corretamente", () => {
+    assertEquals(
+      LocadoraDeCarros.listaParaInteragir.length,
+      3,
+      "Número de carros diferente do esperado!",
+    );
+    assertEquals(
+      LocadoraDeCarros.listaParaInteragir[0],
+      "Carro 1",
+      "Primeiro carro diferente!",
+    );
+    assertEquals(
+      LocadoraDeCarros.listaParaInteragir[1],
+      "Carro 2",
+      "Segundo carro diferente!",
+    );
+    assertEquals(
+      LocadoraDeCarros.listaParaInteragir[2],
+      "Carro 3",
+      "Terceiro carro diferente!",
+    );
+
+    assertEquals(
+      LocadoraDeCarros.listaParaInteragir[3],
+      undefined,
+      "Index 3 possui valor!",
     );
   });
 });
