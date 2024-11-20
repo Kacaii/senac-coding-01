@@ -177,7 +177,7 @@ export const LocadoraDeCarros = {
    *
    * @param {string} nomeCarro - Nome do carro a ser adicionado.
    */
-  adicionaCarro(nomeCarro) {
+  adicionarCarro(nomeCarro) {
     if (!nomeCarro) {
       this.exibirLista(); // Atualizando
       this.exibirMensagemFeedback("foi adicionado");
@@ -216,7 +216,7 @@ export const LocadoraDeCarros = {
         break adicionandoCarros;
       }
 
-      this.adicionaCarro(carroParaAdicionar);
+      this.adicionarCarro(carroParaAdicionar);
     }
 
     this.exibirLista();
@@ -238,7 +238,7 @@ export const LocadoraDeCarros = {
     );
 
     if (nomeCarroInicial) {
-      this.adicionaCarro(nomeCarroInicial);
+      this.adicionarCarro(nomeCarroInicial);
       this.executarLoopDeAdicao();
     }
   },
