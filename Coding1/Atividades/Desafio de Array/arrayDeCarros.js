@@ -21,12 +21,13 @@ export const LocadoraDeCarros = {
 ▀▀▀ ▀▀▀▀ ▀▀▀ ▀░░▀ ▀▀▀░ ▀▀▀▀ ▀░▀▀ ▀░░▀ `);
     console.log("\nLista de carros disponíveis:");
     console.table(this.listaParaInteragir);
+    this.exibirQuantidade();
   },
 
   /** Exibe a quantidade de carros na lista. */
   exibirQuantidade() {
     console.log(
-      `Temos um total de %c${this.listaParaInteragir.length} %ccarros disponíveis!\n`,
+      `Temos um total de %c${this.listaParaInteragir.length} %ccarros disponíveis!`,
       "color:green; text-weight: bold",
       "color:",
     );
@@ -47,7 +48,7 @@ export const LocadoraDeCarros = {
       // Caso arquivo não seja encontrado.
       if (err instanceof Deno.errors.NotFound) {
         this.listaParaInteragir = []; // Definindo a lista como vazia em caso de erro.
-        console.error("Erro ao ler o arquivo de dados.  \n");
+        console.error("Erro ao ler o arquivo de dados.  ");
         throw err;
       }
     }
@@ -100,7 +101,7 @@ export const LocadoraDeCarros = {
     ) {
       this.exibirLista();
       this.exibirMensagemFeedback("foi removido."); // Mensagem padrão.
-      this.exibirQuantidade();
+      // this.exibirQuantidade();
       return;
     }
 
@@ -112,15 +113,16 @@ export const LocadoraDeCarros = {
       nomeCarroRemovido,
       "red",
     );
-    this.exibirQuantidade();
+    // this.exibirQuantidade();
   },
 
   /** Inicia um `while` loop onde o usuário pode continuar removendo os carros. */
   executarLoopDeRemocao() {
     console.log(
-      "Gostaria de %cREMOVER %cmais alguns? ",
+      "\nGostaria de %cREMOVER %cmais alguns? ",
       "color:red",
       "color:",
+      "\n==================================================",
     );
 
     /**
@@ -132,7 +134,9 @@ export const LocadoraDeCarros = {
 
     removendoCarros: while (continuarRemocao) {
       const idCarroSelecionado = this.receberInput(
-        "Insira o ID do carro ou deixe em branco para sair.\n\n>",
+        "\nInsira o ID do carro ou deixe em branco para sair." +
+          "\n==================================================" +
+          "\n>",
       );
 
       if (!idCarroSelecionado) {
@@ -159,6 +163,7 @@ export const LocadoraDeCarros = {
       "\nGostaria de %cREMOVER %calgum carro da lista? ",
       "color:red; text-weight: bold",
       "color:",
+      "\n==================================================",
     );
 
     /** @type {string?} */
@@ -181,22 +186,23 @@ export const LocadoraDeCarros = {
     if (!nomeCarro) {
       this.exibirLista(); // Atualizando
       this.exibirMensagemFeedback("foi adicionado");
-      this.exibirQuantidade();
+      // this.exibirQuantidade();
       return; // Early return
     }
 
     this.listaParaInteragir.push(nomeCarro); // Adiciona o carro na lista
     this.exibirLista();
     this.exibirMensagemFeedback("adicionado!", nomeCarro, "green");
-    this.exibirQuantidade();
+    // this.exibirQuantidade();
   },
 
   /** Inicia um `while` loop onde o usuário pode continuar adicionando os carros. */
   executarLoopDeAdicao() {
     console.log(
-      "Gostaria de %cADICIONAR %cmais alguns? ",
+      "\nGostaria de %cADICIONAR %cmais alguns? ",
       "color:green",
       "color:",
+      "\n==================================================",
     );
 
     /**
@@ -208,7 +214,9 @@ export const LocadoraDeCarros = {
 
     adicionandoCarros: while (continuarAdicao) {
       const carroParaAdicionar = this.receberInput(
-        "Insira o nome do carro ou deixe em branco para sair.\n\n>",
+        "\nInsira o nome do carro ou deixe em branco para sair." +
+          "\n====================================================" +
+          "\n>",
       );
 
       if (!carroParaAdicionar) {
@@ -230,6 +238,7 @@ export const LocadoraDeCarros = {
       "\nGostaria de %cADICIONAR %calgum carro na lista? ",
       "color:green; text-weight: bold",
       "color:",
+      "\n==================================================",
     );
 
     /** @type {string?} */
@@ -250,5 +259,5 @@ if (import.meta.main) {
   LocadoraDeCarros.iniciarRemocaoDeCarros(); // Iniciando
   LocadoraDeCarros.iniciarAdicaoDeCarros();
   LocadoraDeCarros.exibirLista();
-  LocadoraDeCarros.exibirQuantidade();
+  console.log("\n%c -- == Script finalizado! == --\n", "color:yellow;");
 }

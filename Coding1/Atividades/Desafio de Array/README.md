@@ -1,4 +1,5 @@
 <!-- markdownlint-disable MD033 -->
+<!-- markdownlint-disable MD013 -->
 <!-- markdownlint-disable MD036 -->
 
 # Desafio de Array 2024-10-23
@@ -16,12 +17,18 @@
 ## Instruções
 
 - Adicionar ou remover carros da tabela é **opcional**.
-- Durante a execução do código, os carros são exibidos no terminal em forma de tabelas.
-- Recomendo executar o código no **terminal**.
+- O script deve ser executado **diretamente** no terminal.
 
 ```bash
 # /Senac-Coding/Coding1/Atividades/Desafio de Array/
-deno run arrayDeCarros.js
+deno run --allow-read arrayDeCarros.js
+```
+
+Caso queira verificar os [testes](./tests/arrayDeCarros.test.js), execute o comando abaixo:
+
+```bash
+# /Senac-Coding/Coding1/Atividades/Desafio de Array/
+deno test --allow-read
 ```
 
 ## Deno
