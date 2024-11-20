@@ -3,7 +3,7 @@ console.clear(); // Limpando a tela.
 /**
  * Módulo contendo métodos e recursos necessários para interação do usuário com a lista de carros.
  */
-const LocadoraDeCarros = {
+export const LocadoraDeCarros = {
   /**
    * Lista de carros para interação, inicia vazia.
    * Adicione items com `carregarLista()` antes de começar a interação.
@@ -244,8 +244,10 @@ const LocadoraDeCarros = {
   },
 };
 
-await LocadoraDeCarros.carregarLista("./data.json"); // Importando o arquivo de dados.
-LocadoraDeCarros.iniciarRemocaoDeCarros(); // Iniciando
-LocadoraDeCarros.iniciarAdicaoDeCarros();
-LocadoraDeCarros.exibirLista();
-LocadoraDeCarros.exibirQuantidade();
+if (import.meta.main) {
+  await LocadoraDeCarros.carregarLista("./data.json"); // Importando o arquivo de dados.
+  LocadoraDeCarros.iniciarRemocaoDeCarros(); // Iniciando
+  LocadoraDeCarros.iniciarAdicaoDeCarros();
+  LocadoraDeCarros.exibirLista();
+  LocadoraDeCarros.exibirQuantidade();
+}
