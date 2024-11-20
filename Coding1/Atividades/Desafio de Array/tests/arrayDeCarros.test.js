@@ -24,7 +24,7 @@ Deno.test({
       LocadoraDeCarros.listaParaInteragir = [];
 
       // Importanto lista
-      await LocadoraDeCarros.carregarLista("./data.json");
+      await LocadoraDeCarros.carregarLista("./data_1.json");
       assertEquals(LocadoraDeCarros.listaParaInteragir, [
         "Toyota Corolla",
         "Ford Mustang",

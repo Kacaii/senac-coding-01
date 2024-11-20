@@ -1,3 +1,24 @@
+import { parseArgs } from "@std/cli";
+
+const args = parseArgs(Deno.args, { alias: { help: "h", data: "d" } });
+
+function help() {
+  console.log(`
+===========================
+Atividade: Desafio de Array
+===========================
+
+Por padrão, o arquivo de dados é o arquivo "data_1.json".
+se você quiser alterar o arquivo de dados,
+basta passar o caminho como argumento usando o parâmetro --data ou -d.
+
+Comandos:
+
+--help, -h: Mostra este menu de ajuda.
+--data, -d: Caminho para o arquivo de dados.
+  `);
+}
+
 console.clear(); // Limpando a tela.
 
 /**
@@ -42,7 +63,7 @@ export const LocadoraDeCarros = {
   async carregarLista(lista) {
     try {
       // Carregando o arquivo de dados.
-      const data = await Deno.readTextFile(lista);
+      const data = await Deno.readTextFile(args.data || lista);
       this.listaParaInteragir = JSON.parse(data);
     } catch (err) {
       // Caso arquivo não seja encontrado.
@@ -255,7 +276,12 @@ export const LocadoraDeCarros = {
 
 // Apenas executa se o script for executado diretamente.
 if (import.meta.main) {
-  await LocadoraDeCarros.carregarLista("./data.json"); // Importando o arquivo de dados.
+  if (args.help) {
+    help();
+    Deno.exit();
+  }
+
+  await LocadoraDeCarros.carregarLista("./data_1.json"); // Importando o arquivo de dados.
   LocadoraDeCarros.iniciarRemocaoDeCarros(); // Iniciando
   LocadoraDeCarros.iniciarAdicaoDeCarros();
   LocadoraDeCarros.exibirLista();

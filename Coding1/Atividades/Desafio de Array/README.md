@@ -19,16 +19,35 @@
 - Adicionar ou remover carros da tabela é **opcional**.
 - O script deve ser executado **diretamente** no terminal.
 
-```bash
+```fish
 # /Senac-Coding/Coding1/Atividades/Desafio de Array/
 deno run --allow-read arrayDeCarros.js
 ```
 
 Caso queira verificar os [testes](./tests/arrayDeCarros.test.js), execute o comando abaixo:
 
-```bash
+```fish
 # /Senac-Coding/Coding1/Atividades/Desafio de Array/
 deno test --allow-read
+```
+
+Use a flag `--help` ou `-h` para ver a lista de comandos disponíveis.
+
+```help
+/Senac-Coding/Coding1/Atividades/Desafio de Array/
+
+===========================
+Atividade: Desafio de Array
+===========================
+
+Por padrão, o arquivo de dados é o arquivo "data_1.json".
+se você quiser alterar o arquivo de dados,
+basta passar o caminho como argumento usando o parâmetro --data ou -d.
+
+Comandos:
+
+--help, -h: Mostra este menu de ajuda.
+--data, -d: Caminho para o arquivo de dados.
 ```
 
 ## Deno
@@ -55,7 +74,7 @@ irm https://deno.land/install.ps1 | iex
 
 **Instalar no MacOS/Linux**
 
-```bash
+```fish
 curl -fsSL https://deno.land/install.sh | sh
 ```
 
@@ -86,7 +105,9 @@ curl -fsSL https://deno.land/install.sh | sh
 - [x] Evitar a _repetição_ de código.
 - [x] Melhorar a legibilidade.
 - [x] Agora é possível **adicionar** ou **remover** vários carros da lista!
-- [x] Funções documentadas.
+- [x] Adicionar um **teste** para cada operação.
+- [x] Adicionar uma **documentação** para cada função.
+- [x] Adicionar `--help` e `--data` para facilitar o uso do script.
 
 ---
 
