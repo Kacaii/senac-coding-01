@@ -2,9 +2,9 @@ import { assertEquals } from "@std/assert";
 import { LocadoraDeCarros } from "../arrayDeCarros.js";
 
 // Impedindo logs inesperados.
-console.log = () => {}; // Travando console.log
-console.table = () => {}; // Travando console.table
-console.clear = () => {}; // Travando console.clear
+console.log = () => {}; // Travando console.log()
+console.table = () => {}; // Travando console.table()
+console.clear = () => {}; // Travando console.clear()
 
 Deno.test("Validando se a lista inicia vazia", () => {
   assertEquals(LocadoraDeCarros.listaParaInteragir, [], "Lista não vazia!");
