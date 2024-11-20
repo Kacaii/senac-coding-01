@@ -14,6 +14,44 @@ Deno.test("Validando se a lista inicia vazia", () => {
   );
 });
 
+Deno.test({
+  name: "Validando o método carregarLista()",
+  permissions: { read: true },
+  fn: async () => {
+    LocadoraDeCarros.listaParaInteragir = [];
+
+    // Importanto lista
+    await LocadoraDeCarros.carregarLista("../data.json");
+    assertEquals(LocadoraDeCarros.listaParaInteragir, [
+      "Toyota Corolla",
+      "Ford Mustang",
+      "Tesla Model S",
+      "Honda Civic",
+      "Chevrolet Silverado",
+      "BMW X5",
+      "Audi A4",
+      "Jeep Wrangler",
+      "Mercedes-Benz E-Class",
+      "Volkswagen Golf",
+      "Nissan Altima",
+      "Hyundai Elantra",
+      "Kia Soul",
+      "Subaru Outback",
+      "Mazda CX-5",
+      "Lexus RX",
+      "Dodge Charger",
+      "Porsche 911",
+      "Volvo XC90",
+      "Ferrari 488",
+      "Lamborghini Huracan",
+      "Rolls-Royce Phantom",
+      "Bugatti Chiron",
+      "McLaren 720S",
+      "Toyota Land Cruiser",
+    ]);
+  },
+});
+
 Deno.test("Validando o método adicionarCarro()", async (t) => {
   await t.step("Adicionando com input vazio", () => {
     LocadoraDeCarros.listaParaInteragir = [];
