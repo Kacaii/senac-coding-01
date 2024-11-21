@@ -23,12 +23,12 @@ const args = parseArgs(Deno.args, { alias: { help: "h", data: "d" } });
  */
 export class LocadoraDeCarros {
   /**
-   * Lista de carros para interação, _inicia vazia_.
+   * Lista de carros para interação.
    * Adicione items com `carregarLista()` antes de começar a interação.
    *
    * @see {@linkcode carregarLista}
    *
-   * @type {string[]}
+   * @type {string[]} - Inicia vazia.
    */
   listaParaInteragir = [];
 
