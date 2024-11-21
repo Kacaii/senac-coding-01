@@ -1,7 +1,7 @@
 import { parseArgs } from "@std/cli";
 import { LocadoraDeCarros } from "./exports/LocadoraDeCarros.js";
-const minhaLocadora = new LocadoraDeCarros(); // Instanciando nova locadora.
 
+const minhaLocadora = new LocadoraDeCarros(); // Instanciando nova locadora.
 const args = parseArgs(Deno.args, { alias: { help: "h", data: "d" } });
 
 console.clear(); // Limpando a tela.

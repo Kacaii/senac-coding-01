@@ -5,6 +5,21 @@ const args = parseArgs(Deno.args, { alias: { help: "h", data: "d" } });
 /**
  * Módulo que gerencia uma locadora de carros, permitindo adicionar, remover
  * e listar carros, além de interagir com o usuário por meio do console.
+ *
+ * A lista é iniciada vazia. Para adicionar itens,
+ * utilize o método {@linkcode LocadoraDeCarros.carregarLista()} antes de iniciar a interação.
+ *
+ * @example Exemplo de uso:
+ *
+ * ```js
+ * import { LocadoraDeCarros } from "./LocadoraDeCarros.js";
+ * const minhaLocadora = new LocadoraDeCarros(); // Instanciando nova locadora.
+ *
+ * await minhaLocadora.carregarLista("./data.json"); // Importando o arquivo de dados.
+ * minhaLocadora.iniciarRemocaoDeCarros(); // Iniciando interação.
+ * minhaLocadora.iniciarAdicaoDeCarros(); // Iniciando interação.
+ * minhaLocadora.exibirLista(); // Exibindo a lista de carros no console.
+ * ```
  */
 export class LocadoraDeCarros {
   /**
@@ -30,7 +45,8 @@ export class LocadoraDeCarros {
    * Exibe uma mensagem de ajuda no console.
    *
    * @returns {void}
-   * @example LocadoraDeCarros.help();
+   *
+   * @example Utilizando a flag `--help`
    *
    * ```help
    * ===========================
@@ -151,17 +167,20 @@ Comandos:
    * Exibe uma mensagem de feedback no console sobre a adição ou remoção de um carro.
    *
    * @param {string} mensagem - Mensagem a ser exibida no console.
-   * @param {string?} [nomeDoCarro="Nenhum carro"] - Nome do carro removido ou adicionado.
-   * @param {string?} [corTexto="yellow"] - Cor do texto do **nome** do carro, em _inglês_.
+   * @param {string} [nomeDoCarro="Nenhum carro"] - Nome do carro removido ou adicionado.
+   * @default "Nenhum carro"
+   * @param {string} [corTexto="yellow"] - Cor do texto do **nome** do carro, em _inglês_.
+   * @default "yellow"
    * @returns {void}
    *
-   * @example Mensagem exibida no console:
+   * @example Exibindo mensagem sobre remoção de um carro
    *
-   * ```plaintext
-   * # Mensagem padrão
-   * Nenhum carro adicionado.
-   * Nenhum carro foi removido.
+   * ```js
+   * LocadoraDeCarros.exibirMensagemFeedback( "foi removido da lista!", "Carro 1", "red" );
+   * // Mensagem no console: Carro 1 foi removido da lista!
    *
+   * LocadoraDeCarros.exibirMensagemFeedback( "adicionado na lista!", "Carro 2", "green" );
+   * // Mensagem no console: Carro 2 adicionado na lista!
    * ```
    */
   exibirMensagemFeedback(
@@ -171,8 +190,8 @@ Comandos:
   ) {
     console.log(
       `%c${nomeDoCarro} %c${mensagem}`,
-      `color:${corTexto}; text-weight: bold`,
-      "color:white",
+      `color: ${corTexto}; text-weight: bold;`,
+      "color: white;",
     );
   }
 
@@ -192,10 +211,9 @@ Comandos:
    * ```
    */
   removerCarro(id) {
-    /** Precisamos que o `id`` seja um número. */
-    const parsedID = parseInt(id);
+    const parsedID = parseInt(id); // Precisamos que o `id`` seja um número.
 
-    // Early return
+    // Early return se o valor for inválido.
     if (
       parsedID == null ||
       isNaN(parsedID) ||
@@ -224,7 +242,7 @@ Comandos:
    *
    * @returns {void}
    */
-  executarLoopDeRemocao() {
+  #executarLoopDeRemocao() {
     console.log(
       "\nGostaria de %cREMOVER %cmais alguns? ",
       "color:red",
@@ -232,9 +250,7 @@ Comandos:
       "\n==================================================",
     );
 
-    /**
-     * Inicia um `while` loop caso valor seja `true`.
-     */
+    /**  Inicia o loop `removendoCarros` caso o valor seja `true`. */
     let continuarRemocao = confirm("");
 
     this.exibirLista();
@@ -260,7 +276,7 @@ Comandos:
    *
    * @returns {void}
    * @see {@linkcode removerCarro}
-   * @see {@linkcode executarLoopDeRemocao}
+   * @see {@linkcode #executarLoopDeRemocao}
    */
   iniciarRemocaoDeCarros() {
     if (this.listaParaInteragir.length === 0) {
@@ -284,7 +300,7 @@ Comandos:
 
     if (idCarroInicial) {
       this.removerCarro(idCarroInicial);
-      this.executarLoopDeRemocao();
+      this.#executarLoopDeRemocao();
     }
   }
 
@@ -314,7 +330,7 @@ Comandos:
    * @returns {void}
    * @see {@linkcode adicionarCarro}
    */
-  executarLoopDeAdicao() {
+  #executarLoopDeAdicao() {
     console.log(
       "\nGostaria de %cADICIONAR %cmais alguns? ",
       "color:green",
@@ -322,9 +338,7 @@ Comandos:
       "\n==================================================",
     );
 
-    /**
-     * Inicia um `while` loop caso valor seja `true`.
-     * @type {boolean} */
+    /** Inicia o loop `removendoCarros` caso o valor seja `true`. */
     let continuarAdicao = confirm("");
 
     this.exibirLista();
@@ -350,7 +364,7 @@ Comandos:
    *
    * @returns {void}
    * @see {@linkcode adicionarCarro}
-   * @see {@linkcode executarLoopDeAdicao}
+   * @see {@linkcode #executarLoopDeAdicao}
    */
   iniciarAdicaoDeCarros() {
     this.exibirLista();
@@ -369,7 +383,7 @@ Comandos:
 
     if (nomeCarroInicial) {
       this.adicionarCarro(nomeCarroInicial);
-      this.executarLoopDeAdicao();
+      this.#executarLoopDeAdicao();
     }
   }
 }
