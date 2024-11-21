@@ -165,7 +165,7 @@ Comandos:
    * @param {string} mensagemPrompt - Mensagem a ser exibida ao usuário.
    * @returns {string?} Retorna o input do usuário ou `null`.
    */
-  receberInput(mensagemPrompt) {
+  #receberInput(mensagemPrompt) {
     const input = prompt(mensagemPrompt)?.trim();
     return input || null;
   }
@@ -263,7 +263,7 @@ Comandos:
     this.exibirLista();
 
     removendoCarros: while (continuarRemocao) {
-      const idCarroSelecionado = this.receberInput(
+      const idCarroSelecionado = this.#receberInput(
         "\nInsira o ID do carro ou deixe em branco para sair." +
           "\n==================================================" +
           "\n>",
@@ -302,7 +302,7 @@ Comandos:
     );
 
     /** @type {string?} */
-    const idCarroInicial = this.receberInput(
+    const idCarroInicial = this.#receberInput(
       "Insira o ID do carro ou deixe em branco para sair.\n\n>",
     );
 
@@ -353,7 +353,7 @@ Comandos:
     this.exibirLista();
 
     adicionandoCarros: while (continuarAdicao) {
-      const carroParaAdicionar = this.receberInput(
+      const carroParaAdicionar = this.#receberInput(
         "\nInsira o nome do carro ou deixe em branco para sair." +
           "\n====================================================" +
           "\n>",
@@ -387,7 +387,7 @@ Comandos:
     );
 
     /** @type {string?} */
-    const nomeCarroInicial = this.receberInput(
+    const nomeCarroInicial = this.#receberInput(
       "Insira o nome do carro ou deixe em branco para sair.\n\n>",
     );
 
