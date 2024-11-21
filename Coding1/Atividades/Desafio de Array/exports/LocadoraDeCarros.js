@@ -27,6 +27,7 @@ export class LocadoraDeCarros {
    * Adicione items com `carregarLista()` antes de começar a interação.
    *
    * @see {@linkcode carregarLista}
+   *
    * @type {string[]}
    */
   listaParaInteragir = [];
@@ -35,6 +36,7 @@ export class LocadoraDeCarros {
    * Limpa a lista de carros.
    *
    * @see {@linkcode listaParaInteragir}
+   *
    * @returns {void}
    */
   limparLista() {
@@ -83,8 +85,10 @@ Comandos:
   /**
    * Limpa a tela, exibe uma mensagem personalizada e então a lista de carros.
    *
-   * @returns {void}
    * @see {@linkcode listaParaInteragir}
+   *
+   * @returns {void}
+   *
    * @example Mensagem exibida no console:
    *
    * ```plaintext
@@ -107,8 +111,10 @@ Comandos:
   /**
    * Exibe a quantidade de carros na lista.
    *
-   * @returns {void}
    * @see {@linkcode listaParaInteragir}
+   *
+   * @returns {void}
+   *
    * @example Mensagem exibida no console:
    *
    * ```plaintext
@@ -126,10 +132,11 @@ Comandos:
   /**
    * Carrega a lista de carros importando um arquivo JSON.
    *
+   * @see {@linkcode listaParaInteragir}
+   *
    * @param {string | URL} lista - Arquivo JSON contendo a lista de carros.
    * @returns {Promise<void>}
    *
-   * @see {@linkcode listaParaInteragir}
    * @example Carregando a lista de carros
    *
    * ```js
@@ -274,9 +281,10 @@ Comandos:
   /**
    * Inicia a interação com o usuário.
    *
-   * @returns {void}
    * @see {@linkcode removerCarro}
    * @see {@linkcode #executarLoopDeRemocao}
+   *
+   * @returns {void}
    */
   iniciarRemocaoDeCarros() {
     if (this.listaParaInteragir.length === 0) {
@@ -327,8 +335,9 @@ Comandos:
   /**
    * Inicia um `while` loop onde o usuário pode continuar adicionando os carros.
    *
-   * @returns {void}
    * @see {@linkcode adicionarCarro}
+   *
+   * @returns {void}
    */
   #executarLoopDeAdicao() {
     console.log(
@@ -362,9 +371,10 @@ Comandos:
   /**
    * Inicia a interação com o usuário.
    *
-   * @returns {void}
    * @see {@linkcode adicionarCarro}
    * @see {@linkcode #executarLoopDeAdicao}
+   *
+   * @returns {void}
    */
   iniciarAdicaoDeCarros() {
     this.exibirLista();
