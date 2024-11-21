@@ -11,7 +11,7 @@ if (args.help) {
   Deno.exit();
 }
 
-await minhaLocadora.carregarLista("./data/data_1.json"); // Importando o arquivo de dados.
+await minhaLocadora.carregarLista("./api/carros_1.json"); // Importando o arquivo de dados.
 minhaLocadora.iniciarRemocaoDeCarros(); // Iniciando
 minhaLocadora.iniciarAdicaoDeCarros();
 minhaLocadora.exibirLista();

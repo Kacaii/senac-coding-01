@@ -40,7 +40,7 @@ Use a flag `--help` ou `-h` para ver a lista de comandos disponíveis.
 Atividade: Desafio de Array
 ===========================
 
-Por padrão, o arquivo de dados é o arquivo "data_1.json".
+Por padrão, o arquivo de dados é o arquivo "./api/carros_1.json".
 se você quiser alterar o arquivo de dados,
 basta passar o caminho como argumento usando o parâmetro --data ou -d.
 

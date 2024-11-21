@@ -15,7 +15,7 @@ const args = parseArgs(Deno.args, { alias: { help: "h", data: "d" } });
  * import { LocadoraDeCarros } from "./LocadoraDeCarros.js";
  * const minhaLocadora = new LocadoraDeCarros(); // Instanciando nova locadora.
  *
- * await minhaLocadora.carregarLista("./data.json"); // Importando o arquivo de dados.
+ * await minhaLocadora.carregarLista("./api/carros_1.json"); // Importando o arquivo de dados.
  * minhaLocadora.iniciarRemocaoDeCarros(); // Iniciando interação.
  * minhaLocadora.iniciarAdicaoDeCarros(); // Iniciando interação.
  * minhaLocadora.exibirLista(); // Exibindo a lista de carros no console.
@@ -141,8 +141,11 @@ Comandos:
    * @example Carregando a lista de carros
    *
    * ```js
-   * await LocadoraDeCarros.carregarLista("./data/data_1.json");
-   * console.log(LocadoraDeCarros.listaParaInteragir); // Imprimindo a lista de carros.
+   * import { LocadoraDeCarros } from "./LocadoraDeCarros.js";
+   * const minhaLocadora = new LocadoraDeCarros(); // Instanciando nova locadora.
+   *
+   * await minhaLocadora.carregarLista("./api/carros_1.json"); // Importando o arquivo de dados.
+   * console.log(minhaLocadora.listaParaInteragir); // Imprimindo a lista de carros.
    * ```
    */
   async carregarLista(lista) {
@@ -184,10 +187,13 @@ Comandos:
    * @example Exibindo mensagem sobre remoção de um carro
    *
    * ```js
-   * LocadoraDeCarros.exibirMensagemFeedback( "foi removido da lista!", "Carro 1", "red" );
+   * import { LocadoraDeCarros } from "./LocadoraDeCarros.js";
+   * const minhaLocadora = new LocadoraDeCarros(); // Instanciando nova locadora.
+   *
+   * minhaLocadora.exibirMensagemFeedback( "foi removido da lista!", "Carro 1", "red" );
    * // Mensagem no console: Carro 1 foi removido da lista!
    *
-   * LocadoraDeCarros.exibirMensagemFeedback( "adicionado na lista!", "Carro 2", "green" );
+   * minhaLocadora.exibirMensagemFeedback( "adicionado na lista!", "Carro 2", "green" );
    * // Mensagem no console: Carro 2 adicionado na lista!
    * ```
    */
@@ -212,10 +218,13 @@ Comandos:
    * @example Removendo o primeiro carro de uma lista:
    *
    * ```js
-   * LocadoraDeCarros.listaParaInteragir = ["Carro 1", "Carro 2", "Carro 3"]
+   * import { LocadoraDeCarros } from "./LocadoraDeCarros.js";
+   * const minhaLocadora = new LocadoraDeCarros();
    *
-   * LocadoraDeCarros.removerCarro("0") // Mensagem no console: Carro 1 foi removido!
-   * console.log(LocadoraDeCarros.listaParaInteragir) // ["Carro 2", "Carro 3"]
+   * minhaLocadora.listaParaInteragir = ["Carro 1", "Carro 2", "Carro 3"]
+   *
+   * minhaLocadora.removerCarro("0") // Mensagem no console: Carro 1 foi removido!
+   * console.log(minhaLocadora.listaParaInteragir) // ["Carro 2", "Carro 3"]
    * ```
    */
   removerCarro(id) {
