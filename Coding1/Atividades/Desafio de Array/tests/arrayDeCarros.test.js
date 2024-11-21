@@ -1,5 +1,5 @@
 import { assertEquals, assertThrows } from "@std/assert";
-import { LocadoraDeCarros } from "../arrayDeCarros.js";
+import { LocadoraDeCarros } from "../exports/LocadoraDeCarros.js";
 
 // Impedindo logs inesperados.
 console.log = () => {}; // Travando console.log()
@@ -24,7 +24,7 @@ Deno.test({
       LocadoraDeCarros.listaParaInteragir = [];
 
       // Importanto lista
-      await LocadoraDeCarros.carregarLista("./data_1.json");
+      await LocadoraDeCarros.carregarLista("./data/data_1.json");
       assertEquals(LocadoraDeCarros.listaParaInteragir, [
         "Toyota Corolla",
         "Ford Mustang",
