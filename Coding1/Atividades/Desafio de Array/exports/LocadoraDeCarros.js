@@ -136,6 +136,7 @@ Comandos:
    *
    * @param {string | URL} lista - Arquivo JSON contendo a lista de carros.
    * @returns {Promise<void>}
+   * @throws {Deno.errors.NotFound} Caso o arquivo não seja encontrado.
    *
    * @example Carregando a lista de carros
    *
@@ -285,6 +286,7 @@ Comandos:
    * @see {@linkcode #executarLoopDeRemocao}
    *
    * @returns {void}
+   * @throws {Deno.errors.InvalidData} Caso não haja carros na lista ao iniciar a remoção.
    */
   iniciarRemocaoDeCarros() {
     if (this.listaParaInteragir.length === 0) {
