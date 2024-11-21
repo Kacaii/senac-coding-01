@@ -1,5 +1,5 @@
 import { assertEquals, assertThrows } from "@std/assert";
-import { LocadoraDeCarros } from "../exports/LocadoraDeCarros.js";
+import { LocadoraDeCarros } from "../controllers/LocadoraDeCarros.js";
 const minhaLocadora = new LocadoraDeCarros(); // Instanciando nova locadora.
 
 // Impedindo logs inesperados.
