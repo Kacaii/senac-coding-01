@@ -3,15 +3,34 @@ import { parseArgs } from "@std/cli";
 const args = parseArgs(Deno.args, { alias: { help: "h", data: "d" } });
 
 /**
- * Módulo contendo métodos e recursos necessários para interação do usuário com a lista de carros.
- *
- * @module
+ * Módulo que gerencia uma locadora de carros, permitindo adicionar, remover
+ * e listar carros, além de interagir com o usuário por meio do console.
  */
-export const LocadoraDeCarros = {
+export class LocadoraDeCarros {
+  /**
+   * Lista de carros para interação, _inicia vazia_.
+   * Adicione items com `carregarLista()` antes de começar a interação.
+   *
+   * @see {@linkcode carregarLista}
+   * @type {string[]}
+   */
+  listaParaInteragir = [];
+
+  /**
+   * Limpa a lista de carros.
+   *
+   * @see {@linkcode listaParaInteragir}
+   * @returns {void}
+   */
+  limparLista() {
+    this.listaParaInteragir = [];
+  }
+
   /**
    * Exibe uma mensagem de ajuda no console.
    *
-   * @example Ao utilizar a tag `--help`.
+   * @returns {void}
+   * @example LocadoraDeCarros.help();
    *
    * ```help
    * ===========================
@@ -43,19 +62,13 @@ Comandos:
 --help, -h: Mostra este menu de ajuda.
 --data, -d: Caminho para o arquivo de dados.
   `);
-  },
-  /**
-   * Lista de carros para interação, inicia vazia.
-   * Adicione items com `carregarLista()` antes de começar a interação.
-   *
-   * @type {string[]}
-   */
-  listaParaInteragir: [],
+  }
 
   /**
    * Limpa a tela, exibe uma mensagem personalizada e então a lista de carros.
    *
-   * @see {@link listaParaInteragir}
+   * @returns {void}
+   * @see {@linkcode listaParaInteragir}
    * @example Mensagem exibida no console:
    *
    * ```plaintext
@@ -73,12 +86,13 @@ Comandos:
     console.log("\nLista de carros disponíveis:");
     console.table(this.listaParaInteragir);
     this.exibirQuantidade();
-  },
+  }
 
   /**
    * Exibe a quantidade de carros na lista.
-   * @see {@link listaParaInteragir}
    *
+   * @returns {void}
+   * @see {@linkcode listaParaInteragir}
    * @example Mensagem exibida no console:
    *
    * ```plaintext
@@ -91,14 +105,15 @@ Comandos:
       "color:green; text-weight: bold",
       "color:",
     );
-  },
+  }
 
   /**
    * Carrega a lista de carros importando um arquivo JSON.
    *
-   * @see {@link listaParaInteragir}
    * @param {string | URL} lista - Arquivo JSON contendo a lista de carros.
+   * @returns {Promise<void>}
    *
+   * @see {@linkcode listaParaInteragir}
    * @example Carregando a lista de carros
    *
    * ```js
@@ -119,18 +134,18 @@ Comandos:
         throw err;
       }
     }
-  },
+  }
 
   /**
    * Recebe input do usuário utilizando o método `prompt()`.
    *
    * @param {string} mensagemPrompt - Mensagem a ser exibida ao usuário.
-   * @returns {string?} Retorna o input do usuário ou null.
+   * @returns {string?} Retorna o input do usuário ou `null`.
    */
   receberInput(mensagemPrompt) {
     const input = prompt(mensagemPrompt)?.trim();
     return input || null;
-  },
+  }
 
   /**
    * Exibe uma mensagem de feedback no console sobre a adição ou remoção de um carro.
@@ -138,6 +153,7 @@ Comandos:
    * @param {string} mensagem - Mensagem a ser exibida no console.
    * @param {string?} [nomeDoCarro="Nenhum carro"] - Nome do carro removido ou adicionado.
    * @param {string?} [corTexto="yellow"] - Cor do texto do **nome** do carro, em _inglês_.
+   * @returns {void}
    *
    * @example Mensagem exibida no console:
    *
@@ -158,12 +174,13 @@ Comandos:
       `color:${corTexto}; text-weight: bold`,
       "color:white",
     );
-  },
+  }
 
   /**
    * Remove o carro da lista passando o ID como argumento.
    *
    * @param {string} id - ID do carro a ser removido.
+   * @returns {void}
    *
    * @example Removendo o primeiro carro de uma lista:
    *
@@ -200,9 +217,13 @@ Comandos:
       nomeCarroRemovido, // Exibindo qual carro foi removido.
       "red",
     );
-  },
+  }
 
-  /** Inicia um `while` loop onde o usuário pode continuar removendo os carros. */
+  /**
+   * Inicia um `while` loop onde o usuário pode continuar removendo os carros.
+   *
+   * @returns {void}
+   */
   executarLoopDeRemocao() {
     console.log(
       "\nGostaria de %cREMOVER %cmais alguns? ",
@@ -232,9 +253,15 @@ Comandos:
 
       this.removerCarro(idCarroSelecionado);
     }
-  },
+  }
 
-  /** Inicia a interação com o usuário. */
+  /**
+   * Inicia a interação com o usuário.
+   *
+   * @returns {void}
+   * @see {@linkcode removerCarro}
+   * @see {@linkcode executarLoopDeRemocao}
+   */
   iniciarRemocaoDeCarros() {
     if (this.listaParaInteragir.length === 0) {
       // Caso não haja carros na lista.
@@ -259,12 +286,13 @@ Comandos:
       this.removerCarro(idCarroInicial);
       this.executarLoopDeRemocao();
     }
-  },
+  }
 
   /**
    * Adiciona o carro no final da lista passando o nome como argumento.
    *
    * @param {string} nomeCarro - Nome do carro a ser adicionado.
+   * @returns {void}
    */
   adicionarCarro(nomeCarro) {
     if (!nomeCarro) {
@@ -278,9 +306,14 @@ Comandos:
     this.exibirLista();
     this.exibirMensagemFeedback("adicionado!", nomeCarro, "green");
     // this.exibirQuantidade();
-  },
+  }
 
-  /** Inicia um `while` loop onde o usuário pode continuar adicionando os carros. */
+  /**
+   * Inicia um `while` loop onde o usuário pode continuar adicionando os carros.
+   *
+   * @returns {void}
+   * @see {@linkcode adicionarCarro}
+   */
   executarLoopDeAdicao() {
     console.log(
       "\nGostaria de %cADICIONAR %cmais alguns? ",
@@ -310,9 +343,15 @@ Comandos:
 
       this.adicionarCarro(carroParaAdicionar);
     }
-  },
+  }
 
-  /** Inicia a interação com o usuário. */
+  /**
+   * Inicia a interação com o usuário.
+   *
+   * @returns {void}
+   * @see {@linkcode adicionarCarro}
+   * @see {@linkcode executarLoopDeAdicao}
+   */
   iniciarAdicaoDeCarros() {
     this.exibirLista();
 
@@ -332,5 +371,5 @@ Comandos:
       this.adicionarCarro(nomeCarroInicial);
       this.executarLoopDeAdicao();
     }
-  },
-};
+  }
+}
