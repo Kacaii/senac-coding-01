@@ -12,13 +12,12 @@ const args = parseArgs(Deno.args, { alias: { help: "h", data: "d" } });
  * @example Exemplo de uso:
  *
  * ```js
+ * import { assertEquals } from "@std/assert";
  * import { LocadoraDeCarros } from "./LocadoraDeCarros.js";
  * const minhaLocadora = new LocadoraDeCarros(); // Instanciando nova locadora.
  *
- * await minhaLocadora.carregarLista("./api/carros_1.json"); // Importando o arquivo de dados.
- * minhaLocadora.iniciarRemocaoDeCarros(); // Iniciando interação.
- * minhaLocadora.iniciarAdicaoDeCarros(); // Iniciando interação.
- * minhaLocadora.exibirLista(); // Exibindo a lista de carros no console.
+ * await minhaLocadora.carregarLista("./api/carros_3.json"); // Importando o arquivo de dados.
+ * assertEquals(minhaLocadora.listaParaInteragir, ["Carro 1", "Carro 2", "Carro 3"]); // Verificando a lista de carros.
  * ```
  */
 export class LocadoraDeCarros {
@@ -141,11 +140,12 @@ Comandos:
    * @example Carregando a lista de carros
    *
    * ```js
+   * import { assertEquals } from "@std/assert";
    * import { LocadoraDeCarros } from "./LocadoraDeCarros.js";
    * const minhaLocadora = new LocadoraDeCarros(); // Instanciando nova locadora.
    *
-   * await minhaLocadora.carregarLista("./api/carros_1.json"); // Importando o arquivo de dados.
-   * console.log(minhaLocadora.listaParaInteragir); // Imprimindo a lista de carros.
+   * await minhaLocadora.carregarLista("./api/carros_3.json"); // Importando o arquivo de dados.
+   * assertEquals(minhaLocadora.listaParaInteragir, ["Carro 1", "Carro 2", "Carro 3"]); // Verificando a lista de carros.
    * ```
    */
   async carregarLista(lista) {
@@ -182,19 +182,23 @@ Comandos:
    * @default "Nenhum carro"
    * @param {string} [corTexto="yellow"] - Cor do texto do **nome** do carro, em _inglês_.
    * @default "yellow"
-   * @returns {void}
+   * @returns {string} - Mensagem formatada para ser exibida no console.
    *
    * @example Exibindo mensagem sobre remoção de um carro
    *
    * ```js
+   * // Impedindo logs inesperados.
+   * console.log = () => {}; // Travando console.log()
+   * console.table = () => {}; // Travando console.table()
+   * console.clear = () => {}; // Travando console.clear()
+   *
+   * import { assertEquals } from "@std/assert";
    * import { LocadoraDeCarros } from "./LocadoraDeCarros.js";
    * const minhaLocadora = new LocadoraDeCarros(); // Instanciando nova locadora.
    *
-   * minhaLocadora.exibirMensagemFeedback( "foi removido da lista!", "Carro 1", "red" );
-   * // Mensagem no console: Carro 1 foi removido da lista!
-   *
-   * minhaLocadora.exibirMensagemFeedback( "adicionado na lista!", "Carro 2", "green" );
-   * // Mensagem no console: Carro 2 adicionado na lista!
+   * assertEquals(minhaLocadora.exibirMensagemFeedback( "foi removido da lista!", "Carro 1", "red" ), "%cCarro 1 %cfoi removido da lista!");
+   * assertEquals(minhaLocadora.exibirMensagemFeedback( "adicionado na lista!", "Carro 2", "green" ), "%cCarro 2 %cadicionado na lista!");
+   * assertEquals(minhaLocadora.exibirMensagemFeedback( "foi removido" ), "%cNenhum carro %cfoi removido");
    * ```
    */
   exibirMensagemFeedback(
@@ -207,6 +211,7 @@ Comandos:
       `color: ${corTexto}; text-weight: bold;`,
       "color: white;",
     );
+    return `%c${nomeDoCarro} %c${mensagem}`;
   }
 
   /**
@@ -218,13 +223,18 @@ Comandos:
    * @example Removendo o primeiro carro de uma lista:
    *
    * ```js
+   * // Impedindo logs inesperados.
+   * console.log = () => {}; // Travando console.log()
+   * console.table = () => {}; // Travando console.table()
+   * console.clear = () => {}; // Travando console.clear()
+   *
+   * import { assertEquals } from "@std/assert";
    * import { LocadoraDeCarros } from "./LocadoraDeCarros.js";
    * const minhaLocadora = new LocadoraDeCarros();
    *
    * minhaLocadora.listaParaInteragir = ["Carro 1", "Carro 2", "Carro 3"]
-   *
    * minhaLocadora.removerCarro("0") // Mensagem no console: Carro 1 foi removido!
-   * console.log(minhaLocadora.listaParaInteragir) // ["Carro 2", "Carro 3"]
+   * assertEquals(minhaLocadora.listaParaInteragir, ["Carro 2", "Carro 3"])
    * ```
    */
   removerCarro(id) {
