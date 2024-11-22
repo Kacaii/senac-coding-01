@@ -11,7 +11,13 @@ if (args.help) {
   Deno.exit();
 }
 
-await minhaLocadora.carregarLista("./api/carros_1.json"); // Importando o arquivo de dados.
+if (args.data) {
+  await minhaLocadora.carregarLista(args.data);
+} else {
+  minhaLocadora.help();
+  throw new Deno.errors.InvalidData("Nenhum arquivo de dados fornecido.");
+}
+
 minhaLocadora.iniciarRemocaoDeCarros(); // Iniciando
 minhaLocadora.iniciarAdicaoDeCarros();
 minhaLocadora.exibirLista();

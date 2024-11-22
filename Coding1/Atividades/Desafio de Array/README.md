@@ -18,13 +18,14 @@
 
 - Adicionar ou remover carros da tabela é **opcional**.
 - O script deve ser executado **diretamente** no terminal.
+- É necessário passar o caminho para o arquivo de dados como argumento.
 
-```fish
+```bash
 # /Senac-Coding/Coding1/Atividades/Desafio de Array/
-deno run --allow-read arrayDeCarros.js
+deno run --allow-read arrayDeCarros.js --data <caminho para o arquivo de dados>
 ```
 
-Caso queira verificar os [testes](./tests/arrayDeCarros.test.js), execute o comando abaixo:
+Caso queira verificar os **testes**, execute o comando abaixo:
 
 ```fish
 # /Senac-Coding/Coding1/Atividades/Desafio de Array/
@@ -34,15 +35,15 @@ deno test --allow-read
 Use a flag `--help` ou `-h` para ver a lista de comandos disponíveis.
 
 ```help
-/Senac-Coding/Coding1/Atividades/Desafio de Array/
+# /Senac-Coding/Coding1/Atividades/Desafio de Array/
 
 ===========================
 Atividade: Desafio de Array
 ===========================
 
-Por padrão, o arquivo de dados é o arquivo "./api/carros_1.json".
-se você quiser alterar o arquivo de dados,
-basta passar o caminho como argumento usando o parâmetro --data ou -d.
+Como utilizar:
+
+deno run --allow-read arrayDeCarros.js --data <caminho para o arquivo de dados>
 
 Comandos:
 

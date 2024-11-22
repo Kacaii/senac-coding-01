@@ -55,9 +55,9 @@ export class LocadoraDeCarros {
    * Atividade: Desafio de Array
    * ===========================
    *
-   * Por padrão, o arquivo de dados é o arquivo "data_1.json".
-   * se você quiser alterar o arquivo de dados,
-   * basta passar o caminho como argumento usando o parâmetro --data ou -d.
+   * Como utilizar:
+   *
+   * deno run --allow-read arrayDeCarros.js --data <caminho para o arquivo de dados>
    *
    * Comandos:
    *
@@ -71,9 +71,9 @@ export class LocadoraDeCarros {
 Atividade: Desafio de Array
 ===========================
 
-Por padrão, o arquivo de dados é o arquivo "data_1.json".
-se você quiser alterar o arquivo de dados,
-basta passar o caminho como argumento usando o parâmetro --data ou -d.
+Como utilizar:
+
+deno run --allow-read arrayDeCarros.js --data <caminho para o arquivo de dados>
 
 Comandos:
 
@@ -134,7 +134,7 @@ Comandos:
    *
    * @see {@linkcode listaParaInteragir}
    *
-   * @param {string | URL} lista - Arquivo JSON contendo a lista de carros.
+   * @param {string | URL } [lista] - Arquivo JSON contendo a lista de carros.
    * @returns {Promise<void>}
    * @throws {Deno.errors.NotFound} Caso o arquivo não seja encontrado.
    *
