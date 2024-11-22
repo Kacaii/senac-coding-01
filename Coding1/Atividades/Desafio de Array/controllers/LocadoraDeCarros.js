@@ -11,7 +11,7 @@ const args = parseArgs(Deno.args, { alias: { help: "h", data: "d" } });
  *
  * @example Exemplo de uso:
  *
- * ```js
+ * ```ts
  * import { assertEquals } from "@std/assert";
  * import { LocadoraDeCarros } from "./LocadoraDeCarros.js";
  * const minhaLocadora = new LocadoraDeCarros(); // Instanciando nova locadora.
@@ -47,7 +47,7 @@ export class LocadoraDeCarros {
    *
    * @returns {void}
    *
-   * @example Utilizando a flag `--help`
+   * @example Exemplo de uso:
    *
    * ```help
    * ===========================
@@ -88,7 +88,7 @@ Comandos:
    *
    * @returns {void}
    *
-   * @example Mensagem exibida no console:
+   * @example Exemplo de uso:
    *
    * ```plaintext
    * █░░ █▀▀█ █▀▀ █▀▀█ █▀▀▄ █▀▀█ █▀▀█ █▀▀█
@@ -114,7 +114,7 @@ Comandos:
    *
    * @returns {void}
    *
-   * @example Mensagem exibida no console:
+   * @example Exemplo de uso:
    *
    * ```plaintext
    * Temos um total de <número de carros> carros disponíveis!`,
@@ -139,7 +139,7 @@ Comandos:
    *
    * @example Carregando a lista de carros
    *
-   * ```js
+   * ```ts
    * import { assertEquals } from "@std/assert";
    * import { LocadoraDeCarros } from "./LocadoraDeCarros.js";
    * const minhaLocadora = new LocadoraDeCarros(); // Instanciando nova locadora.
@@ -186,7 +186,7 @@ Comandos:
    *
    * @example Exibindo mensagem sobre remoção de um carro
    *
-   * ```js
+   * ```ts
    * // Impedindo logs inesperados.
    * console.log = () => {}; // Travando console.log()
    * console.table = () => {}; // Travando console.table()
@@ -222,7 +222,7 @@ Comandos:
    *
    * @example Removendo o primeiro carro de uma lista:
    *
-   * ```js
+   * ```ts
    * // Impedindo logs inesperados.
    * console.log = () => {}; // Travando console.log()
    * console.table = () => {}; // Travando console.table()
