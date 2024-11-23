@@ -188,19 +188,22 @@ Deno.test("Validando o método adicionarCarro()", async (t) => {
 });
 
 Deno.test("Validando o método removerCarro()", async (t) => {
-  await t.step("Lançando erro ao iniciar remoção com lista vazia", () => {
-    // Limpando lista para interagir
-    minhaLocadora.limparLista();
+  await t.step(
+    "Lançando Deno.errors.InvalidData ao iniciar remoção com lista vazia",
+    () => {
+      // Limpando lista para interagir
+      minhaLocadora.limparLista();
 
-    assertThrows(
-      () => {
-        minhaLocadora.iniciarRemocaoDeCarros();
-      },
-      Deno.errors.InvalidData,
-      "",
-      "Erro não lançado!",
-    );
-  });
+      assertThrows(
+        () => {
+          minhaLocadora.iniciarRemocaoDeCarros();
+        },
+        Deno.errors.InvalidData,
+        "",
+        "Erro não lançado!",
+      );
+    },
+  );
 
   await t.step("Removendo index 0", () => {
     // Adicionando carros na lista
