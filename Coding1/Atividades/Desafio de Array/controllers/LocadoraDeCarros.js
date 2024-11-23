@@ -165,19 +165,45 @@ Comandos:
    * @param {string | URL} lista - Arquivo JSON contendo a lista de carros.
    * @returns {Promise<void>} Não retorna nada.
    * @throws {Deno.errors.NotFound} Caso o arquivo não seja encontrado.
+   * @throws {Deno.errors.PermissionDenied} Caso o arquivo não seja acessível.
+   * @throws {Deno.errors.InvalidData} Caso o arquivo não seja válido.
    */
   async carregarLista(lista) {
     try {
-      // Carregando o arquivo de dados
       const data = await Deno.readTextFile(lista);
+
       this.listaParaInteragir = JSON.parse(data);
     } catch (err) {
-      // Caso arquivo não seja encontrado.
+      // Tratando erros específicos.
       if (err instanceof Deno.errors.NotFound) {
-        this.listaParaInteragir = []; // Definindo a lista como vazia em caso de erro.
-        console.error("Erro ao ler o arquivo de dados.  ");
-        throw err;
+        // Caso arquivo não seja encontrado.
+        this.limparLista(); // Limpando a lista em caso de erro.
+        this.help(); // Mostrando a mensagem de ajuda.
+        console.error(
+          `Não foi possível encontrar o arquivo de dados: ${lista}.  \n`,
+        );
+      } else if (err instanceof Deno.errors.PermissionDenied) {
+        // Caso o arquivo não seja acessível.
+        this.limparLista(); // Limpando a lista em caso de erro.
+        this.help(); // Mostrando a mensagem de ajuda.
+        console.error(
+          `Permissão negada ao ler o arquivo de dados: ${lista}.  \n`,
+        );
+      } else if (
+        err instanceof Deno.errors.InvalidData ||
+        err instanceof SyntaxError
+      ) {
+        // Caso o arquivo não seja válido.
+        this.limparLista(); // Limpando a lista em caso de erro.
+        this.help(); // Mostrando a mensagem de ajuda.
+        console.error(`Arquivo de dados inválido: ${lista}.  \n`);
+      } else {
+        // Caso o erro não seja específico.
+        this.limparLista(); // Limpando a lista em caso de erro.
+        this.help(); // Mostrando a mensagem de ajuda.
+        console.error(`Erro ao ler o arquivo de dados: ${lista}.  \n`);
       }
+      throw err;
     }
   }
 

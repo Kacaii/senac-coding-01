@@ -16,10 +16,10 @@ if (args.help) {
   Deno.exit();
 }
 
-if (!args.data) {
-  minhaLocadora.help();
-  throw new Deno.errors.InvalidData("Nenhum arquivo de dados fornecido.");
-}
+// if (!args.data) {
+//   minhaLocadora.help();
+//   throw new Deno.errors.InvalidData("Nenhum arquivo de dados fornecido.");
+// }
 
 await minhaLocadora.carregarLista(args.data);
 spinner.start(); // Apenas por questões de estética.
