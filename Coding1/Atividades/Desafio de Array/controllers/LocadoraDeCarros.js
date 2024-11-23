@@ -250,22 +250,20 @@ Comandos:
    * const minhaLocadora = new LocadoraDeCarros();
    *
    * minhaLocadora.listaParaInteragir = ["Carro 1", "Carro 2", "Carro 3"]
-   * minhaLocadora.removerCarro("0") // Mensagem no console: Carro 1 foi removido!
+   * minhaLocadora.removerCarro(0) // Mensagem no console: Carro 1 foi removido!
    * assertEquals(minhaLocadora.listaParaInteragir, ["Carro 2", "Carro 3"])
    * ```
    *
-   * @param {string} id - ID do carro a ser removido.
+   * @param {number} id - ID do carro a ser removido.
    * @returns {string?} - Nome do carro removido ou `null` caso o ID não seja válido.
    */
   removerCarro(id) {
-    const parsedID = parseInt(id); // Precisamos que o `id`` seja um número.
-
     // Early return se o valor for inválido.
     if (
-      parsedID == null ||
-      isNaN(parsedID) ||
-      parsedID < 0 ||
-      parsedID > this.listaParaInteragir.length
+      id == null ||
+      isNaN(id) ||
+      id < 0 ||
+      id > this.listaParaInteragir.length
     ) {
       this.exibirLista();
       this.exibirMensagemFeedback("foi removido."); // Mensagem padrão.
@@ -275,7 +273,7 @@ Comandos:
 
     // Removendo o carro da lista e guardando o nome em uma variável
     // para ser exibido no console.
-    const [nomeCarroRemovido] = this.listaParaInteragir.splice(parsedID, 1);
+    const [nomeCarroRemovido] = this.listaParaInteragir.splice(id, 1);
     this.exibirLista(); // Exibe a lista atualizada, agora sem o carro removido.
     this.exibirMensagemFeedback(
       "foi removido da lista!",
@@ -315,7 +313,7 @@ Comandos:
         break removendoCarros;
       }
 
-      this.removerCarro(idCarroSelecionado);
+      this.removerCarro(parseInt(idCarroSelecionado));
     }
   }
 
@@ -360,7 +358,7 @@ Comandos:
     );
 
     if (idCarroInicial) {
-      this.removerCarro(idCarroInicial);
+      this.removerCarro(parseInt(idCarroInicial));
       this.#executarLoopDeRemocao();
     }
   }

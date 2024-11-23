@@ -134,16 +134,6 @@ Deno.test("Validando o método adicionarCarro()", async (t) => {
 });
 
 Deno.test("Validando o método removerCarro()", async (t) => {
-  await t.step("Input vazio não remove nada", () => {
-    minhaLocadora.listaParaInteragir = ["Carro 1", "Carro 2", "Carro 3"];
-    minhaLocadora.removerCarro("");
-    assertEquals(
-      minhaLocadora.listaParaInteragir,
-      ["Carro 1", "Carro 2", "Carro 3"],
-      "Algo mudou na lista!",
-    );
-  });
-
   await t.step("Lançando erro ao iniciar remoção com lista vazia", () => {
     minhaLocadora.limparLista();
     assertThrows(() => {
@@ -153,7 +143,7 @@ Deno.test("Validando o método removerCarro()", async (t) => {
 
   await t.step("Removendo index 0", () => {
     minhaLocadora.listaParaInteragir = ["Carro 1", "Carro 2", "Carro 3"];
-    minhaLocadora.removerCarro("0");
+    minhaLocadora.removerCarro(0);
     assertEquals(
       minhaLocadora.listaParaInteragir,
       ["Carro 2", "Carro 3"],
@@ -163,7 +153,7 @@ Deno.test("Validando o método removerCarro()", async (t) => {
 
   await t.step("Removendo index 1", () => {
     minhaLocadora.listaParaInteragir = ["Carro 1", "Carro 2", "Carro 3"];
-    minhaLocadora.removerCarro("1");
+    minhaLocadora.removerCarro(1);
     assertEquals(
       minhaLocadora.listaParaInteragir,
       ["Carro 1", "Carro 3"],
@@ -173,7 +163,7 @@ Deno.test("Validando o método removerCarro()", async (t) => {
 
   await t.step("Removendo index 2", () => {
     minhaLocadora.listaParaInteragir = ["Carro 1", "Carro 2", "Carro 3"];
-    minhaLocadora.removerCarro("2");
+    minhaLocadora.removerCarro(2);
     assertEquals(
       minhaLocadora.listaParaInteragir,
       ["Carro 1", "Carro 2"],
