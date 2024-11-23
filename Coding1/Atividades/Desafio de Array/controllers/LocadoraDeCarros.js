@@ -167,6 +167,7 @@ Comandos:
    * @throws {Deno.errors.NotFound} Caso o arquivo não seja encontrado.
    * @throws {Deno.errors.PermissionDenied} Caso o arquivo não seja acessível.
    * @throws {Deno.errors.InvalidData} Caso o arquivo não seja válido.
+   * @throws {SyntaxError} Caso o arquivo não seja válido.
    */
   async carregarLista(lista) {
     try {
