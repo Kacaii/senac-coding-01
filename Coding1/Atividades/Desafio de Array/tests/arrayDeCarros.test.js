@@ -157,39 +157,67 @@ Deno.test("Validando o método adicionarCarro()", async (t) => {
 
 Deno.test("Validando o método removerCarro()", async (t) => {
   await t.step("Lançando erro ao iniciar remoção com lista vazia", () => {
+    // Limpando lista para interagir
     minhaLocadora.limparLista();
-    assertThrows(() => {
-      minhaLocadora.iniciarRemocaoDeCarros();
-    }, Deno.errors.InvalidData);
+
+    assertThrows(
+      () => {
+        minhaLocadora.iniciarRemocaoDeCarros();
+      },
+      Deno.errors.InvalidData,
+      "",
+      "Erro não lançado!",
+    );
   });
 
   await t.step("Removendo index 0", () => {
+    // Adicionando carros na lista
     minhaLocadora.listaParaInteragir = ["Carro 1", "Carro 2", "Carro 3"];
-    minhaLocadora.removerCarro(0);
+
+    assertEquals(
+      minhaLocadora.removerCarro(0),
+      "Carro 1",
+      "Função removerCarro() retornou diferente do esperado!",
+    );
+
     assertEquals(
       minhaLocadora.listaParaInteragir,
       ["Carro 2", "Carro 3"],
-      "Carro não removido!",
+      "Carro 1 não removido!",
     );
   });
 
   await t.step("Removendo index 1", () => {
+    // Adicionando carros na lista
     minhaLocadora.listaParaInteragir = ["Carro 1", "Carro 2", "Carro 3"];
-    minhaLocadora.removerCarro(1);
+
+    assertEquals(
+      minhaLocadora.removerCarro(1),
+      "Carro 2",
+      "Função removerCarro() retornou diferente do esperado!",
+    );
+
     assertEquals(
       minhaLocadora.listaParaInteragir,
       ["Carro 1", "Carro 3"],
-      "Carro não removido!",
+      "Carro 2 não removido!",
     );
   });
 
   await t.step("Removendo index 2", () => {
+    // Adicionando carros na lista
     minhaLocadora.listaParaInteragir = ["Carro 1", "Carro 2", "Carro 3"];
-    minhaLocadora.removerCarro(2);
+
+    assertEquals(
+      minhaLocadora.removerCarro(2),
+      "Carro 3",
+      "Função removerCarro() retornou diferente do esperado!",
+    );
+
     assertEquals(
       minhaLocadora.listaParaInteragir,
       ["Carro 1", "Carro 2"],
-      "Carro não removido!",
+      "Carro 3 não removido!",
     );
   });
 });
