@@ -1,13 +1,9 @@
-import { parseArgs } from "@std/cli";
-
-const args = parseArgs(Deno.args, { alias: { help: "h", data: "d" } });
-
 /**
  * Módulo que gerencia uma locadora de carros, permitindo adicionar, remover
  * e listar carros, além de interagir com o usuário por meio do console.
  *
  * A lista é iniciada vazia. Para adicionar itens,
- * utilize o método {@linkcode LocadoraDeCarros.carregarLista()} antes de iniciar a interação.
+ * utilize o método {@linkcode carregarLista} antes de iniciar a interação.
  *
  * @example Exemplo de uso:
  *
@@ -23,9 +19,7 @@ const args = parseArgs(Deno.args, { alias: { help: "h", data: "d" } });
 export class LocadoraDeCarros {
   /**
    * Lista de carros para interação.
-   * Adicione items com `carregarLista()` antes de começar a interação.
-   *
-   * @see {@linkcode carregarLista}
+   * Adicione items com {@linkcode carregarLista} antes de começar a interação.
    *
    * @type {string[]} - Inicia vazia.
    */
@@ -36,7 +30,19 @@ export class LocadoraDeCarros {
    *
    * @see {@linkcode listaParaInteragir}
    *
-   * @returns {void}
+   * @example Exemplo de uso:
+   * ```ts
+   *
+   * import { assertEquals } from "@std/assert";
+   * import { LocadoraDeCarros } from "./LocadoraDeCarros.js";
+   * const minhaLocadora = new LocadoraDeCarros(); // Instanciando nova locadora.
+   *
+   * await minhaLocadora.carregarLista("./api/carros_3.json"); // Importando o arquivo de dados.
+   * minhaLocadora.limparLista();
+   * assertEquals(minhaLocadora.listaParaInteragir, [])
+   * ```
+   *
+   * @returns {void} Não retorna nada.
    */
   limparLista() {
     this.listaParaInteragir = [];
@@ -86,7 +92,7 @@ Comandos:
    *
    * @see {@linkcode listaParaInteragir}
    *
-   * @returns {void}
+   * @returns {void} Não retorna nada.
    *
    * @example Exemplo de uso:
    *
@@ -108,17 +114,25 @@ Comandos:
   }
 
   /**
-   * Exibe a quantidade de carros na lista.
-   *
-   * @see {@linkcode listaParaInteragir}
-   *
-   * @returns {void}
+   * Exibe a quantidade de carros disponíveis na lista.
    *
    * @example Exemplo de uso:
    *
-   * ```plaintext
-   * Temos um total de <número de carros> carros disponíveis!`,
+   * ```ts
+   * // Impedindo logs inesperados.
+   * console.log = () => {}; // Travando console.log()
+   * console.table = () => {}; // Travando console.table()
+   * console.clear = () => {}; // Travando console.clear()
+   *
+   * import { assertEquals } from "@std/assert";
+   * import { LocadoraDeCarros } from "./LocadoraDeCarros.js";
+   * const minhaLocadora = new LocadoraDeCarros(); // Instanciando nova locadora.
+   *
+   * await minhaLocadora.carregarLista("./api/carros_3.json"); // Importando o arquivo de dados.
+   * assertEquals(minhaLocadora.exibirQuantidade(), "Temos um total de 3 carros disponíveis!"); // Exibindo a quantidade de carros na lista.
    * ```
+   *
+   * @returns {string} - Mensagem originada pela função.
    */
   exibirQuantidade() {
     console.log(
@@ -126,16 +140,11 @@ Comandos:
       "color:green; text-weight: bold",
       "color:",
     );
+    return `Temos um total de ${this.listaParaInteragir.length} carros disponíveis!`;
   }
 
   /**
    * Carrega a lista de carros importando um arquivo JSON.
-   *
-   * @see {@linkcode listaParaInteragir}
-   *
-   * @param {string | URL } [lista] - Arquivo JSON contendo a lista de carros.
-   * @returns {Promise<void>}
-   * @throws {Deno.errors.NotFound} Caso o arquivo não seja encontrado.
    *
    * @example Carregando a lista de carros
    *
@@ -147,11 +156,15 @@ Comandos:
    * await minhaLocadora.carregarLista("./api/carros_3.json"); // Importando o arquivo de dados.
    * assertEquals(minhaLocadora.listaParaInteragir, ["Carro 1", "Carro 2", "Carro 3"]); // Verificando a lista de carros.
    * ```
+   *
+   * @param {string | URL} lista - Arquivo JSON contendo a lista de carros.
+   * @returns {Promise<void>} Não retorna nada.
+   * @throws {Deno.errors.NotFound} Caso o arquivo não seja encontrado.
    */
   async carregarLista(lista) {
     try {
       // Carregando o arquivo de dados
-      const data = await Deno.readTextFile(args.data || lista);
+      const data = await Deno.readTextFile(lista);
       this.listaParaInteragir = JSON.parse(data);
     } catch (err) {
       // Caso arquivo não seja encontrado.
@@ -167,7 +180,7 @@ Comandos:
    * Recebe input do usuário utilizando o método `prompt()`.
    *
    * @param {string} mensagemPrompt - Mensagem a ser exibida ao usuário.
-   * @returns {string?} Retorna o input do usuário ou `null`.
+   * @returns {string?} O input do usuário ou `null`.
    */
   #receberInput(mensagemPrompt) {
     const input = prompt(mensagemPrompt)?.trim();
@@ -176,13 +189,6 @@ Comandos:
 
   /**
    * Exibe uma mensagem de feedback no console sobre a adição ou remoção de um carro.
-   *
-   * @param {string} mensagem - Mensagem a ser exibida no console.
-   * @param {string} [nomeDoCarro="Nenhum carro"] - Nome do carro removido ou adicionado.
-   * @default "Nenhum carro"
-   * @param {string} [corTexto="yellow"] - Cor do texto do **nome** do carro, em _inglês_.
-   * @default "yellow"
-   * @returns {string} - Mensagem formatada para ser exibida no console.
    *
    * @example Exibindo mensagem sobre remoção de um carro
    *
@@ -196,10 +202,17 @@ Comandos:
    * import { LocadoraDeCarros } from "./LocadoraDeCarros.js";
    * const minhaLocadora = new LocadoraDeCarros(); // Instanciando nova locadora.
    *
-   * assertEquals(minhaLocadora.exibirMensagemFeedback( "foi removido da lista!", "Carro 1", "red" ), "%cCarro 1 %cfoi removido da lista!");
-   * assertEquals(minhaLocadora.exibirMensagemFeedback( "adicionado na lista!", "Carro 2", "green" ), "%cCarro 2 %cadicionado na lista!");
-   * assertEquals(minhaLocadora.exibirMensagemFeedback( "foi removido" ), "%cNenhum carro %cfoi removido");
+   * assertEquals(minhaLocadora.exibirMensagemFeedback("foi removido da lista!", "Carro 1", "red"), "Carro 1 foi removido da lista!");
+   * assertEquals(minhaLocadora.exibirMensagemFeedback("adicionado na lista!", "Carro 2", "green"), "Carro 2 adicionado na lista!");
+   * assertEquals(minhaLocadora.exibirMensagemFeedback("foi removido"), "Nenhum carro foi removido");
    * ```
+   *
+   * @param {string} mensagem - Mensagem a ser exibida no console.
+   * @param {string} [nomeDoCarro="Nenhum carro"] - Nome do carro removido ou adicionado.
+   * @default "Nenhum carro"
+   * @param {string} [corTexto="yellow"] - Cor do texto do **nome** do carro, em _inglês_.
+   * @default "yellow"
+   * @returns {string} - Mensagem formatada para ser exibida no console.
    */
   exibirMensagemFeedback(
     mensagem,
@@ -211,14 +224,11 @@ Comandos:
       `color: ${corTexto}; text-weight: bold;`,
       "color: white;",
     );
-    return `%c${nomeDoCarro} %c${mensagem}`;
+    return `${nomeDoCarro} ${mensagem}`;
   }
 
   /**
    * Remove o carro da lista passando o ID como argumento.
-   *
-   * @param {string} id - ID do carro a ser removido.
-   * @returns {void}
    *
    * @example Removendo o primeiro carro de uma lista:
    *
@@ -236,6 +246,9 @@ Comandos:
    * minhaLocadora.removerCarro("0") // Mensagem no console: Carro 1 foi removido!
    * assertEquals(minhaLocadora.listaParaInteragir, ["Carro 2", "Carro 3"])
    * ```
+   *
+   * @param {string} id - ID do carro a ser removido.
+   * @returns {string?} - Nome do carro removido ou `null` caso o ID não seja válido.
    */
   removerCarro(id) {
     const parsedID = parseInt(id); // Precisamos que o `id`` seja um número.
@@ -250,7 +263,7 @@ Comandos:
       this.exibirLista();
       this.exibirMensagemFeedback("foi removido."); // Mensagem padrão.
       // this.exibirQuantidade();
-      return;
+      return null;
     }
 
     // Removendo o carro da lista e guardando o nome em uma variável
@@ -262,6 +275,7 @@ Comandos:
       nomeCarroRemovido, // Exibindo qual carro foi removido.
       "red",
     );
+    return nomeCarroRemovido;
   }
 
   /**
@@ -301,10 +315,13 @@ Comandos:
   /**
    * Inicia a interação com o usuário.
    *
+   * > [!WARNING]
+   * > Não pode ser utilizado com a lista vazia.
+   *
    * @see {@linkcode removerCarro}
    * @see {@linkcode #executarLoopDeRemocao}
    *
-   * @returns {void}
+   * @returns {void} Não retorna nada.
    * @throws {Deno.errors.InvalidData} Caso não haja carros na lista ao iniciar a remoção.
    */
   iniciarRemocaoDeCarros() {
@@ -336,21 +353,35 @@ Comandos:
   /**
    * Adiciona o carro no final da lista passando o nome como argumento.
    *
+   * ```ts
+   * // Impedindo logs inesperados.
+   * console.log = () => {}; // Travando console.log()
+   * console.table = () => {}; // Travando console.table()
+   * console.clear = () => {}; // Travando console.clear()
+   *
+   * import { assertEquals } from "@std/assert";
+   * import { LocadoraDeCarros } from "./LocadoraDeCarros.js";
+   * const minhaLocadora = new LocadoraDeCarros(); // Instanciando nova locadora.
+   *
+   * minhaLocadora.adicionarCarro("Carro 1");
+   * assertEquals(minhaLocadora.listaParaInteragir, ["Carro 1"])
+   * ```
+   *
    * @param {string} nomeCarro - Nome do carro a ser adicionado.
-   * @returns {void}
+   * @returns {string?} - Nome do carro adicionado ou `null` caso o nome seja inválido.
    */
   adicionarCarro(nomeCarro) {
     if (!nomeCarro) {
       this.exibirLista(); // Atualizando
       this.exibirMensagemFeedback("foi adicionado");
       // this.exibirQuantidade();
-      return; // Early return
+      return null; // Early return
     }
 
     this.listaParaInteragir.push(nomeCarro); // Adiciona o carro na lista
     this.exibirLista();
     this.exibirMensagemFeedback("adicionado!", nomeCarro, "green");
-    // this.exibirQuantidade();
+    return nomeCarro;
   }
 
   /**
