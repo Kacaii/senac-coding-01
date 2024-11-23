@@ -1,4 +1,4 @@
-import { assertEquals, assertThrows } from "@std/assert";
+import { assertEquals, assertRejects, assertThrows } from "@std/assert";
 import { LocadoraDeCarros } from "../controllers/LocadoraDeCarros.js";
 const minhaLocadora = new LocadoraDeCarros(); // Instanciando nova locadora.
 
@@ -6,6 +6,7 @@ const minhaLocadora = new LocadoraDeCarros(); // Instanciando nova locadora.
 console.log = () => {}; // Travando console.log()
 console.table = () => {}; // Travando console.table()
 console.clear = () => {}; // Travando console.clear()
+console.error = () => {}; // Travando console.error()
 
 Deno.test("Validando se a lista inicia vazia", () => {
   assertEquals(
@@ -67,6 +68,37 @@ Deno.test("Validando metodo carregarLista()", async (t) => {
       "Lista diferente do esperado!",
     );
   });
+
+  await t.step("Importando arquivo inválido causa um SyntaxError", () => {
+    // Limpando lista para interagir
+    minhaLocadora.limparLista();
+
+    assertRejects(
+      async () => {
+        await minhaLocadora.carregarLista("./README.md");
+      },
+      SyntaxError,
+      "",
+      "SyntaxError não lançado!",
+    );
+  });
+
+  await t.step(
+    "Importando um arquivo não existente causa um Deno.errors.NotFound",
+    () => {
+      // Limpando lista para interagir
+      minhaLocadora.limparLista();
+
+      assertRejects(
+        async () => {
+          await minhaLocadora.carregarLista("./api/carros_4_The_movie.json");
+        },
+        Deno.errors.NotFound,
+        "",
+        "Deno.errors.NotFound não lançado!",
+      );
+    },
+  );
 });
 
 Deno.test("Validando o método adicionarCarro()", async (t) => {
