@@ -34,6 +34,8 @@
  * ```
  */
 export class LocadoraDeCarros {
+  /** @typedef {string | null} InputUsuario - Valor recebido por {@linkcode receberInput}. */
+
   /**
    * Lista de carros para interação.
    * Adicione items com {@linkcode carregarLista} antes de começar a interação.
@@ -182,6 +184,8 @@ Comandos:
   /**
    * Recebe input do usuário utilizando o método `prompt()`.
    *
+   * @see {@linkcode InputUsuario}
+   *
    * @example Exemplo de uso:
    * ```ts ignore
    * import { LocadoraDeCarros } from "./LocadoraDeCarros.js";
@@ -191,7 +195,7 @@ Comandos:
    * ```
    *
    * @param {string} mensagemPrompt - Mensagem a ser exibida ao usuário.
-   * @returns {string?} O input do usuário ou `null`.
+   * @returns {InputUsuario} O input do usuário ou `null`.
    */
   receberInput(mensagemPrompt) {
     const input = prompt(mensagemPrompt)?.trim();
@@ -286,7 +290,7 @@ Comandos:
   /**
    * Inicia um `while` loop onde o usuário pode continuar removendo os carros.
    *
-   * @returns {void}
+   * @returns {void} Não retorna nada.
    */
   #executarLoopDeRemocao() {
     console.log(
@@ -352,7 +356,6 @@ Comandos:
       "\n==================================================",
     );
 
-    /** @type {string?} */
     const idCarroInicial = this.receberInput(
       "Insira o ID do carro ou deixe em branco para sair.\n\n>",
     );
@@ -402,7 +405,7 @@ Comandos:
    *
    * @see {@linkcode adicionarCarro}
    *
-   * @returns {void}
+   * @returns {void} Não retorna nada.
    */
   #executarLoopDeAdicao() {
     console.log(
@@ -446,7 +449,7 @@ Comandos:
    * @see {@linkcode adicionarCarro}
    * @see {@linkcode #executarLoopDeAdicao}
    *
-   * @returns {void}
+   * @returns {void} Não retorna nada.
    */
   iniciarAdicaoDeCarros() {
     this.exibirLista();
@@ -458,7 +461,6 @@ Comandos:
       "\n==================================================",
     );
 
-    /** @type {string?} */
     const nomeCarroInicial = this.receberInput(
       "Insira o nome do carro ou deixe em branco para sair.\n\n>",
     );
