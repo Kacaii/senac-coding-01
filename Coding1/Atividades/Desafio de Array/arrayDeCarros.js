@@ -16,13 +16,13 @@ if (args.help) {
   Deno.exit();
 }
 
-if (args.data) {
-  await minhaLocadora.carregarLista(args.data);
-  spinner.start(); // Apenas por questões de estética.
-} else {
+if (!args.data) {
   minhaLocadora.help();
   throw new Deno.errors.InvalidData("Nenhum arquivo de dados fornecido.");
 }
+
+await minhaLocadora.carregarLista(args.data);
+spinner.start(); // Apenas por questões de estética.
 
 setTimeout(() => {
   spinner.stop();
@@ -32,5 +32,5 @@ setTimeout(() => {
   minhaLocadora.exibirLista();
 
   console.log("\n%c -- == Script finalizado! == --\n", "color:yellow;");
-  // Fim!
+  Deno.exit();
 }, 1000);
