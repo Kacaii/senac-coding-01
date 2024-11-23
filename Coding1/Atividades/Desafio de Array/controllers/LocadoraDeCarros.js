@@ -6,14 +6,31 @@
  * utilize o método {@linkcode carregarLista} antes de iniciar a interação.
  *
  * @example Exemplo de uso:
- *
- * ```ts
+ * ```ts ignore
  * import { assertEquals } from "@std/assert";
  * import { LocadoraDeCarros } from "./LocadoraDeCarros.js";
  * const minhaLocadora = new LocadoraDeCarros(); // Instanciando nova locadora.
  *
+ * // Importando o arquivo de dados.
+ *
  * await minhaLocadora.carregarLista("./api/carros_3.json"); // Importando o arquivo de dados.
  * assertEquals(minhaLocadora.listaParaInteragir, ["Carro 1", "Carro 2", "Carro 3"]); // Verificando a lista de carros.
+ * assertEquals(minhaLocadora.exibirQuantidade(), "Temos um total de 3 carros disponíveis!"); // Exibindo a quantidade de carros na lista.
+ *
+ * // Removendo um carro.
+ *
+ * minhaLocadora.removerCarro("0"); // Mensagem no console: Carro 1 foi removido!
+ * assertEquals(minhaLocadora.listaParaInteragir, ["Carro 2", "Carro 3"]);
+ *
+ * // Adicionando um carro.
+ *
+ * minhaLocadora.adicionarCarro("Carro 4"); // Mensagem no console: Carro 4 adicionado na lista!
+ * assertEquals(minhaLocadora.listaParaInteragir, ["Carro 2", "Carro 3", "Carro 4"]);
+ *
+ * // Limpando a lista.
+ *
+ * minhaLocadora.limparLista();
+ * assertEquals(minhaLocadora.listaParaInteragir, []);
  * ```
  */
 export class LocadoraDeCarros {
@@ -32,7 +49,6 @@ export class LocadoraDeCarros {
    *
    * @example Exemplo de uso:
    * ```ts
-   *
    * import { assertEquals } from "@std/assert";
    * import { LocadoraDeCarros } from "./LocadoraDeCarros.js";
    * const minhaLocadora = new LocadoraDeCarros(); // Instanciando nova locadora.
@@ -51,24 +67,15 @@ export class LocadoraDeCarros {
   /**
    * Exibe uma mensagem de ajuda no console.
    *
-   * @returns {void}
-   *
    * @example Exemplo de uso:
+   * ```ts ignore
+   * import { LocadoraDeCarros } from "./LocadoraDeCarros.js";
+   * const minhaLocadora = new LocadoraDeCarros(); // Instanciando nova locadora.
    *
-   * ```help
-   * ===========================
-   * Atividade: Desafio de Array
-   * ===========================
-   *
-   * Como utilizar:
-   *
-   * deno run --allow-read arrayDeCarros.js --data <caminho para o arquivo de dados>
-   *
-   * Comandos:
-   *
-   * --help, -h: Mostra este menu de ajuda.
-   * --data, -d: Caminho para o arquivo de dados.
+   * minhaLocadora.help(); // Exibindo a mensagem de ajuda.
    * ```
+   *
+   * @returns {void} Não retorna nada.
    */
   help() {
     console.log(`
@@ -92,15 +99,15 @@ Comandos:
    *
    * @see {@linkcode listaParaInteragir}
    *
-   * @returns {void} Não retorna nada.
-   *
    * @example Exemplo de uso:
+   * ```ts ignore
+   * import { LocadoraDeCarros } from "./LocadoraDeCarros.js";
+   * const minhaLocadora = new LocadoraDeCarros(); // Instanciando nova locadora.
    *
-   * ```plaintext
-   * █░░ █▀▀█ █▀▀ █▀▀█ █▀▀▄ █▀▀█ █▀▀█ █▀▀█
-   * █░░ █░░█ █░░ █▄▄█ █░░█ █░░█ █▄▄▀ █▄▄█
-   * ▀▀▀ ▀▀▀▀ ▀▀▀ ▀░░▀ ▀▀▀░ ▀▀▀▀ ▀░▀▀ ▀░░▀
+   * minhaLocadora.exibirLista(); // Exibindo a lista de carros.
    * ```
+   *
+   * @returns {void} Não retorna nada.
    */
   exibirLista() {
     console.clear();
@@ -117,12 +124,9 @@ Comandos:
    * Exibe a quantidade de carros disponíveis na lista.
    *
    * @example Exemplo de uso:
-   *
    * ```ts
    * // Impedindo logs inesperados.
    * console.log = () => {}; // Travando console.log()
-   * console.table = () => {}; // Travando console.table()
-   * console.clear = () => {}; // Travando console.clear()
    *
    * import { assertEquals } from "@std/assert";
    * import { LocadoraDeCarros } from "./LocadoraDeCarros.js";
@@ -147,7 +151,6 @@ Comandos:
    * Carrega a lista de carros importando um arquivo JSON.
    *
    * @example Carregando a lista de carros
-   *
    * ```ts
    * import { assertEquals } from "@std/assert";
    * import { LocadoraDeCarros } from "./LocadoraDeCarros.js";
@@ -179,10 +182,18 @@ Comandos:
   /**
    * Recebe input do usuário utilizando o método `prompt()`.
    *
+   * @example Exemplo de uso:
+   * ```ts ignore
+   * import { LocadoraDeCarros } from "./LocadoraDeCarros.js";
+   * const minhaLocadora = new LocadoraDeCarros(); // Instanciando nova locadora.
+   *
+   * const carro = minhaLocadora.receberInput("Insira o nome do carro ou deixe em branco para sair."); // Exibindo a mensagem.
+   * ```
+   *
    * @param {string} mensagemPrompt - Mensagem a ser exibida ao usuário.
    * @returns {string?} O input do usuário ou `null`.
    */
-  #receberInput(mensagemPrompt) {
+  receberInput(mensagemPrompt) {
     const input = prompt(mensagemPrompt)?.trim();
     return input || null;
   }
@@ -191,12 +202,9 @@ Comandos:
    * Exibe uma mensagem de feedback no console sobre a adição ou remoção de um carro.
    *
    * @example Exibindo mensagem sobre remoção de um carro
-   *
    * ```ts
    * // Impedindo logs inesperados.
    * console.log = () => {}; // Travando console.log()
-   * console.table = () => {}; // Travando console.table()
-   * console.clear = () => {}; // Travando console.clear()
    *
    * import { assertEquals } from "@std/assert";
    * import { LocadoraDeCarros } from "./LocadoraDeCarros.js";
@@ -231,7 +239,6 @@ Comandos:
    * Remove o carro da lista passando o ID como argumento.
    *
    * @example Removendo o primeiro carro de uma lista:
-   *
    * ```ts
    * // Impedindo logs inesperados.
    * console.log = () => {}; // Travando console.log()
@@ -297,7 +304,7 @@ Comandos:
     this.exibirLista();
 
     removendoCarros: while (continuarRemocao) {
-      const idCarroSelecionado = this.#receberInput(
+      const idCarroSelecionado = this.receberInput(
         "\nInsira o ID do carro ou deixe em branco para sair." +
           "\n==================================================" +
           "\n>",
@@ -314,6 +321,14 @@ Comandos:
 
   /**
    * Inicia a interação com o usuário.
+   *
+   * @example Exemplo de uso:
+   * ```ts ignore
+   * import { LocadoraDeCarros } from "./LocadoraDeCarros.js";
+   * const minhaLocadora = new LocadoraDeCarros(); // Instanciando nova locadora.
+   *
+   * minhaLocadora.iniciarRemocaoDeCarros(); // Iniciando a remoção de carros.
+   * ```
    *
    * > [!WARNING]
    * > Não pode ser utilizado com a lista vazia.
@@ -340,7 +355,7 @@ Comandos:
     );
 
     /** @type {string?} */
-    const idCarroInicial = this.#receberInput(
+    const idCarroInicial = this.receberInput(
       "Insira o ID do carro ou deixe em branco para sair.\n\n>",
     );
 
@@ -405,7 +420,7 @@ Comandos:
     this.exibirLista();
 
     adicionandoCarros: while (continuarAdicao) {
-      const carroParaAdicionar = this.#receberInput(
+      const carroParaAdicionar = this.receberInput(
         "\nInsira o nome do carro ou deixe em branco para sair." +
           "\n====================================================" +
           "\n>",
@@ -423,6 +438,13 @@ Comandos:
   /**
    * Inicia a interação com o usuário.
    *
+   * ```ts ignore
+   * import { LocadoraDeCarros } from "./LocadoraDeCarros.js";
+   * const minhaLocadora = new LocadoraDeCarros(); // Instanciando nova locadora.
+   *
+   * minhaLocadora.iniciarAdicaoDeCarros(); // Iniciando a adição de carros.
+   * ```
+   *
    * @see {@linkcode adicionarCarro}
    * @see {@linkcode #executarLoopDeAdicao}
    *
@@ -439,7 +461,7 @@ Comandos:
     );
 
     /** @type {string?} */
-    const nomeCarroInicial = this.#receberInput(
+    const nomeCarroInicial = this.receberInput(
       "Insira o nome do carro ou deixe em branco para sair.\n\n>",
     );
 
