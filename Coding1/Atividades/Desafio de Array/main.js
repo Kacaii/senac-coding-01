@@ -1,3 +1,4 @@
+import { green } from "@std/fmt/colors";
 import { parseArgs } from "@std/cli";
 import { Spinner } from "@std/cli/unstable-spinner";
 import { LocadoraDeCarros } from "./controllers/LocadoraDeCarros.js";
@@ -5,7 +6,7 @@ import { LocadoraDeCarros } from "./controllers/LocadoraDeCarros.js";
 const minhaLocadora = new LocadoraDeCarros(); // Instanciando nova locadora.
 const args = parseArgs(Deno.args, { alias: { help: "h", data: "d" } });
 const spinner = new Spinner({
-  message: "Carregando lista de carros...",
+  message: `Carregando lista... `,
   color: "yellow",
 });
 
@@ -22,6 +23,9 @@ if (args.help) {
 // }
 
 await minhaLocadora.carregarListaJSON(args.data);
+console.log(
+  `Lista carros carregada com sucesso! ${green(args.data)}\nCarregando um total de ${green(minhaLocadora.listaParaInteragir.length.toString())} carros..\n`,
+);
 spinner.start(); // Apenas por questões de estética.
 
 setTimeout(() => {
@@ -33,4 +37,4 @@ setTimeout(() => {
 
   console.log("\n%c -- == Script finalizado! == --\n", "color:yellow;");
   Deno.exit();
-}, 1000);
+}, 2500);
