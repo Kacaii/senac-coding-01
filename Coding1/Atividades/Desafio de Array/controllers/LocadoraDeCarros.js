@@ -175,7 +175,7 @@ Comandos:
     try {
       // Caso seja igual a `true`.
       // Geralmente isso ocorre quando o usuário passou --data ou -d mas esqueceu de passar o caminho.
-      if (typeof lista === "boolean" && lista === true) {
+      if (!lista || (typeof lista === "boolean" && lista === true)) {
         throw new Deno.errors.InvalidData(
           `Lembre de passar o caminho para o arquivo de dados.  \n`,
         );
@@ -197,7 +197,7 @@ Comandos:
 
       const data = await Deno.readTextFile(lista); // Leitura do arquivo.
 
-      if (!data || data.length === 0) {
+      if (data.length === 0) {
         // Caso o arquivo seja lido mas esteja vazio.
         throw new Deno.errors.InvalidData(
           `Arquivo de dados vazio: ${lista}.  \n`,
