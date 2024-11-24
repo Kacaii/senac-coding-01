@@ -24,7 +24,7 @@ if (args.help) {
 
 await minhaLocadora.carregarListaJSON(args.data);
 console.log(
-  `Lista de carros encontrada! ${green(args.data)}\nImportanto um total de ${green(minhaLocadora.listaParaInteragir.length.toString())} carros.\n`,
+  `Carregado com sucesso! ${green(args.data)}\nForam encontrados um total de ${green(minhaLocadora.listaParaInteragir.length.toString())} carros.\n`,
 );
 spinner.start(); // Apenas por questões de estética.
 
