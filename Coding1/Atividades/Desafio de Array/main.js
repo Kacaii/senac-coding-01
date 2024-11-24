@@ -6,7 +6,7 @@ import { LocadoraDeCarros } from "./controllers/LocadoraDeCarros.js";
 const minhaLocadora = new LocadoraDeCarros(); // Instanciando nova locadora.
 const args = parseArgs(Deno.args, { alias: { help: "h", data: "d" } });
 const spinner = new Spinner({
-  message: `Carregando lista... `,
+  message: `Importanto lista... `,
   color: "yellow",
 });
 
