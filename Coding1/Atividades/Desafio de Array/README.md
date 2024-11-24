@@ -19,9 +19,16 @@
 - Adicionar ou remover carros da tabela é **opcional**.
 - O script deve ser executado **diretamente** no terminal.
 - É necessário passar o _caminho_ para o arquivo de dados como argumento.
+- Algums arquivos de dados estão disponíveis na pasta `api`.
 
 ```bash
-./Desafio_de_Array --data <caminho para o arquivo de dados>
+./Desafio_de_Array_Linux --data <caminho para o arquivo de dados>
+```
+
+ou para Windows:
+
+```ps1
+.\Desafio_de_Array_Windows.exe --data <caminho para o arquivo de dados>
 ```
 
 Caso queira verificar os **testes**, execute o comando abaixo:
@@ -39,7 +46,11 @@ Atividade: Desafio de Array
 
 Como utilizar:
 
-./Desafio_de_Array --data <caminho para o arquivo de dados>
+./Desafio_de_Array_Linux --data <caminho para o arquivo de dados>
+
+ou
+
+.\Desafio_de_Array_Windows.exe --data <caminho para o arquivo de dados>
 
 Comandos:
 

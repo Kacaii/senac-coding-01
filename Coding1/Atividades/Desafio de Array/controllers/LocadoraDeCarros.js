@@ -87,7 +87,11 @@ Atividade: Desafio de Array
 
 Como utilizar:
 
-./Desafio_de_Array --data <caminho para o arquivo de dados>
+./Desafio_de_Array_Linux --data <caminho para o arquivo de dados>
+
+ou
+
+.\\Desafio_de_Array_Windows.exe --data <caminho para o arquivo de dados>
 
 Comandos:
 
