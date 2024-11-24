@@ -214,12 +214,12 @@ Comandos:
         console.error(
           `Não foi possível encontrar o arquivo de dados: ${lista}.  \n`,
         );
-      } else if (err instanceof Deno.errors.PermissionDenied) {
+      } else if (err instanceof Deno.errors.NotCapable) {
         // Caso o arquivo não seja acessível.
         this.limparLista();
         this.help();
         console.error(
-          `Permissão negada ao ler o arquivo de dados: ${lista}.  \n`,
+          `Permissão negada ao ler o arquivo de dados: ${lista}.  \nPermissão necessária: --allow-read \n`,
         );
       } else if (
         err instanceof Deno.errors.InvalidData ||
