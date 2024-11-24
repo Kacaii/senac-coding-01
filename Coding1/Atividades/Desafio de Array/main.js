@@ -7,7 +7,7 @@ const minhaLocadora = new LocadoraDeCarros(); // Instanciando nova locadora.
 const args = parseArgs(Deno.args, { alias: { help: "h", data: "d" } });
 const spinner = new Spinner({
   message: `Importanto lista... `,
-  color: "yellow",
+  color: "green",
 });
 
 console.clear(); // Limpando a tela.
