@@ -3,7 +3,7 @@
  * e listar carros, além de interagir com o usuário por meio do console.
  *
  * A lista é iniciada vazia. Para adicionar itens,
- * utilize o método {@linkcode carregarLista} antes de iniciar a interação.
+ * utilize o método {@linkcode carregarListaJSON} antes de iniciar a interação.
  *
  * @example Exemplo de uso:
  * ```ts ignore
@@ -13,7 +13,7 @@
  *
  * // Importando o arquivo de dados.
  *
- * await minhaLocadora.carregarLista("./api/carros_3.json"); // Importando o arquivo de dados.
+ * await minhaLocadora.carregarListaJSON("./api/carros_3.json"); // Importando o arquivo de dados.
  * assertEquals(minhaLocadora.listaParaInteragir, ["Carro 1", "Carro 2", "Carro 3"]); // Verificando a lista de carros.
  * assertEquals(minhaLocadora.exibirQuantidade(), "Temos um total de 3 carros disponíveis!"); // Exibindo a quantidade de carros na lista.
  *
@@ -38,7 +38,7 @@ export class LocadoraDeCarros {
 
   /**
    * Lista de carros para interação.
-   * Adicione items com {@linkcode carregarLista} antes de começar a interação.
+   * Adicione items com {@linkcode carregarListaJSON} antes de começar a interação.
    *
    * @type {string[]} - Inicia vazia.
    */
@@ -55,7 +55,7 @@ export class LocadoraDeCarros {
    * import { LocadoraDeCarros } from "./LocadoraDeCarros.js";
    * const minhaLocadora = new LocadoraDeCarros(); // Instanciando nova locadora.
    *
-   * await minhaLocadora.carregarLista("./api/carros_3.json"); // Importando o arquivo de dados.
+   * await minhaLocadora.carregarListaJSON("./api/carros_3.json"); // Importando o arquivo de dados.
    * minhaLocadora.limparLista();
    * assertEquals(minhaLocadora.listaParaInteragir, [])
    * ```
@@ -134,7 +134,7 @@ Comandos:
    * import { LocadoraDeCarros } from "./LocadoraDeCarros.js";
    * const minhaLocadora = new LocadoraDeCarros(); // Instanciando nova locadora.
    *
-   * await minhaLocadora.carregarLista("./api/carros_3.json"); // Importando o arquivo de dados.
+   * await minhaLocadora.carregarListaJSON("./api/carros_3.json"); // Importando o arquivo de dados.
    * assertEquals(minhaLocadora.exibirQuantidade(), "Temos um total de 3 carros disponíveis!"); // Exibindo a quantidade de carros na lista.
    * ```
    *
@@ -158,7 +158,7 @@ Comandos:
    * import { LocadoraDeCarros } from "./LocadoraDeCarros.js";
    * const minhaLocadora = new LocadoraDeCarros(); // Instanciando nova locadora.
    *
-   * await minhaLocadora.carregarLista("./api/carros_3.json"); // Importando o arquivo de dados.
+   * await minhaLocadora.carregarListaJSON("./api/carros_3.json"); // Importando o arquivo de dados.
    * assertEquals(minhaLocadora.listaParaInteragir, ["Carro 1", "Carro 2", "Carro 3"]); // Verificando a lista de carros.
    * ```
    *
@@ -171,7 +171,7 @@ Comandos:
    * @throws {Deno.errors.IsADirectory} Caso o arquivo seja um diretório.
    * @throws {SyntaxError} Caso o arquivo não seja um arquivo JSON válido.
    */
-  async carregarLista(lista) {
+  async carregarListaJSON(lista) {
     try {
       // Caso seja igual a `true`.
       // Geralmente isso ocorre quando o usuário passou --data ou -d mas esqueceu de passar o caminho.

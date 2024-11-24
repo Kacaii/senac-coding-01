@@ -29,13 +29,13 @@ Deno.test("Validando o método limparLista()", async (t) => {
   });
 });
 
-Deno.test("Validando metodo carregarLista()", async (t) => {
+Deno.test("Validando metodo carregarListaJSON()", async (t) => {
   await t.step("Importando arquivo JSON válido", async () => {
     // Limpando lista para interagir
     minhaLocadora.limparLista();
 
     // Importanto lista
-    await minhaLocadora.carregarLista("./api/carros_1.json");
+    await minhaLocadora.carregarListaJSON("./api/carros_1.json");
     assertEquals(
       minhaLocadora.listaParaInteragir,
       [
@@ -75,7 +75,7 @@ Deno.test("Validando metodo carregarLista()", async (t) => {
 
     assertRejects(
       async () => {
-        await minhaLocadora.carregarLista("./README.md");
+        await minhaLocadora.carregarListaJSON("./README.md");
       },
       SyntaxError,
       "",
@@ -91,7 +91,9 @@ Deno.test("Validando metodo carregarLista()", async (t) => {
 
       assertRejects(
         async () => {
-          await minhaLocadora.carregarLista("./api/carros_4_The_movie.json");
+          await minhaLocadora.carregarListaJSON(
+            "./api/carros_4_The_movie.json",
+          );
         },
         Deno.errors.NotFound,
         "",

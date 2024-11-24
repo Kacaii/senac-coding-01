@@ -21,7 +21,7 @@ if (args.help) {
 //   throw new Deno.errors.InvalidData("Nenhum arquivo de dados fornecido.");
 // }
 
-await minhaLocadora.carregarLista(args.data);
+await minhaLocadora.carregarListaJSON(args.data);
 spinner.start(); // Apenas por questões de estética.
 
 setTimeout(() => {
