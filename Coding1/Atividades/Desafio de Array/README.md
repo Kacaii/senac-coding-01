@@ -22,7 +22,7 @@
 
 ```bash
 # /Senac-Coding/Coding1/Atividades/Desafio de Array/
-deno run --allow-read main.js --data <caminho para o arquivo de dados>
+Desafio_De_Array --data <caminho para o arquivo de dados>
 ```
 
 Caso queira verificar os **testes**, execute o comando abaixo:
@@ -43,7 +43,7 @@ Atividade: Desafio de Array
 
 Como utilizar:
 
-deno run --allow-read main.js --data <caminho para o arquivo de dados>
+./Desafio_de_Array --data <caminho para o arquivo de dados>
 
 Comandos:
 

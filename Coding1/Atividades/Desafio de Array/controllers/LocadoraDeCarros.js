@@ -87,7 +87,7 @@ Atividade: Desafio de Array
 
 Como utilizar:
 
-deno run --allow-read arrayDeCarros.js --data <caminho para o arquivo de dados>
+./Desafio_de_Array --data <caminho para o arquivo de dados>
 
 Comandos:
 
