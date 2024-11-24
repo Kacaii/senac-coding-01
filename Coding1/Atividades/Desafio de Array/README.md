@@ -4,6 +4,9 @@
 
 # Desafio de Array 2024-10-23
 
+![Static Badge](https://img.shields.io/badge/@std-%23083344?logo=JSR&logoColor=%23083344&logoSize=auto&labelColor=%23f7df1e)
+![Static Badge](https://img.shields.io/badge/Deno-black?logo=Deno&logoColor=white&logoSize=auto)
+
 ## Enunciado: Um sistema de aluguel de carros
 
 > Crie um `array` de carros. Em seguida, realize as seguintes operações:
