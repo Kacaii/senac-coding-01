@@ -21,22 +21,18 @@
 - É necessário passar o _caminho_ para o arquivo de dados como argumento.
 
 ```bash
-# /Senac-Coding/Coding1/Atividades/Desafio de Array/
 ./Desafio_de_Array --data <caminho para o arquivo de dados>
 ```
 
 Caso queira verificar os **testes**, execute o comando abaixo:
 
-```fish
-# /Senac-Coding/Coding1/Atividades/Desafio de Array/
+```bash
 deno test --allow-read
 ```
 
 Use a flag `--help` ou `-h` para ver a lista de comandos disponíveis.
 
 ```help
-# /Senac-Coding/Coding1/Atividades/Desafio de Array/
-
 ===========================
 Atividade: Desafio de Array
 ===========================
