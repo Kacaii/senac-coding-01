@@ -92,7 +92,7 @@ deno run --allow-read arrayDeCarros.js --data <caminho para o arquivo de dados>
 Comandos:
 
 --help, -h: Mostra este menu de ajuda.
---data, -d: Caminho para o arquivo de dados.
+--data, -d: Caminho para o arquivo de dados. Deve ser um arquivo JSON válido.
   `);
   }
 
@@ -164,29 +164,60 @@ Comandos:
    *
    * @param {string | URL} lista - Arquivo JSON contendo a lista de carros.
    * @returns {Promise<void>} Não retorna nada.
+   *
    * @throws {Deno.errors.NotFound} Caso o arquivo não seja encontrado.
    * @throws {Deno.errors.PermissionDenied} Caso o arquivo não seja acessível.
    * @throws {Deno.errors.InvalidData} Caso o arquivo não seja válido.
-   * @throws {SyntaxError} Caso o arquivo não seja válido.
+   * @throws {Deno.errors.IsADirectory} Caso o arquivo seja um diretório.
+   * @throws {SyntaxError} Caso o arquivo não seja um arquivo JSON válido.
    */
   async carregarLista(lista) {
     try {
-      const data = await Deno.readTextFile(lista);
+      // Caso seja igual a `true`.
+      // Geralmente isso ocorre quando o usuário passou --data ou -d mas esqueceu de passar o caminho.
+      if (typeof lista === "boolean" && lista === true) {
+        throw new Deno.errors.InvalidData(
+          `Lembre de passar o caminho para o arquivo de dados.  \n`,
+        );
+      }
 
-      this.listaParaInteragir = JSON.parse(data);
+      // Caso não seja uma string.
+      if (typeof lista !== "string") {
+        throw new Deno.errors.InvalidData(
+          `Arquivo de dados inválido: ${lista}.  \n`,
+        );
+      }
+
+      // Caso seja passado um diretório.
+      if (lista.at(-1) === "/") {
+        throw new Deno.errors.IsADirectory(
+          `O aquivo de dados não pode ser um diretório.  \n`,
+        );
+      }
+
+      const data = await Deno.readTextFile(lista); // Leitura do arquivo.
+
+      if (!data || data.length === 0) {
+        // Caso o arquivo seja lido mas esteja vazio.
+        throw new Deno.errors.InvalidData(
+          `Arquivo de dados vazio: ${lista}.  \n`,
+        );
+      }
+
+      this.listaParaInteragir = JSON.parse(data); // Transformando o arquivo em um objeto.
     } catch (err) {
       // Tratando erros específicos.
       if (err instanceof Deno.errors.NotFound) {
         // Caso arquivo não seja encontrado.
-        this.limparLista(); // Limpando a lista em caso de erro.
-        this.help(); // Mostrando a mensagem de ajuda.
+        this.limparLista();
+        this.help();
         console.error(
           `Não foi possível encontrar o arquivo de dados: ${lista}.  \n`,
         );
       } else if (err instanceof Deno.errors.PermissionDenied) {
         // Caso o arquivo não seja acessível.
-        this.limparLista(); // Limpando a lista em caso de erro.
-        this.help(); // Mostrando a mensagem de ajuda.
+        this.limparLista();
+        this.help();
         console.error(
           `Permissão negada ao ler o arquivo de dados: ${lista}.  \n`,
         );
@@ -195,13 +226,20 @@ Comandos:
         err instanceof SyntaxError
       ) {
         // Caso o arquivo não seja válido.
-        this.limparLista(); // Limpando a lista em caso de erro.
-        this.help(); // Mostrando a mensagem de ajuda.
+        this.limparLista();
+        this.help();
         console.error(`Arquivo de dados inválido: ${lista}.  \n`);
+      } else if (err instanceof Deno.errors.IsADirectory) {
+        // Caso o arquivo seja um diretório.
+        this.limparLista();
+        this.help();
+        console.error(
+          `O arquivo de dados não pode ser um diretório: ${lista}.  \n`,
+        );
       } else {
         // Caso o erro não seja específico.
-        this.limparLista(); // Limpando a lista em caso de erro.
-        this.help(); // Mostrando a mensagem de ajuda.
+        this.limparLista();
+        this.help();
         console.error(`Erro ao ler o arquivo de dados: ${lista}.  \n`);
       }
       throw err;

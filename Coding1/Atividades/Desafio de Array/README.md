@@ -18,11 +18,11 @@
 
 - Adicionar ou remover carros da tabela é **opcional**.
 - O script deve ser executado **diretamente** no terminal.
-- É necessário passar o caminho para o arquivo de dados como argumento.
+- É necessário passar o _caminho_ para o arquivo de dados como argumento.
 
 ```bash
 # /Senac-Coding/Coding1/Atividades/Desafio de Array/
-deno run --allow-read arrayDeCarros.js --data <caminho para o arquivo de dados>
+deno run --allow-read main.js --data <caminho para o arquivo de dados>
 ```
 
 Caso queira verificar os **testes**, execute o comando abaixo:
@@ -43,7 +43,7 @@ Atividade: Desafio de Array
 
 Como utilizar:
 
-deno run --allow-read arrayDeCarros.js --data <caminho para o arquivo de dados>
+deno run --allow-read main.js --data <caminho para o arquivo de dados>
 
 Comandos:
 
