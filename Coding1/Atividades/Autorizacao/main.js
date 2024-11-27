@@ -31,6 +31,18 @@ function atendimento(usr) {
   }
 }
 
+/**
+ * Vi alguns devs fazendo algo parecido em Python. 
+ *
+ * ```javascript
+ * if (import.meta.main) {
+ *   console.clear();
+ *   main();
+ * }
+ * ```
+ *
+ * @returns {void} Nao retorna nada, apenas inicia o script.
+ */
 function main() {
   const atendimentoUsuario = prompt(`
 ██╗     ██╗██╗   ██╗██████╗  █████╗ ██████╗ ██╗ █████╗ 
