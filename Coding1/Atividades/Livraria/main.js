@@ -1,12 +1,9 @@
-// TODO: Adicionar pontuacao e acentos
+/** @typedef {"Cliente" | "Funcionario"} Usuario */
 
-// /** @typedef {"Cliente" | "Funcionário"} Usuario */
+const TOCAR_SINO = "\u0007";
 
 /**
  * Realiza o atendimento do usuário.
- *
- * @param {import("./types/types.d.ts").Usuario} usr - O tipo de usuário, deve ser "Cliente" ou "Funcionário".
- * @returns {void} Não retorna nada, apenas realiza o atendimento.
  *
  * @example Realizando o atendimento
  * ```ts
@@ -16,14 +13,17 @@
  * atendimento("Funcionário");
  * // Realiza o atendimento do usuário como funcionário.
  * ```
+ *
+ * @param {Usuario} usr - O tipo de usuário, deve ser "Cliente" ou "Funcionário".
+ * @returns {void} Não retorna nada, apenas realiza o atendimento.
  */
-function atendimento(usr) {
+function realizarAtendimento(usr) {
   switch (usr) {
     case "Cliente":
-      console.log("\u0007 Olá, Cliente!");
+      console.log(TOCAR_SINO + "Olá, Cliente!");
       break;
-    case "Funcionário":
-      console.log("\u0007 Olá, Funcionário!");
+    case "Funcionario":
+      console.log(TOCAR_SINO + "Olá, Funcionário!");
       break;
     default:
       console.error("Usuário inválido:" + usr);
@@ -41,7 +41,7 @@ function atendimento(usr) {
  * }
  * ```
  *
- * @returns {void} Não retorna nada, apenas inicia o script.
+ * @returns {void} Não retorna nada, apenas inicia o script principal.
  */
 function main() {
   const atendimentoUsuario = prompt(`
@@ -54,7 +54,7 @@ function main() {
 
 =======================================================
            Bem vindo(a) à Livraria Livarinha.
-           Voce é um cliente um funcionario?
+           Voce é um cliente um funcionário?
 
            1 - Funcionário.
            2 - Cliente.
@@ -65,11 +65,11 @@ function main() {
   switch (atendimentoUsuario) {
     case "1":
       console.clear();
-      atendimento("Funcionário");
+      realizarAtendimento("Funcionario");
       break;
     case "2":
       console.clear();
-      atendimento("Cliente");
+      realizarAtendimento("Cliente");
       break;
     case "3":
       console.clear();
