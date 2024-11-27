@@ -1,18 +1,16 @@
 import { green, red } from "@std/fmt/colors";
 
 type Usuario = "Cliente" | "Funcionario";
+type Livros = string[];
 type Resultado<T> = { ok: true; value: T } | { ok: false; error: string };
 
 const TOCAR_SINO = "\u0007";
 
-/**
- * Essa função lê o arquivo `./api/livros.json` e retorna uma lista de livros.
- *
- */
-async function importarLivros(): Promise<Resultado<string[]>> {
+/** Essa função lê o arquivo `./api/livros.json` e retorna uma lista de livros. */
+async function importarLivros(): Promise<Resultado<Livros>> {
   try {
-    const data = await Deno.readTextFile("./api/livros.json");
-    const livros = JSON.parse(data);
+    const data: string = await Deno.readTextFile("./api/livros.json");
+    const livros: Livros = JSON.parse(data);
     return { ok: true, value: livros };
   } catch (error) {
     // Tratamento de erro
@@ -42,22 +40,22 @@ async function importarLivros(): Promise<Resultado<string[]>> {
  * @returns Não retorna nada, apenas realiza o atendimento.
  */
 async function realizarAtendimento(usr: Usuario): Promise<void> {
-  const resultado: Resultado<string[]> = await importarLivros();
+  const resultado: Resultado<Livros> = await importarLivros();
 
   switch (usr) {
     case "Cliente": {
       console.clear();
       console.log(TOCAR_SINO + "Olá, Cliente!" + "\n=============\n"); // 󰂞
 
-      let livros = [];
-      const carrinhoDeCompras: string[] = [];
+      let livros: Livros = [];
+      const carrinhoDeCompras: Livros = [];
       await exibirListaDeLivros();
 
       // await exibirListaDeLivros();
 
       if (resultado.ok) {
         // Recebendo o ID do livro que o usuário deseja comprar.
-        const livroSelecionado =
+        const livroSelecionado: string | null =
           prompt("\nInsira o ID do livro que você deseja comprar:") || null;
 
         if (livroSelecionado) {
@@ -68,7 +66,7 @@ async function realizarAtendimento(usr: Usuario): Promise<void> {
             parseInt(livroSelecionado) < 0 ||
             parseInt(livroSelecionado) > livros.length
           ) {
-            console.error(red("Livro inválido ou não encontrado"));
+            console.error(red("\nLivro inválido ou não encontrado ❌"));
           } else {
             // Tratamento de errors
             try {
@@ -80,7 +78,7 @@ async function realizarAtendimento(usr: Usuario): Promise<void> {
               carrinhoDeCompras.push(livroRemovido);
             } catch (erro) {
               if (erro instanceof Error) {
-                console.error(erro);
+                console.error(red(erro.message));
                 prompt("\nPressione ENTER para continuar..."); // Aguardando a pressão de ENTER.
               }
             }
@@ -107,12 +105,13 @@ async function realizarAtendimento(usr: Usuario): Promise<void> {
       console.clear();
       console.log(TOCAR_SINO + "Olá, Funcionário!" + "\n=================\n"); // 󰂞
 
-      let livros: string[] = [];
+      let livros: Livros = [];
       await exibirListaDeLivros(); // Exibindo a lista de livros.
 
       if (resultado.ok) {
         // Recebendo o nome do livro e a posição do livro.
-        const livroNovo = prompt("\nInsira um novo livro:") || null;
+        const livroNovo: string | null =
+          prompt("\nInsira um novo livro:") || null;
 
         if (livroNovo) {
           const posicao: number = parseInt(
@@ -141,12 +140,12 @@ async function realizarAtendimento(usr: Usuario): Promise<void> {
   }
 }
 
-async function exibirListaDeLivros(lista?: string[]): Promise<void> {
-  const resultado: Resultado<string[]> = await importarLivros();
+async function exibirListaDeLivros(lista?: Livros): Promise<void> {
+  const resultado: Resultado<Livros> = await importarLivros();
 
   // Verifica se o arquivo foi importado com sucesso.
   if (resultado.ok) {
-    const livros = lista || resultado.value;
+    const livros: Livros = lista || resultado.value;
     console.log("Livros disponíveis:\n");
 
     // Imprime os livros na tela.
@@ -178,7 +177,7 @@ async function exibirListaDeLivros(lista?: string[]): Promise<void> {
  * =======================================================
  * ```
  */
-function main() {
+function main(): void {
   console.clear();
   const atendimentoUsuario = prompt(`
 ██╗     ██╗██╗   ██╗██████╗  █████╗ ██████╗ ██╗ █████╗ 
