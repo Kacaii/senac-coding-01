@@ -1,4 +1,4 @@
-import { green } from "@std/fmt/colors";
+import { green, red } from "@std/fmt/colors";
 
 type Usuario = "Cliente" | "Funcionario";
 type Resultado<T> = { ok: true; value: T } | { ok: false; error: string };
@@ -88,19 +88,26 @@ async function realizarAtendimento(usr: Usuario): Promise<void> {
 
       if (resultado.ok) {
         // Recebendo o nome do livro e a posição do livro.
-        const livroNovo: string = prompt("\nInsira um novo livro:") || "";
-        const posicao: number = parseInt(
-          prompt("Insira a posição do livro:") || "0",
-        );
+        const livroNovo = prompt("\nInsira um novo livro:") || null;
 
-        livros = [...resultado.value]; // Convertendo o resultado em um array.
-        livros.splice(posicao, 0, livroNovo); // Adicionando o novo livro na posição desejada.
-        console.clear();
+        if (livroNovo) {
+          const posicao: number = parseInt(
+            prompt("Insira a posição do livro:") || "0", // Insere na primeira posição por padrão
+          );
 
-        console.log(TOCAR_SINO + "Olá, Funcionário!" + "\n=================\n"); // 󰂞
-        await exibirListaDeLivros(livros);
+          livros = [...resultado.value]; // Convertendo o resultado em um array.
+          livros.splice(posicao, 0, livroNovo); // Adicionando o novo livro na posição desejada.
 
-        prompt("\nPressione ENTER para continuar..."); // Aguardando a pressão de ENTER.
+          console.clear();
+
+          console.log(
+            TOCAR_SINO + "Olá, Funcionário!" + "\n=================\n", // 󰂞
+          );
+
+          await exibirListaDeLivros(livros);
+          prompt("\nPressione ENTER para continuar..."); // Aguardando a pressão de ENTER.
+        }
+
         main(); // Recomeçando o programa.
       } else {
         console.error(resultado.error);
