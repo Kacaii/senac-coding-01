@@ -23,6 +23,7 @@ function atendimento(usr) {
       console.log("\u0007 Olá, Cliente!");
       break;
     case "Funcionário":
+      console.log("\u0007 Olá, Funcionário!");
       break;
     default:
       console.error("Usuário inválido:" + usr);
@@ -40,12 +41,14 @@ function main() {
 ╚══════╝╚═╝  ╚═══╝  ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝╚═╝  ╚═╝
 
 =======================================================
-            Bem vindo(a) à Livraria Leitora.
+            Bem vindo(a) à Livraria Livarinha.
             Voce eh um cliente um funcionario?
 
             1 - Funcionário.
             2 - Cliente.
             3 - Sair.
+
+                                     Pedro Ayres, 2024
 =======================================================
 `);
 

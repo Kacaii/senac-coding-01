@@ -7,7 +7,7 @@
 
 - Codigo original:
 
-```typescript
+```javascript
 //Começamos declarando o array
 
 const livros = [
