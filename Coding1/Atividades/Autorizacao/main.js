@@ -20,6 +20,7 @@
 function atendimento(usr) {
   switch (usr) {
     case "Cliente":
+      console.log("\u0007 Olá, Cliente!");
       break;
     case "Funcionário":
       break;
@@ -27,4 +28,44 @@ function atendimento(usr) {
       console.error("Usuário inválido:" + usr);
       Deno.exit(1);
   }
+}
+
+function main() {
+  const atendimentoUsuario = prompt(`
+██╗     ██╗██╗   ██╗██████╗  █████╗ ██████╗ ██╗ █████╗ 
+██║     ██║██║   ██║██╔══██╗██╔══██╗██╔══██╗██║██╔══██╗
+██║     ██║██║   ██║██████╔╝███████║██████╔╝██║███████║
+██║     ██║╚██╗ ██╔╝██╔══██╗██╔══██║██╔══██╗██║██╔══██║
+███████╗██║ ╚████╔╝ ██║  ██║██║  ██║██║  ██║██║██║  ██║
+╚══════╝╚═╝  ╚═══╝  ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝╚═╝  ╚═╝
+
+=======================================================
+            Bem vindo(a) à Livraria Leitora.
+            Voce eh um cliente um funcionario?
+
+            1 - Funcionário.
+            2 - Cliente.
+            3 - Sair.
+=======================================================
+`);
+
+  switch (atendimentoUsuario) {
+    case "1":
+      console.clear();
+      atendimento("Funcionário");
+      break;
+    case "2":
+      console.clear();
+      atendimento("Cliente");
+      break;
+    case "3":
+      console.clear();
+      Deno.exit(0);
+  }
+}
+
+// Executa o programa principal.
+if (import.meta.main) {
+  console.clear();
+  main();
 }
