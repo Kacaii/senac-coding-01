@@ -1,3 +1,5 @@
+import { green } from "@std/fmt/colors";
+
 type Usuario = "Cliente" | "Funcionario";
 type Resultado<T> = { ok: true; value: T } | { ok: false; error: string };
 
@@ -56,16 +58,19 @@ async function realizarAtendimento(usr: Usuario): Promise<void> {
       if (resultado.ok) {
         // Recebendo o ID do livro que o usuário deseja comprar.
         const livroSelecionado =
-          prompt("\nInsira o ID do livro que você deseja comprar: ") || "";
+          prompt("\nInsira o ID do livro que você deseja comprar: ") || "0";
 
         livros = [...resultado.value];
 
         const [livroRemovido] = livros.splice(parseInt(livroSelecionado), 1);
         carrinhoDeCompras.push(livroRemovido);
         console.clear();
+        console.log(TOCAR_SINO + "Olá, Cliente!" + "\n=============\n"); // 󰂞
 
         await exibirListaDeLivros(livros);
-        console.log("\n" + "Carrinho de compras: " + carrinhoDeCompras);
+        console.log(
+          "\n" + "Carrinho de compras: " + green(carrinhoDeCompras[0]),
+        );
 
         prompt("\nPressione ENTER para continuar..."); // Aguardando a pressão de ENTER.
         main(); // Recomeçando o programa.
