@@ -58,7 +58,7 @@ async function realizarAtendimento(usr: Usuario): Promise<void> {
       if (resultado.ok) {
         // Recebendo o ID do livro que o usuário deseja comprar.
         const livroSelecionado =
-          prompt("\nInsira o ID do livro que você deseja comprar: ") || "0";
+          prompt("\nInsira o ID do livro que você deseja comprar:") || "0";
 
         livros = [...resultado.value];
 
@@ -88,9 +88,9 @@ async function realizarAtendimento(usr: Usuario): Promise<void> {
 
       if (resultado.ok) {
         // Recebendo o nome do livro e a posição do livro.
-        const livroNovo: string = prompt("\nInsira um novo livro: ") || "";
+        const livroNovo: string = prompt("\nInsira um novo livro:") || "";
         const posicao: number = parseInt(
-          prompt("Insira a posição do livro: ") || "0",
+          prompt("Insira a posição do livro:") || "0",
         );
 
         livros = [...resultado.value]; // Convertendo o resultado em um array.
