@@ -67,7 +67,7 @@ function main() {
   }
 }
 
-// Executa o programa principal.
+// Funciona apenas se o script for executado diretamente.
 if (import.meta.main) {
   console.clear();
   main();
