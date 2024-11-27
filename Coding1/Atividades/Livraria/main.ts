@@ -170,7 +170,7 @@ async function exibirListaDeLivros(lista?: string[]): Promise<void> {
  *
  * =======================================================
  *           Bem vindo(a) à Livraria Livarinha.
- *          Voce é um cliente um funcionário?
+ *          Voce é um cliente ou um funcionário?
  *
  *           1 - Funcionário.
  *          2 - Cliente.
@@ -190,7 +190,7 @@ function main() {
 
 =======================================================
            Bem vindo(a) à Livraria Livarinha.
-           Voce é um cliente um funcionário?
+           Voce é um cliente ou um funcionário?
 
            1 - Funcionário.
            2 - Cliente.
