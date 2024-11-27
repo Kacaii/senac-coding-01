@@ -160,13 +160,22 @@ async function exibirListaDeLivros(lista?: string[]): Promise<void> {
 }
 
 /**
- * Vi alguns desenvolvedores fazendo algo parecido em Python. 
+ * ```plaintext
+ * ██╗     ██╗██╗   ██╗██████╗  █████╗ ██████╗ ██╗ █████╗
+ * ██║     ██║██║   ██║██╔══██╗██╔══██╗██╔══██╗██║██╔══██╗
+ * ██║     ██║██║   ██║██████╔╝███████║██████╔╝██║███████║
+ * ██║     ██║╚██╗ ██╔╝██╔══██╗██╔══██║██╔══██╗██║██╔══██║
+ * ███████╗██║ ╚████╔╝ ██║  ██║██║  ██║██║  ██║██║██║  ██║
+ * ╚══════╝╚═╝  ╚═══╝  ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝╚═╝  ╚═╝
  *
- * ```javascript
- * if (import.meta.main) {
- *   console.clear();
- *   main();
- * }
+ * =======================================================
+ *           Bem vindo(a) à Livraria Livarinha.
+ *          Voce é um cliente um funcionário?
+ *
+ *           1 - Funcionário.
+ *          2 - Cliente.
+ *         3 - Sair                ©️ Pedro Ayres, 2024
+ * =======================================================
  * ```
  */
 function main() {
