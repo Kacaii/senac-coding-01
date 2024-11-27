@@ -3,7 +3,7 @@
 <!-- TODO: Adicionar pontuacao e assentos -->
 
 > Como exercicio de casa, elabore um algoritmo que reproduza acoes do seu projeto
-> integrador com pelo menos 3 funcoes
+> integrador com pelo menos 3 funcoes.
 
 - Codigo original:
 
