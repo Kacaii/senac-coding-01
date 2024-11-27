@@ -58,21 +58,45 @@ async function realizarAtendimento(usr: Usuario): Promise<void> {
       if (resultado.ok) {
         // Recebendo o ID do livro que o usuário deseja comprar.
         const livroSelecionado =
-          prompt("\nInsira o ID do livro que você deseja comprar:") || "0";
+          prompt("\nInsira o ID do livro que você deseja comprar:") || null;
 
-        livros = [...resultado.value];
+        if (livroSelecionado) {
+          livros = [...resultado.value];
 
-        const [livroRemovido] = livros.splice(parseInt(livroSelecionado), 1);
-        carrinhoDeCompras.push(livroRemovido);
-        console.clear();
-        console.log(TOCAR_SINO + "Olá, Cliente!" + "\n=============\n"); // 󰂞
+          if (
+            isNaN(parseInt(livroSelecionado)) ||
+            parseInt(livroSelecionado) < 0 ||
+            parseInt(livroSelecionado) > livros.length
+          ) {
+            console.error(red("Livro inválido ou não encontrado"));
+          } else {
+            // Tratamento de errors
+            try {
+              const [livroRemovido] = livros.splice(
+                parseInt(livroSelecionado),
+                1,
+              );
 
-        await exibirListaDeLivros(livros);
-        console.log(
-          "\n" + "Carrinho de compras: " + green(carrinhoDeCompras[0]),
-        );
+              carrinhoDeCompras.push(livroRemovido);
+            } catch (erro) {
+              if (erro instanceof Error) {
+                console.error(erro);
+                prompt("\nPressione ENTER para continuar..."); // Aguardando a pressão de ENTER.
+              }
+            }
 
-        prompt("\nPressione ENTER para continuar..."); // Aguardando a pressão de ENTER.
+            console.clear();
+            console.log(TOCAR_SINO + "Olá, Cliente!" + "\n=============\n"); // 󰂞
+
+            await exibirListaDeLivros(livros);
+            console.log(
+              "\n" + "Carrinho de compras: " + green(carrinhoDeCompras[0]),
+            );
+          }
+
+          prompt("\nPressione ENTER para continuar..."); // Aguardando a pressão de ENTER.
+        }
+
         main(); // Recomeçando o programa.
       } else {
         console.error(resultado.error);
