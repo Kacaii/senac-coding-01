@@ -1,12 +1,12 @@
 // TODO: Adicionar pontuacao e acentos
 
-/** @typedef {"Cliente" | "Funcionário"} Usuario */
+// /** @typedef {"Cliente" | "Funcionário"} Usuario */
 
 /**
  * Realiza o atendimento do usuário.
  *
- * @param {Usuario} usr - O tipo de usuário, deve ser "Cliente" ou "Funcionário".
- * @returns {void} Nao retorna nada, apenas realiza o atendimento.
+ * @param {import("./types/types.d.ts").Usuario} usr - O tipo de usuário, deve ser "Cliente" ou "Funcionário".
+ * @returns {void} Não retorna nada, apenas realiza o atendimento.
  *
  * @example Realizando o atendimento
  * ```ts
@@ -41,7 +41,7 @@ function atendimento(usr) {
  * }
  * ```
  *
- * @returns {void} Nao retorna nada, apenas inicia o script.
+ * @returns {void} Não retorna nada, apenas inicia o script.
  */
 function main() {
   const atendimentoUsuario = prompt(`
@@ -53,14 +53,12 @@ function main() {
 ╚══════╝╚═╝  ╚═══╝  ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝╚═╝  ╚═╝
 
 =======================================================
-            Bem vindo(a) à Livraria Livarinha.
-            Voce eh um cliente um funcionario?
+           Bem vindo(a) à Livraria Livarinha.
+           Voce é um cliente um funcionario?
 
-            1 - Funcionário.
-            2 - Cliente.
-            3 - Sair.
-
-                                     Pedro Ayres, 2024
+           1 - Funcionário.
+           2 - Cliente.
+           3 - Sair                ©️ Pedro Ayres, 2024
 =======================================================
 `);
 
