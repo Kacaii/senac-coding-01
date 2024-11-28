@@ -1,8 +1,24 @@
 [
-  "Assim que Acaba",
-  "A Hipótese do Amor",
-  "A Seleção",
-  "Trono de Vidro",
-  "It, A Coisa",
-  "Manual de Assassinato para Boas Garotas "
+  {
+    "titulo": "Assim que Acaba",
+    "autor": "Colleen Hoover",
+    "categoria": "Romance"
+  },
+  {
+    "titulo": "A Hipótese do Amor",
+    "autor": "Ali Hazelwood",
+    "categoria": "Romance"
+  },
+  { "titulo": "A Seleção", "autor": "Kiera Cass", "categoria": "Distopia" },
+  {
+    "titulo": "Trono de Vidro",
+    "autor": "Sarah J. Maas",
+    "categoria": "Fantasia"
+  },
+  { "titulo": "It, A Coisa", "autor": "Stephen King", "categoria": "Terror" },
+  {
+    "titulo": "Manual de Assassinato para Boas Garotas",
+    "autor": "Holly Jackson",
+    "categoria": "Mistério"
+  }
 ]

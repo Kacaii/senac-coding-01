@@ -1,16 +1,16 @@
 import { green, red } from "@std/fmt/colors";
 
 type Usuario = "Cliente" | "Funcionario";
-type Livros = string[];
+type Livro = { titulo: string; autor: string; categoria: string };
 type Resultado<T> = { ok: true; value: T } | { ok: false; error: string };
 
 const TOCAR_SINO = "\u0007";
 
 /** Essa função lê o arquivo `./api/livros.json` e retorna uma lista de livros. */
-async function importarLivros(): Promise<Resultado<Livros>> {
+async function importarLivros(): Promise<Resultado<Livro[]>> {
   try {
     const data: string = await Deno.readTextFile("./api/livros.json");
-    const livros: Livros = JSON.parse(data);
+    const livros: Livro[] = JSON.parse(data);
     return { ok: true, value: livros };
   } catch (error) {
     // Tratamento de erro
@@ -40,15 +40,15 @@ async function importarLivros(): Promise<Resultado<Livros>> {
  * @returns Não retorna nada, apenas realiza o atendimento.
  */
 async function realizarAtendimento(usr: Usuario): Promise<void> {
-  const resultado: Resultado<Livros> = await importarLivros();
+  const resultado: Resultado<Livro[]> = await importarLivros();
 
   switch (usr) {
     case "Cliente": {
       console.clear();
       console.log(TOCAR_SINO + "Olá, Cliente!" + "\n=============\n"); // 󰂞
 
-      let livros: Livros = [];
-      const carrinhoDeCompras: Livros = [];
+      let livros: Livro[] = [];
+      const carrinhoDeCompras: Livro[] = [];
       await exibirListaDeLivros();
 
       // await exibirListaDeLivros();
@@ -88,7 +88,9 @@ async function realizarAtendimento(usr: Usuario): Promise<void> {
 
             await exibirListaDeLivros(livros);
             console.log(
-              "\n" + "Carrinho de compras: " + green(carrinhoDeCompras[0]),
+              "\n" +
+                "Carrinho de compras: " +
+                green(carrinhoDeCompras[0].titulo),
             );
           }
 
@@ -105,17 +107,23 @@ async function realizarAtendimento(usr: Usuario): Promise<void> {
       console.clear();
       console.log(TOCAR_SINO + "Olá, Funcionário!" + "\n=================\n"); // 󰂞
 
-      let livros: Livros = [];
+      let livros: Livro[] = [];
       await exibirListaDeLivros(); // Exibindo a lista de livros.
 
       if (resultado.ok) {
         // Recebendo o nome do livro e a posição do livro.
-        const livroNovo: string | null =
-          prompt("\nInsira um novo livro:") || null;
-
-        if (livroNovo) {
+        const livroNovo: Livro = {
+          titulo: prompt("\nInsira um novo livro:") || "",
+          autor: prompt("Insira o nome do autor:") || "",
+          categoria: prompt("Insira a categoria:") || "",
+        };
+        if (
+          livroNovo.autor != "" &&
+          livroNovo.titulo != "" &&
+          livroNovo.categoria != ""
+        ) {
           const posicao: number = parseInt(
-            prompt("Insira a posição do livro:") || "0", // Insere na primeira posição por padrão
+            prompt("\nInsira a posição do livro:") || "0", // Insere na primeira posição por padrão
           );
 
           livros = [...resultado.value]; // Convertendo o resultado em um array.
@@ -140,17 +148,19 @@ async function realizarAtendimento(usr: Usuario): Promise<void> {
   }
 }
 
-async function exibirListaDeLivros(lista?: Livros): Promise<void> {
-  const resultado: Resultado<Livros> = await importarLivros();
+async function exibirListaDeLivros(lista?: Livro[]): Promise<void> {
+  const resultado: Resultado<Livro[]> = await importarLivros();
 
   // Verifica se o arquivo foi importado com sucesso.
   if (resultado.ok) {
-    const livros: Livros = lista || resultado.value;
+    const livros: Livro[] = lista || resultado.value;
     console.log("Livros disponíveis:\n");
 
     // Imprime os livros na tela.
     livros.forEach((livro, index) => {
-      console.log(`${index}. ${livro}`);
+      console.log(
+        `${index}. ${livro.titulo}, por ${livro.autor} - ${livro.categoria}`,
+      );
     });
   } else {
     console.error(resultado.error);
