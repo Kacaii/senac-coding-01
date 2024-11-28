@@ -4,6 +4,7 @@ type Usuario = "Cliente" | "Funcionario";
 type Livro = { titulo: string; autor: string; categoria: string };
 type Resultado<T> = { ok: true; value: T } | { ok: false; error: string };
 
+/** Usar essa constante no `stdout` ou `console.log()` resulta em um som de notificação. */
 const TOCAR_SINO = "\u0007";
 
 /** Essa função lê o arquivo `./api/livros.json` e retorna uma lista de livros. */
@@ -50,8 +51,6 @@ async function realizarAtendimento(usr: Usuario): Promise<void> {
       let livros: Livro[] = [];
       const carrinhoDeCompras: Livro[] = [];
       await exibirListaDeLivros();
-
-      // await exibirListaDeLivros();
 
       if (resultado.ok) {
         // Recebendo o ID do livro que o usuário deseja comprar.
