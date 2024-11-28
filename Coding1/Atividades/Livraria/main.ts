@@ -189,7 +189,7 @@ async function exibirListaDeLivros(lista?: Livro[]): Promise<void> {
  */
 function main(): void {
   console.clear();
-  const atendimentoUsuario: string | null = prompt(`
+  const usuarioSelecionado: string | null = prompt(`
 ██╗     ██╗██╗   ██╗██████╗  █████╗ ██████╗ ██╗ █████╗ 
 ██║     ██║██║   ██║██╔══██╗██╔══██╗██╔══██╗██║██╔══██╗
 ██║     ██║██║   ██║██████╔╝███████║██████╔╝██║███████║
@@ -208,7 +208,7 @@ function main(): void {
 `);
 
   console.clear();
-  switch (atendimentoUsuario) {
+  switch (usuarioSelecionado) {
     case "1":
       realizarAtendimento("Funcionario");
       break;
