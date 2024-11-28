@@ -41,6 +41,7 @@ async function importarLivros(): Promise<Resultado<Livro[]>> {
  * @returns Não retorna nada, apenas realiza o atendimento.
  */
 async function realizarAtendimento(usr: Usuario): Promise<void> {
+  // Importando
   const resultado: Resultado<Livro[]> = await importarLivros();
 
   switch (usr) {
@@ -188,7 +189,7 @@ async function exibirListaDeLivros(lista?: Livro[]): Promise<void> {
  */
 function main(): void {
   console.clear();
-  const atendimentoUsuario = prompt(`
+  const atendimentoUsuario: string | null = prompt(`
 ██╗     ██╗██╗   ██╗██████╗  █████╗ ██████╗ ██╗ █████╗ 
 ██║     ██║██║   ██║██╔══██╗██╔══██╗██╔══██╗██║██╔══██╗
 ██║     ██║██║   ██║██████╔╝███████║██████╔╝██║███████║
@@ -206,21 +207,15 @@ function main(): void {
 =======================================================
 `);
 
+  console.clear();
   switch (atendimentoUsuario) {
     case "1":
-      console.clear();
       realizarAtendimento("Funcionario");
       break;
     case "2":
-      console.clear();
       realizarAtendimento("Cliente");
       break;
-    case "3":
-      console.clear();
-      Deno.exit(0);
-    /* falls through */
     default:
-      console.clear();
       Deno.exit(0);
   }
 }
