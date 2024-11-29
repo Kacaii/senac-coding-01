@@ -5,9 +5,9 @@ const UsuarioSchema = z.enum(["Cliente", "Funcionario"]);
 type Usuario = z.infer<typeof UsuarioSchema>;
 
 const LivroSchema = z.object({
-  titulo: z.string(),
-  autor: z.string(),
-  categoria: z.string(),
+  titulo: z.string().min(1),
+  autor: z.string().min(1),
+  categoria: z.string().min(1),
 });
 const LivrosSchema = z.array(LivroSchema);
 
@@ -65,105 +65,79 @@ async function realizarAtendimento(usr: Usuario): Promise<void> {
     return;
   }
 
+  let livros: Livro[] = resultado.value;
+
   switch (usr) {
     case "Cliente": {
       console.clear();
       console.log(TOCAR_SINO + "Olá, Cliente!" + "\n=============\n"); // 󰂞
 
-      let livros: Livro[] = [];
       const carrinhoDeCompras: Livro[] = [];
       await exibirListaDeLivros();
 
-      if (resultado.ok) {
-        // Recebendo o ID do livro que o usuário deseja comprar.
-        const livroSelecionado: string | null =
-          prompt("\nInsira o ID do livro que você deseja comprar:") || null;
+      // Recebendo o ID do livro que o usuário deseja comprar.
+      const livroSelecionado: string | null =
+        prompt("\nInsira o ID do livro que você deseja comprar:") || null;
 
-        if (livroSelecionado) {
-          livros = [...resultado.value];
+      if (livroSelecionado) {
+        livros = [...resultado.value];
+        const id: number = parseInt(livroSelecionado);
 
-          if (
-            isNaN(parseInt(livroSelecionado)) ||
-            parseInt(livroSelecionado) < 0 ||
-            parseInt(livroSelecionado) > livros.length
-          ) {
-            console.error(red("\nLivro inválido ou não encontrado ❌"));
-          } else {
-            // Tratamento de errors
-            try {
-              const [livroRemovido] = livros.splice(
-                parseInt(livroSelecionado),
-                1,
-              );
-
-              carrinhoDeCompras.push(livroRemovido);
-            } catch (erro) {
-              if (erro instanceof Error) {
-                console.error(red(erro.message));
-                prompt("\nPressione ENTER para continuar..."); // Aguardando a pressão de ENTER.
-              }
-            }
-
-            console.clear();
-            console.log(TOCAR_SINO + "Olá, Cliente!" + "\n=============\n"); // 󰂞
-
-            await exibirListaDeLivros(livros);
-            console.log(
-              "\n" +
-                "Carrinho de compras: " +
-                green(carrinhoDeCompras[0].titulo),
-            );
-          }
-
-          prompt("\nPressione ENTER para continuar..."); // Aguardando a pressão de ENTER.
+        if (isNaN(id) || id < 0 || id > livros.length) {
+          console.error(red("\nLivro inválido ou não encontrado ❌"));
+        } else {
+          const [livroComprado] = livros.splice(id, 1);
+          carrinhoDeCompras.push(livroComprado);
         }
 
-        main(); // Recomeçando o programa.
-      } else {
-        console.error(resultado.error);
+        console.clear();
+        console.log("Olá, Cliente!" + "\n=============\n");
+
+        await exibirListaDeLivros(livros);
+        console.log(
+          "\n" + "Carrinho de compras: " + green(carrinhoDeCompras[0].titulo),
+        );
       }
+      prompt("\nPressione ENTER para continuar..."); // Aguardando a pressão de ENTER.
+      main(); // Recomeçando o programa.
       break;
     }
+
     case "Funcionario": {
       console.clear();
       console.log(TOCAR_SINO + "Olá, Funcionário!" + "\n=================\n"); // 󰂞
-
-      let livros: Livro[] = [];
       await exibirListaDeLivros(); // Exibindo a lista de livros.
 
-      if (resultado.ok) {
-        // Recebendo o nome do livro e a posição do livro.
-        const livroNovo: Livro = {
-          titulo: prompt("\nInsira um novo livro:") || "",
-          autor: prompt("Insira o nome do autor:") || "",
-          categoria: prompt("Insira a categoria:") || "",
-        };
-        if (
-          livroNovo.autor != "" &&
-          livroNovo.titulo != "" &&
-          livroNovo.categoria != ""
-        ) {
-          const posicao: number = parseInt(
-            prompt("\nInsira a posição do livro:") || "0", // Insere na primeira posição por padrão
-          );
+      // Recebendo o nome do livro e a posição do livro.
+      const livroNovo: Livro = {
+        titulo: prompt("\nInsira um novo livro:") || "",
+        autor: prompt("Insira o nome do autor:") || "",
+        categoria: prompt("Insira a categoria:") || "",
+      };
 
-          livros = [...resultado.value]; // Convertendo o resultado em um array.
-          livros.splice(posicao, 0, livroNovo); // Adicionando o novo livro na posição desejada.
+      try {
+        const livroValido = LivroSchema.parse(livroNovo);
+        const posicao: number = parseInt(
+          prompt("\nInsira a posição do livro:") || "0", // Insere na primeira posição por padrão
+        );
 
-          console.clear();
-
-          console.log(
-            TOCAR_SINO + "Olá, Funcionário!" + "\n=================\n", // 󰂞
-          );
-
-          await exibirListaDeLivros(livros);
+        livros.splice(posicao, 0, livroValido); // Adicionando o novo livro na posição desejada.
+        console.clear();
+      } catch (erro) {
+        if (erro instanceof z.ZodError) {
+          console.error(red("Dados inválidos para o livro ❌"));
           prompt("\nPressione ENTER para continuar..."); // Aguardando a pressão de ENTER.
+          main();
+          break;
         }
-
-        main(); // Recomeçando o programa.
-      } else {
-        console.error(resultado.error);
       }
+
+      console.clear();
+      console.log("Olá, Funcionário!" + "\n=================\n");
+      await exibirListaDeLivros(livros);
+      prompt("\nPressione ENTER para continuar..."); // Aguardando a pressão de ENTER.
+
+      main(); // Recomeçando o programa.
       break;
     }
   }
