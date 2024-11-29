@@ -1,7 +1,17 @@
+import { z } from "https://deno.land/x/zod/mod.ts";
 import { green, red } from "@std/fmt/colors";
 
-type Usuario = "Cliente" | "Funcionario";
-type Livro = { titulo: string; autor: string; categoria: string };
+const UsuarioSchema = z.enum(["Cliente", "Funcionario"]);
+type Usuario = z.infer<typeof UsuarioSchema>;
+
+const LivroSchema = z.object({
+  titulo: z.string(),
+  autor: z.string(),
+  categoria: z.string(),
+});
+const LivrosSchema = z.array(LivroSchema);
+
+type Livro = z.infer<typeof LivroSchema>;
 type Resultado<T> = { ok: true; value: T } | { ok: false; error: string };
 
 /** Usar essa constante no `stdout` ou `console.log()` resulta em um som de notificação. */
@@ -10,17 +20,23 @@ const TOCAR_SINO = "\u0007";
 /** Essa função lê o arquivo `./api/livros.json` e retorna uma lista de livros. */
 async function importarLivros(): Promise<Resultado<Livro[]>> {
   try {
-    const data: string = await Deno.readTextFile("./api/livros.json");
-    const livros: Livro[] = JSON.parse(data);
+    const data = await Deno.readTextFile("./api/livros.json");
+    const livros = LivrosSchema.parse(JSON.parse(data)); // Validando com Zod.
     return { ok: true, value: livros };
   } catch (error) {
     // Tratamento de erro
-    if (error instanceof Deno.errors.NotFound) {
+    if (error instanceof z.ZodError) {
+      return { ok: false, error: "Dados inválidos no arquivo JSON." };
+    } else if (error instanceof Deno.errors.NotFound) {
       return { ok: false, error: "Arquivo não encontrado." };
-    } else if (error instanceof Error) {
-      return { ok: false, error: error.message };
     } else {
-      return { ok: false, error: "Ocorreu um erro inesperado." };
+      return {
+        ok: false,
+        error:
+          error instanceof Error
+            ? error.message
+            : "Ocorreu um erro inesperado.",
+      };
     }
   }
 }
@@ -43,6 +59,11 @@ async function importarLivros(): Promise<Resultado<Livro[]>> {
 async function realizarAtendimento(usr: Usuario): Promise<void> {
   // Importando
   const resultado: Resultado<Livro[]> = await importarLivros();
+
+  if (!resultado.ok) {
+    console.error(resultado.error);
+    return;
+  }
 
   switch (usr) {
     case "Cliente": {
