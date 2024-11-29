@@ -5,11 +5,12 @@ const UsuarioSchema = z.enum(["Cliente", "Funcionario"]);
 type Usuario = z.infer<typeof UsuarioSchema>;
 
 const LivroSchema = z.object({
-  titulo: z.string().min(1),
-  autor: z.string().min(1),
-  categoria: z.string().min(1),
+  titulo: z.string().min(1, "Titulo inválido"),
+  autor: z.string().min(1, "Autor inválido"),
+  categoria: z.string().min(1, "Categoria inválida"),
 });
-const LivrosSchema = z.array(LivroSchema);
+
+const LivrosSchema = z.array(LivroSchema).nonempty("Livros inválidos");
 
 type Livro = z.infer<typeof LivroSchema>;
 type Resultado<T> = { ok: true; value: T } | { ok: false; error: string };
@@ -23,18 +24,18 @@ async function importarLivros(): Promise<Resultado<Livro[]>> {
     const data = await Deno.readTextFile("./api/livros.json");
     const livros = LivrosSchema.parse(JSON.parse(data)); // Validando com Zod.
     return { ok: true, value: livros };
-  } catch (error) {
+  } catch (exception) {
     // Tratamento de erro
-    if (error instanceof z.ZodError) {
+    if (exception instanceof z.ZodError) {
       return { ok: false, error: "Dados inválidos no arquivo JSON." };
-    } else if (error instanceof Deno.errors.NotFound) {
+    } else if (exception instanceof Deno.errors.NotFound) {
       return { ok: false, error: "Arquivo não encontrado." };
     } else {
       return {
         ok: false,
         error:
-          error instanceof Error
-            ? error.message
+          exception instanceof Error
+            ? exception.message
             : "Ocorreu um erro inesperado.",
       };
     }
@@ -85,6 +86,7 @@ async function realizarAtendimento(usr: Usuario): Promise<void> {
 
         if (isNaN(id) || id < 0 || id > livros.length) {
           console.error(red("\nLivro inválido ou não encontrado ❌"));
+          prompt("\nPressione ENTER para continuar..."); // Aguardando a pressão de ENTER.
         } else {
           const [livroComprado] = livros.splice(id, 1);
           carrinhoDeCompras.push(livroComprado);
@@ -95,7 +97,9 @@ async function realizarAtendimento(usr: Usuario): Promise<void> {
 
         await exibirListaDeLivros(livros);
         console.log(
-          "\n" + "Carrinho de compras: " + green(carrinhoDeCompras[0].titulo),
+          "\n" +
+            "Carrinho de compras: " +
+            green(carrinhoDeCompras[0]?.titulo || "Nenhum livro selecionado."),
         );
       }
       prompt("\nPressione ENTER para continuar..."); // Aguardando a pressão de ENTER.
@@ -123,8 +127,8 @@ async function realizarAtendimento(usr: Usuario): Promise<void> {
 
         livros.splice(posicao, 0, livroValido); // Adicionando o novo livro na posição desejada.
         console.clear();
-      } catch (erro) {
-        if (erro instanceof z.ZodError) {
+      } catch (exception) {
+        if (exception instanceof z.ZodError) {
           console.error(red("Dados inválidos para o livro ❌"));
           prompt("\nPressione ENTER para continuar..."); // Aguardando a pressão de ENTER.
           main();
