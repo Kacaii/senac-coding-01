@@ -15,6 +15,17 @@
 - IAN LUCAS
 - ANDRE LUIZ
 
+## Estrutura Do Script
+
+```plaintext
+EntreLinhas
+│
+├── Telas/ ❔
+│
+├── main.ts
+└── README.md
+```
+
 ## Progresso
 
 ### Metas Iniciais
@@ -50,3 +61,8 @@
   ```plaintext
 
   ```
+
+### Funcionalidades
+
+- Menu Principal
+  - [ ] =

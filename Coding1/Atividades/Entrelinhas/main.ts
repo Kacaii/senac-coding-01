@@ -1,12 +1,14 @@
-type NomeTela = "TelaPrincipal" | "TelaCliente" | "TelaCostureira";
+/** Telas Disponíveis */
+type T_NomeTela = "MenuPrincipal" | "TelaDoCliente" | "TelaDaCostureira";
 
-type Tela = {
-  nome: NomeTela;
+type T_Tela = {
+  nome: T_NomeTela;
   ASCII: string;
   subtitulo: string;
   listaDeOpcoes: string[];
   rodape: string;
-  executarFuncionalidade: () => void;
+  /** Realiza a funcionalidade principal da tela selecionada. */
+  executarFuncionalidade: () => unknown;
 };
 
 /** Usar essa constante no `stdout` ou `console.log()` resulta em um som de notificação. */
@@ -31,8 +33,8 @@ const TOCAR_SINO = "\u0007";
  * ========================================================================================
  * ```
  */
-const TELA_PRINCIPAL: Tela = {
-  nome: "TelaPrincipal",
+const MENU_PRINCIPAL: T_Tela = {
+  nome: "MenuPrincipal",
   subtitulo: "= MENU PRINCIPAL = Selecione um usuário ⬇️",
   listaDeOpcoes: ["Cliente", "Profissional", "Sair"],
   ASCII: `
@@ -48,16 +50,16 @@ const TELA_PRINCIPAL: Tela = {
                                                                         Beekeepers, 2024
 ========================================================================================
 `,
-  executarFuncionalidade() {
+  executarFuncionalidade(): void {
     const usuarioSelecionado = prompt("");
 
     switch (usuarioSelecionado) {
       case "1": {
-        exibirTela("TelaCliente");
+        exibirTela("TelaDoCliente");
         break;
       }
       case "2": {
-        exibirTela("TelaCostureira");
+        exibirTela("TelaDaCostureira");
         break;
       }
       default: {
@@ -67,8 +69,6 @@ const TELA_PRINCIPAL: Tela = {
     }
   },
 };
-
-// TODO: Implementar TELA_CLIENTE  '
 
 /**
  * ```help
@@ -89,8 +89,8 @@ const TELA_PRINCIPAL: Tela = {
  * ========================================================================================
  * ```
  */
-const TELA_CLIENTE: Tela = {
-  nome: "TelaCliente",
+const TELA_CLIENTE: T_Tela = {
+  nome: "TelaDoCliente",
   ASCII: `
 ███████╗███╗   ██╗████████╗██████╗ ███████╗██╗     ██╗███╗   ██╗██╗  ██╗ █████╗ ███████╗
 ██╔════╝████╗  ██║╚══██╔══╝██╔══██╗██╔════╝██║     ██║████╗  ██║██║  ██║██╔══██╗██╔════╝
@@ -106,7 +106,7 @@ const TELA_CLIENTE: Tela = {
                                                                         Beekeepers, 2024
 ========================================================================================
 `,
-  executarFuncionalidade() {
+  executarFuncionalidade(): void {
     const opcaoSelecionada = prompt("Pressione ENTER");
 
     switch (opcaoSelecionada) {
@@ -118,13 +118,11 @@ const TELA_CLIENTE: Tela = {
       }
       default: {
         console.clear();
-        exibirTela("TelaPrincipal"); // Voltando ao menu
+        exibirTela("MenuPrincipal"); // Voltando ao menu
       }
     }
   },
 };
-
-// TODO: Implementar TELA_PROFISSIONAL  '
 
 /**
  * ```help
@@ -145,8 +143,8 @@ const TELA_CLIENTE: Tela = {
  * ========================================================================================
  * ```
  */
-const TELA_COSTUREIRA: Tela = {
-  nome: "TelaCostureira",
+const TELA_COSTUREIRA: T_Tela = {
+  nome: "TelaDaCostureira",
   ASCII: `
 ███████╗███╗   ██╗████████╗██████╗ ███████╗██╗     ██╗███╗   ██╗██╗  ██╗ █████╗ ███████╗
 ██╔════╝████╗  ██║╚══██╔══╝██╔══██╗██╔════╝██║     ██║████╗  ██║██║  ██║██╔══██╗██╔════╝
@@ -162,7 +160,7 @@ const TELA_COSTUREIRA: Tela = {
                                                                         Beekeepers, 2024
 ========================================================================================
 `,
-  executarFuncionalidade() {
+  executarFuncionalidade(): void {
     const opcaoSelecionada = prompt("Pressione ENTER");
 
     switch (opcaoSelecionada) {
@@ -174,7 +172,7 @@ const TELA_COSTUREIRA: Tela = {
       }
       default: {
         console.clear();
-        exibirTela("TelaPrincipal"); // Voltando ao menu
+        exibirTela("MenuPrincipal"); // Voltando ao menu
       }
     }
   },
@@ -182,18 +180,18 @@ const TELA_COSTUREIRA: Tela = {
 
 /**
  * Mapa contendo todas as telas do script
- * Use `MapaDeTelas.get()` passando o nome de uma {@linkcode NomeTela} para acessar seus conteudo.
+ * Use `MapaDeTelas.get()` passando o nome de uma {@linkcode T_NomeTela} para acessar seus conteudo.
  */
-const MapaDeTelas = new Map<NomeTela, Tela>([
-  ["TelaPrincipal", TELA_PRINCIPAL],
-  ["TelaCliente", TELA_CLIENTE],
-  ["TelaCostureira", TELA_COSTUREIRA],
+const MapaDeTelas = new Map<T_NomeTela, T_Tela>([
+  ["MenuPrincipal", MENU_PRINCIPAL],
+  ["TelaDoCliente", TELA_CLIENTE],
+  ["TelaDaCostureira", TELA_COSTUREIRA],
 ]);
 
 /**
  * Exibe a tela e executa sua funcionalidade.
  */
-function exibirTela(tela: NomeTela) {
+function exibirTela(tela: T_NomeTela): void {
   console.clear();
   console.log(MapaDeTelas.get(tela)?.ASCII);
   console.log("  " + MapaDeTelas.get(tela)?.subtitulo + "\n");
@@ -211,5 +209,5 @@ function exibirTela(tela: NomeTela) {
 if (import.meta.main) {
   console.clear(); // Limpe a tela antes de tudo
   console.log(TOCAR_SINO); // 🔔
-  exibirTela("TelaPrincipal");
+  exibirTela("MenuPrincipal");
 }
