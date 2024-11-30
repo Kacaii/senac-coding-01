@@ -1,10 +1,10 @@
 /** Telas Disponíveis */
-type T_NomeTela = "MenuPrincipal" | "TelaDoCliente" | "TelaDaCostureira";
+type TNomeDaTela = "MenuPrincipal" | "TelaDoCliente" | "TelaDaCostureira";
 
-type T_Tela = {
-  nome: T_NomeTela;
+type TInterfaceDaTela = {
+  nome: TNomeDaTela;
   ASCII: string;
-  subtitulo: string;
+  subtitulo?: string;
   listaDeOpcoes: string[];
   rodape: string;
   /** Realiza a funcionalidade principal da tela selecionada. */
@@ -33,7 +33,7 @@ const TOCAR_SINO = "\u0007";
  * ========================================================================================
  * ```
  */
-const MENU_PRINCIPAL: T_Tela = {
+const MENU_PRINCIPAL: TInterfaceDaTela = {
   nome: "MenuPrincipal",
   subtitulo: "= MENU PRINCIPAL = Selecione um usuário ⬇️",
   listaDeOpcoes: ["Cliente", "Profissional", "Sair"],
@@ -89,7 +89,7 @@ const MENU_PRINCIPAL: T_Tela = {
  * ========================================================================================
  * ```
  */
-const TELA_CLIENTE: T_Tela = {
+const TELA_CLIENTE: TInterfaceDaTela = {
   nome: "TelaDoCliente",
   ASCII: `
 ███████╗███╗   ██╗████████╗██████╗ ███████╗██╗     ██╗███╗   ██╗██╗  ██╗ █████╗ ███████╗
@@ -111,9 +111,11 @@ const TELA_CLIENTE: T_Tela = {
 
     switch (opcaoSelecionada) {
       case "1": {
+        // TODO:
         break;
       }
       case "2": {
+        // TODO:
         break;
       }
       default: {
@@ -143,7 +145,7 @@ const TELA_CLIENTE: T_Tela = {
  * ========================================================================================
  * ```
  */
-const TELA_COSTUREIRA: T_Tela = {
+const TELA_COSTUREIRA: TInterfaceDaTela = {
   nome: "TelaDaCostureira",
   ASCII: `
 ███████╗███╗   ██╗████████╗██████╗ ███████╗██╗     ██╗███╗   ██╗██╗  ██╗ █████╗ ███████╗
@@ -165,9 +167,11 @@ const TELA_COSTUREIRA: T_Tela = {
 
     switch (opcaoSelecionada) {
       case "1": {
+        // TODO:
         break;
       }
       case "2": {
+        // TODO:
         break;
       }
       default: {
@@ -180,9 +184,9 @@ const TELA_COSTUREIRA: T_Tela = {
 
 /**
  * Mapa contendo todas as telas do script
- * Use `MapaDeTelas.get()` passando o nome de uma {@linkcode T_NomeTela} para acessar seus conteudo.
+ * Use `MapaDeTelas.get()` passando o nome de uma {@linkcode TNomeDaTela} para acessar seus conteudo.
  */
-const MapaDeTelas = new Map<T_NomeTela, T_Tela>([
+const MapaDeTelas = new Map<TNomeDaTela, TInterfaceDaTela>([
   ["MenuPrincipal", MENU_PRINCIPAL],
   ["TelaDoCliente", TELA_CLIENTE],
   ["TelaDaCostureira", TELA_COSTUREIRA],
@@ -191,18 +195,18 @@ const MapaDeTelas = new Map<T_NomeTela, T_Tela>([
 /**
  * Exibe a tela e executa sua funcionalidade.
  */
-function exibirTela(tela: T_NomeTela): void {
+function exibirTela(tela: TNomeDaTela): void {
   console.clear();
-  console.log(MapaDeTelas.get(tela)?.ASCII);
-  console.log("  " + MapaDeTelas.get(tela)?.subtitulo + "\n");
+  console.log(MapaDeTelas.get(tela)!.ASCII);
+  console.log("  " + MapaDeTelas.get(tela)!.subtitulo + "\n");
 
   // Inserindo cada uma das opções
-  MapaDeTelas.get(tela)?.listaDeOpcoes.forEach((value, index) => {
+  MapaDeTelas.get(tela)!.listaDeOpcoes.forEach((value, index) => {
     console.log(`  ${index + 1} - ${value}`);
   });
 
-  console.log(MapaDeTelas.get(tela)?.rodape);
-  MapaDeTelas.get(tela)?.executarFuncionalidade();
+  console.log(MapaDeTelas.get(tela)!.rodape);
+  MapaDeTelas.get(tela)!.executarFuncionalidade();
 }
 
 // Inicia o script
