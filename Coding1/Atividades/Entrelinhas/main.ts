@@ -19,14 +19,14 @@ const TELA_PRINCIPAL: Tela = {
 
   = MENU PRINCIPAL = Selecione um usuário ⬇️
 
-  1 - Profissional
-  2 - Cliente
+  1 - Cliente
+  2 - Profissional
   3 - Sair
                                                                        Pedro Ayres, 2024
 ========================================================================================
 `,
   executarFuncionalidade() {
-    const usuarioSelecionado = prompt("\nEscolha");
+    const usuarioSelecionado = prompt("");
 
     switch (usuarioSelecionado) {
       case "1": {
@@ -37,6 +37,9 @@ const TELA_PRINCIPAL: Tela = {
         exibirTela("TelaProfissional");
         break;
       }
+      default: {
+        Deno.exit();
+      }
     }
   },
 };
@@ -45,14 +48,18 @@ const TELA_PRINCIPAL: Tela = {
 export const TELA_CLIENTE: Tela = {
   nome: "TelaCliente",
   conteudo: `== Tela Cliente ==`,
-  executarFuncionalidade() {},
+  executarFuncionalidade() {
+    prompt("Pressione ENTER");
+  },
 };
 
 // TODO: Implementar TELA_PROFISSIONAL  '
 export const TELA_PROFISSIONAL: Tela = {
   nome: "TelaProfissional",
   conteudo: `== Tela Profissional ==`,
-  executarFuncionalidade() {},
+  executarFuncionalidade() {
+    prompt("Pressione ENTER");
+  },
 };
 
 /**
@@ -66,8 +73,7 @@ const MapaDeTelas = new Map<NomeTela, Tela>([
 ]);
 
 /**
- * Exibe a tela passando seu nome com argumento
- * O script busca o nome no {@linkcode MapaDeTelas} e exibe o conteúdo no console.
+ * Exibe a tela e executa sua funcionalidade.
  */
 function exibirTela(tela: NomeTela) {
   console.log(MapaDeTelas.get(tela)?.conteudo);
