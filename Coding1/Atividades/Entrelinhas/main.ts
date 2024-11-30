@@ -1,27 +1,11 @@
-type Usuario = "Cliente" | "Profissional"; // Vou usar isso depois
+import { TELA_PRINCIPAL } from "./Telas/TELA_PRINCIPAL.ts";
+
+// type Usuario = "Cliente" | "Profissional"; // Vou usar isso depois
 type NomeTela = "TelaPrincipal" | "TelaCliente" | "TelaProfissional";
-type Tela = {
+
+export type Tela = {
   nome: NomeTela;
   conteudo: string;
-};
-
-const TELA_PRINCIPAL: Tela = {
-  nome: "TelaPrincipal",
-  conteudo: `
-███████╗███╗   ██╗████████╗██████╗ ███████╗██╗     ██╗███╗   ██╗██╗  ██╗ █████╗ ███████╗
-██╔════╝████╗  ██║╚══██╔══╝██╔══██╗██╔════╝██║     ██║████╗  ██║██║  ██║██╔══██╗██╔════╝
-█████╗  ██╔██╗ ██║   ██║   ██████╔╝█████╗  ██║     ██║██╔██╗ ██║███████║███████║███████╗
-██╔══╝  ██║╚██╗██║   ██║   ██╔══██╗██╔══╝  ██║     ██║██║╚██╗██║██╔══██║██╔══██║╚════██║
-███████╗██║ ╚████║   ██║   ██║  ██║███████╗███████╗██║██║ ╚████║██║  ██║██║  ██║███████║
-╚══════╝╚═╝  ╚═══╝   ╚═╝   ╚═╝  ╚═╝╚══════╝╚══════╝╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝
-========================================================================================
-
-  1 - Profissional
-  2 - Cliente
-  3 - Sair
-                                                                       Pedro Ayres, 2024
-========================================================================================
-`,
 };
 
 /**
