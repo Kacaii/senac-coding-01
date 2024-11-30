@@ -1,4 +1,4 @@
-type NomeTela = "TelaPrincipal" | "TelaCliente" | "TelaProfissional";
+type NomeTela = "TelaPrincipal" | "TelaCliente" | "TelaCostureira";
 
 type Tela = {
   nome: NomeTela;
@@ -34,7 +34,7 @@ const TELA_PRINCIPAL: Tela = {
         break;
       }
       case "2": {
-        exibirTela("TelaProfissional");
+        exibirTela("TelaCostureira");
         break;
       }
       default: {
@@ -54,8 +54,8 @@ export const TELA_CLIENTE: Tela = {
 };
 
 // TODO: Implementar TELA_PROFISSIONAL  '
-export const TELA_PROFISSIONAL: Tela = {
-  nome: "TelaProfissional",
+export const TELA_COSTUREIRA: Tela = {
+  nome: "TelaCostureira",
   conteudo: `== Tela Profissional ==`,
   executarFuncionalidade() {
     prompt("Pressione ENTER");
@@ -69,13 +69,14 @@ export const TELA_PROFISSIONAL: Tela = {
 const MapaDeTelas = new Map<NomeTela, Tela>([
   ["TelaPrincipal", TELA_PRINCIPAL],
   ["TelaCliente", TELA_CLIENTE],
-  ["TelaProfissional", TELA_PRINCIPAL],
+  ["TelaCostureira", TELA_COSTUREIRA],
 ]);
 
 /**
  * Exibe a tela e executa sua funcionalidade.
  */
 function exibirTela(tela: NomeTela) {
+  console.clear();
   console.log(MapaDeTelas.get(tela)?.conteudo);
   MapaDeTelas.get(tela)?.executarFuncionalidade();
 }
