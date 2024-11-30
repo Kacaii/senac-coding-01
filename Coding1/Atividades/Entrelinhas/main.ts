@@ -21,7 +21,7 @@ type Tela = {
  *   1 - Cliente
  *   2 - Profissional
  *   3 - Sair
- *                                                                        Pedro Ayres, 2024
+ *                                                                         Beekeepers, 2024
  * ========================================================================================
  * ```
  */
@@ -41,7 +41,7 @@ const TELA_PRINCIPAL: Tela = {
   1 - Cliente
   2 - Profissional
   3 - Sair
-                                                                       Pedro Ayres, 2024
+                                                                        Beekeepers, 2024
 ========================================================================================
 `,
   executarFuncionalidade() {
@@ -80,7 +80,7 @@ const TELA_PRINCIPAL: Tela = {
  *   1 -
  *   2 -
  *   3 -
- *                                                                        Pedro Ayres, 2024
+ *                                                                         Beekeepers, 2024
  * ========================================================================================
  * ```
  */
@@ -100,7 +100,7 @@ const TELA_CLIENTE: Tela = {
   1 -
   2 -
   3 -
-                                                                       Pedro Ayres, 2024
+                                                                        Beekeepers, 2024
 ========================================================================================
 `,
   executarFuncionalidade() {
@@ -137,7 +137,7 @@ const TELA_CLIENTE: Tela = {
  *   1 -
  *   2 -
  *   3 -
- *                                                                        Pedro Ayres, 2024
+ *                                                                         Beekeepers, 2024
  * ========================================================================================
  * ```
  */
@@ -157,7 +157,7 @@ const TELA_COSTUREIRA: Tela = {
   1 -
   2 -
   3 -
-                                                                       Pedro Ayres, 2024
+                                                                        Beekeepers, 2024
 ========================================================================================
 `,
   executarFuncionalidade() {

@@ -7,6 +7,14 @@
 > Como exercício de casa, elabore um algoritmo que reproduza ações do seu projeto
 > integrador com pelo menos 3 funcões.
 
+## Equipe
+
+- THAISE RENAUX
+- JOAO ANTONIO
+- PEDRO AYRES
+- IAN LUCAS
+- ANDRE LUIZ
+
 ## Progresso
 
 ### Metas Iniciais
@@ -27,7 +35,7 @@
   1 - Profissional
   2 - Cliente
   3 - Sair
-                                                                       Pedro Ayres, 2024
+                                                                          Beekeepers, 2024
   ========================================================================================
   ```
 
