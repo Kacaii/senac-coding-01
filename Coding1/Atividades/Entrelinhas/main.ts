@@ -1,5 +1,5 @@
 type Usuario = "Cliente" | "Profissional"; // Vou usar isso depois
-type NomeTela = "TelaPrincipal" | "TelaCliente";
+type NomeTela = "TelaPrincipal" | "TelaCliente" | "TelaProfissional";
 type Tela = {
   nome: NomeTela;
   conteudo: string;
@@ -26,7 +26,7 @@ const TELA_PRINCIPAL: Tela = {
 
 /**
  * Mapa contendo todas as telas do script
- * Use `MapaDeTelas.get()` para acessar seus conteudo.
+ * Use `MapaDeTelas.get()` passando o nome de uma {@linkcode NomeTela} para acessar seus conteudo.
  */
 const MapaDeTelas = new Map<NomeTela, Tela>([
   ["TelaPrincipal", TELA_PRINCIPAL],
@@ -43,7 +43,7 @@ function exibirTela(tela: NomeTela) {
 function main() {
   console.clear();
   exibirTela("TelaPrincipal");
-  prompt("");
+  prompt("> ");
 }
 
 if (import.meta.main) {
