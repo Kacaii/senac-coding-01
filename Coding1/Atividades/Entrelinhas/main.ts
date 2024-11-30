@@ -9,6 +9,9 @@ type Tela = {
   executarFuncionalidade: () => void;
 };
 
+/** Usar essa constante no `stdout` ou `console.log()` resulta em um som de notificação. */
+const TOCAR_SINO = "\u0007";
+
 /**
  * ```help
  * ███████╗███╗   ██╗████████╗██████╗ ███████╗██╗     ██╗███╗   ██╗██╗  ██╗ █████╗ ███████╗
@@ -207,5 +210,6 @@ function exibirTela(tela: NomeTela) {
 // Inicia o script
 if (import.meta.main) {
   console.clear(); // Limpe a tela antes de tudo
+  console.log(TOCAR_SINO); // 🔔
   exibirTela("TelaPrincipal");
 }
