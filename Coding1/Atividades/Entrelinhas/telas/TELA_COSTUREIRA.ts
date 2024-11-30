@@ -32,7 +32,7 @@ export const TELA_COSTUREIRA: TInterfaceDaTela = {
 ========================================================================================
 `,
   subtitulo: "==> Profissional",
-  // listaDeOpcoes: ["", "", ""],
+  listaDeOpcoes: ["", "", ""],
   rodape: `
                                                                         Beekeepers, 2024
 ========================================================================================

@@ -3,7 +3,7 @@ import { TInterfaceDaTela, TNomeDaTela } from "./types/index.ts";
 
 // Importando telas
 import {
-  MENU_PRINCIPAL,
+  TELA_PRINCIPAL,
   TELA_CLIENTE,
   TELA_COSTUREIRA,
 } from "./telas/index.ts";
@@ -16,7 +16,7 @@ const TOCAR_SINO = "\u0007";
  * Use `MapaDeTelas.get()` passando o nome de uma {@linkcode TNomeDaTela} para acessar seus conteudo.
  */
 const MapaDeTelas = new Map<TNomeDaTela, TInterfaceDaTela>([
-  ["MenuPrincipal", MENU_PRINCIPAL],
+  ["TelaPrincipal", TELA_PRINCIPAL],
   ["TelaDoCliente", TELA_CLIENTE],
   ["TelaDaCostureira", TELA_COSTUREIRA],
 ]);
@@ -48,5 +48,5 @@ export function exibirTela(tela: TNomeDaTela): void {
 if (import.meta.main) {
   console.clear(); // Limpe a tela antes de tudo
   console.log(TOCAR_SINO); // 🔔
-  exibirTela("MenuPrincipal");
+  exibirTela("TelaPrincipal");
 }

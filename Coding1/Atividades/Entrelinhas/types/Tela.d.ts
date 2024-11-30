@@ -1,4 +1,4 @@
 export type TNomeDaTela =
-  | "MenuPrincipal"
+  | "TelaPrincipal"
   | "TelaDoCliente"
   | "TelaDaCostureira";

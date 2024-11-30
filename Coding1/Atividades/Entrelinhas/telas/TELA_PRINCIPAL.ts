@@ -11,7 +11,7 @@ import { exibirTela } from "../main.ts";
  * ╚══════╝╚═╝  ╚═══╝   ╚═╝   ╚═╝  ╚═╝╚══════╝╚══════╝╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝
  * ========================================================================================
  *
- *   = MENU PRINCIPAL = Selecione um usuário ⬇️
+ *   = TELA PRINCIPAL = Selecione um usuário ⬇️
  *
  *   1 - Cliente
  *   2 - Profissional
@@ -20,10 +20,8 @@ import { exibirTela } from "../main.ts";
  * ========================================================================================
  * ```
  */
-export const MENU_PRINCIPAL: TInterfaceDaTela = {
-  nome: "MenuPrincipal",
-  subtitulo: "= MENU PRINCIPAL = Selecione um usuário ⬇️",
-  listaDeOpcoes: ["Cliente", "Profissional", "Sair"],
+export const TELA_PRINCIPAL: TInterfaceDaTela = {
+  nome: "TelaPrincipal",
   ASCII: `
 ███████╗███╗   ██╗████████╗██████╗ ███████╗██╗     ██╗███╗   ██╗██╗  ██╗ █████╗ ███████╗
 ██╔════╝████╗  ██║╚══██╔══╝██╔══██╗██╔════╝██║     ██║████╗  ██║██║  ██║██╔══██╗██╔════╝
@@ -33,6 +31,8 @@ export const MENU_PRINCIPAL: TInterfaceDaTela = {
 ╚══════╝╚═╝  ╚═══╝   ╚═╝   ╚═╝  ╚═╝╚══════╝╚══════╝╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝
 ========================================================================================
 `,
+  subtitulo: "= MENU PRINCIPAL = Selecione um usuário ⬇️",
+  listaDeOpcoes: ["Cliente", "Profissional", "Sair"],
   rodape: `
                                                                         Beekeepers, 2024
 ========================================================================================
