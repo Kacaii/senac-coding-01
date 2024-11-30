@@ -51,7 +51,7 @@ export const TELA_CLIENTE: TInterfaceDaTela = {
       }
       default: {
         console.clear();
-        exibirTela("MenuPrincipal"); // Voltando ao menu
+        exibirTela("TelaPrincipal"); // Voltando ao menu
       }
     }
   },
