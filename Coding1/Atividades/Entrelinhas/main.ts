@@ -2,7 +2,10 @@ type NomeTela = "TelaPrincipal" | "TelaCliente" | "TelaCostureira";
 
 type Tela = {
   nome: NomeTela;
-  conteudo: string;
+  ASCII: string;
+  subtitulo: string;
+  listaDeOpcoes: string[];
+  rodape: string;
   executarFuncionalidade: () => void;
 };
 
@@ -27,7 +30,9 @@ type Tela = {
  */
 const TELA_PRINCIPAL: Tela = {
   nome: "TelaPrincipal",
-  conteudo: `
+  subtitulo: "= MENU PRINCIPAL = Selecione um usuário ⬇️",
+  listaDeOpcoes: ["Cliente", "Profissional", "Sair"],
+  ASCII: `
 ███████╗███╗   ██╗████████╗██████╗ ███████╗██╗     ██╗███╗   ██╗██╗  ██╗ █████╗ ███████╗
 ██╔════╝████╗  ██║╚══██╔══╝██╔══██╗██╔════╝██║     ██║████╗  ██║██║  ██║██╔══██╗██╔════╝
 █████╗  ██╔██╗ ██║   ██║   ██████╔╝█████╗  ██║     ██║██╔██╗ ██║███████║███████║███████╗
@@ -35,12 +40,8 @@ const TELA_PRINCIPAL: Tela = {
 ███████╗██║ ╚████║   ██║   ██║  ██║███████╗███████╗██║██║ ╚████║██║  ██║██║  ██║███████║
 ╚══════╝╚═╝  ╚═══╝   ╚═╝   ╚═╝  ╚═╝╚══════╝╚══════╝╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝
 ========================================================================================
-
-  = MENU PRINCIPAL = Selecione um usuário ⬇️
-
-  1 - Cliente
-  2 - Profissional
-  3 - Sair
+`,
+  rodape: `
                                                                         Beekeepers, 2024
 ========================================================================================
 `,
@@ -57,6 +58,7 @@ const TELA_PRINCIPAL: Tela = {
         break;
       }
       default: {
+        console.clear();
         Deno.exit();
       }
     }
@@ -86,7 +88,7 @@ const TELA_PRINCIPAL: Tela = {
  */
 const TELA_CLIENTE: Tela = {
   nome: "TelaCliente",
-  conteudo: `
+  ASCII: `
 ███████╗███╗   ██╗████████╗██████╗ ███████╗██╗     ██╗███╗   ██╗██╗  ██╗ █████╗ ███████╗
 ██╔════╝████╗  ██║╚══██╔══╝██╔══██╗██╔════╝██║     ██║████╗  ██║██║  ██║██╔══██╗██╔════╝
 █████╗  ██╔██╗ ██║   ██║   ██████╔╝█████╗  ██║     ██║██╔██╗ ██║███████║███████║███████╗
@@ -94,12 +96,10 @@ const TELA_CLIENTE: Tela = {
 ███████╗██║ ╚████║   ██║   ██║  ██║███████╗███████╗██║██║ ╚████║██║  ██║██║  ██║███████║
 ╚══════╝╚═╝  ╚═══╝   ╚═╝   ╚═╝  ╚═╝╚══════╝╚══════╝╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝
 ========================================================================================
-
-  ==> Cliente
-
-  1 -
-  2 -
-  3 -
+`,
+  subtitulo: "==> Cliente",
+  listaDeOpcoes: ["", "", ""],
+  rodape: `
                                                                         Beekeepers, 2024
 ========================================================================================
 `,
@@ -114,6 +114,7 @@ const TELA_CLIENTE: Tela = {
         break;
       }
       default: {
+        console.clear();
         exibirTela("TelaPrincipal"); // Voltando ao menu
       }
     }
@@ -143,7 +144,7 @@ const TELA_CLIENTE: Tela = {
  */
 const TELA_COSTUREIRA: Tela = {
   nome: "TelaCostureira",
-  conteudo: `
+  ASCII: `
 ███████╗███╗   ██╗████████╗██████╗ ███████╗██╗     ██╗███╗   ██╗██╗  ██╗ █████╗ ███████╗
 ██╔════╝████╗  ██║╚══██╔══╝██╔══██╗██╔════╝██║     ██║████╗  ██║██║  ██║██╔══██╗██╔════╝
 █████╗  ██╔██╗ ██║   ██║   ██████╔╝█████╗  ██║     ██║██╔██╗ ██║███████║███████║███████╗
@@ -151,12 +152,10 @@ const TELA_COSTUREIRA: Tela = {
 ███████╗██║ ╚████║   ██║   ██║  ██║███████╗███████╗██║██║ ╚████║██║  ██║██║  ██║███████║
 ╚══════╝╚═╝  ╚═══╝   ╚═╝   ╚═╝  ╚═╝╚══════╝╚══════╝╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝
 ========================================================================================
-
-  ==> Profissional
-
-  1 -
-  2 -
-  3 -
+`,
+  subtitulo: "==> Profissional",
+  listaDeOpcoes: ["", "", ""],
+  rodape: `
                                                                         Beekeepers, 2024
 ========================================================================================
 `,
@@ -171,6 +170,7 @@ const TELA_COSTUREIRA: Tela = {
         break;
       }
       default: {
+        console.clear();
         exibirTela("TelaPrincipal"); // Voltando ao menu
       }
     }
@@ -192,7 +192,15 @@ const MapaDeTelas = new Map<NomeTela, Tela>([
  */
 function exibirTela(tela: NomeTela) {
   console.clear();
-  console.log(MapaDeTelas.get(tela)?.conteudo);
+  console.log(MapaDeTelas.get(tela)?.ASCII);
+  console.log("  " + MapaDeTelas.get(tela)?.subtitulo + "\n");
+
+  // Inserindo cada uma das opções
+  MapaDeTelas.get(tela)?.listaDeOpcoes.forEach((value, index) => {
+    console.log(`  ${index + 1} - ${value}`);
+  });
+
+  console.log(MapaDeTelas.get(tela)?.rodape);
   MapaDeTelas.get(tela)?.executarFuncionalidade();
 }
 
