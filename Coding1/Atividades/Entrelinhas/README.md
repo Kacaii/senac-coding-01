@@ -9,4 +9,7 @@
 
 ### Metas Iniciais
 
-- [ ] Definir com o grupo o que o script deve fazer.
+- Implementar a "interface" das três telas principais.
+  - [ ] Menu Principal
+  - [ ] Tela do Cliente
+  - [ ] Tela do Profissional de Costura
