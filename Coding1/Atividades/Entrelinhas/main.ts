@@ -1,4 +1,4 @@
-import { TELA_PRINCIPAL } from "./Telas/TELA_PRINCIPAL.ts";
+import { TELA_PRINCIPAL, TELA_CLIENTE } from "./Telas/TELA_PRINCIPAL.ts";
 
 // type Usuario = "Cliente" | "Profissional"; // Vou usar isso depois
 type NomeTela = "TelaPrincipal" | "TelaCliente" | "TelaProfissional";
@@ -14,6 +14,8 @@ export type Tela = {
  */
 const MapaDeTelas = new Map<NomeTela, Tela>([
   ["TelaPrincipal", TELA_PRINCIPAL],
+  ["TelaCliente", TELA_CLIENTE],
+  ["TelaProfissional", TELA_PRINCIPAL],
 ]);
 
 /**
@@ -24,7 +26,7 @@ function exibirTela(tela: NomeTela) {
   console.log(MapaDeTelas.get(tela)!.conteudo);
 }
 
-/** <!-- TODO: Implementar funcionalidade principal --> */
+// TODO: Implementar funcionalidade principal  '
 function main() {
   exibirTela("TelaPrincipal");
   prompt("> ");

@@ -18,3 +18,15 @@ export const TELA_PRINCIPAL: Tela = {
 ========================================================================================
 `,
 };
+
+// TODO: Implementar TELA_CLIENTE  '
+export const TELA_CLIENTE: Tela = {
+  nome: "TelaCliente",
+  conteudo: ``,
+};
+
+// TODO: Implementar TELA_PROFISSIONAL  '
+export const TELA_PROFISSIONAL: Tela = {
+  nome: "TelaProfissional",
+  conteudo: ``,
+};
