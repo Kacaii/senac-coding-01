@@ -1,6 +1,12 @@
 # Atividade 27/11/2024
 
-- Código Original:
+## Código Original
+
+Este código implementa uma interação simples com uma livraria, permitindo que
+funcionários adicionem livros a uma lista existente, especificando a posição desejada,
+enquanto clientes podem executar ações ainda não implementadas. Ele utiliza prompts
+para capturar entradas do usuário e decide as ações com base na escolha inicial
+entre ser funcionário ou cliente. 
 
 ```javascript
 // Começamos declarando o array:
