@@ -2,13 +2,13 @@
 type TNomeDaTela = "MenuPrincipal" | "TelaDoCliente" | "TelaDaCostureira";
 
 type TInterfaceDaTela = {
-  nome: TNomeDaTela;
-  ASCII: string;
-  subtitulo?: string;
-  listaDeOpcoes: string[];
-  rodape: string;
+  readonly nome: TNomeDaTela;
+  readonly ASCII: string;
+  readonly subtitulo?: string;
+  readonly listaDeOpcoes?: string[];
+  readonly rodape: string;
   /** Realiza a funcionalidade principal da tela selecionada. */
-  executarFuncionalidade: () => unknown;
+  readonly executarFuncionalidade: () => unknown;
 };
 
 /** Usar essa constante no `stdout` ou `console.log()` resulta em um som de notificação. */
@@ -101,7 +101,7 @@ const TELA_CLIENTE: TInterfaceDaTela = {
 ========================================================================================
 `,
   subtitulo: "==> Cliente",
-  listaDeOpcoes: ["", "", ""],
+  // listaDeOpcoes: ["", "", ""],
   rodape: `
                                                                         Beekeepers, 2024
 ========================================================================================
@@ -157,7 +157,7 @@ const TELA_COSTUREIRA: TInterfaceDaTela = {
 ========================================================================================
 `,
   subtitulo: "==> Profissional",
-  listaDeOpcoes: ["", "", ""],
+  // listaDeOpcoes: ["", "", ""],
   rodape: `
                                                                         Beekeepers, 2024
 ========================================================================================
@@ -198,12 +198,17 @@ const MapaDeTelas = new Map<TNomeDaTela, TInterfaceDaTela>([
 function exibirTela(tela: TNomeDaTela): void {
   console.clear();
   console.log(MapaDeTelas.get(tela)!.ASCII);
-  console.log("  " + MapaDeTelas.get(tela)!.subtitulo + "\n");
 
-  // Inserindo cada uma das opções
-  MapaDeTelas.get(tela)!.listaDeOpcoes.forEach((value, index) => {
-    console.log(`  ${index + 1} - ${value}`);
-  });
+  // Subtítulo é opcional
+  if (MapaDeTelas.get(tela)?.subtitulo) {
+    console.log("  " + MapaDeTelas.get(tela)!.subtitulo + "\n");
+  }
+
+  if (MapaDeTelas.get(tela)) {
+    MapaDeTelas.get(tela)?.listaDeOpcoes?.forEach((value, index) => {
+      console.log(`  ${index + 1} - ${value}`);
+    });
+  }
 
   console.log(MapaDeTelas.get(tela)!.rodape);
   MapaDeTelas.get(tela)!.executarFuncionalidade();
