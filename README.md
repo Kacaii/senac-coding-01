@@ -3,9 +3,11 @@
 <!--toc:start-->
 
 - [SENAC Coding Repository](#senac-coding-repository)
+
   - [Technologies Used](#technologies-used)
   - [Project Structure](#project-structure)
   - [Contributing](#contributing)
+
   <!--toc:end-->
 
 Welcome to the SENAC Coding Repository! This repository contains various coding projects

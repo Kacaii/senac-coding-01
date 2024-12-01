@@ -7,7 +7,7 @@
 > Como exercício de casa, elabore um algoritmo que reproduza ações do seu projeto
 > integrador com pelo menos 3 funcões.
 
-## Equipe
+## Beekeepers
 
 - THAISE RENAUX
 - JOAO ANTONIO
@@ -15,7 +15,7 @@
 - IAN LUCAS
 - ANDRE LUIZ
 
-## Estrutura Do Script
+## Recursos
 
 ```plaintext
 EntreLinhas/
@@ -91,4 +91,13 @@ EntreLinhas/
 ### Funcionalidades
 
 - Menu Principal
+
   - [x] Selecionar usuario
+
+- Tela de Cliente
+
+  - [ ] Chat
+
+- Tela do Profissional
+
+  - [ ] Chat
