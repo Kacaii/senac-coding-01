@@ -1,2 +1,2 @@
-export * from "./Tela.d.ts";
-export * from "./InterfaceDaTela.d.ts";
+export * from "./TNomeDaTela.d.ts";
+export * from "./TInterfaceDaTela.d.ts";

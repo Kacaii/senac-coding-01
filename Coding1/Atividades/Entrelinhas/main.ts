@@ -6,6 +6,7 @@ import {
   TELA_PRINCIPAL,
   TELA_CLIENTE,
   TELA_COSTUREIRA,
+  TELA_MENSAGENS_CLIENTE,
 } from "./telas/index.ts";
 
 /** Usar essa constante no `stdout` ou `console.log()` resulta em um som de notificação. */
@@ -19,6 +20,7 @@ const mapaDeTelas = new Map<TNomeDaTela, TInterfaceDaTela>([
   ["TelaPrincipal", TELA_PRINCIPAL],
   ["TelaDoCliente", TELA_CLIENTE],
   ["TelaDaCostureira", TELA_COSTUREIRA],
+  ["TelaMensagensCliente", TELA_MENSAGENS_CLIENTE],
 ]);
 
 /**
@@ -30,7 +32,12 @@ export function exibirTela(tela: TNomeDaTela): void {
 
   // Subtítulo é opcional
   if (mapaDeTelas.get(tela)?.subtitulo) {
-    console.log("  " + mapaDeTelas.get(tela)!.subtitulo + "\n");
+    console.log("  " + mapaDeTelas.get(tela)?.subtitulo + "\n");
+  }
+
+  // Conteudo é opcional
+  if (mapaDeTelas.get(tela)?.conteudo) {
+    console.log(mapaDeTelas.get(tela)?.conteudo);
   }
 
   // Opções são opcionais
@@ -41,7 +48,7 @@ export function exibirTela(tela: TNomeDaTela): void {
   }
 
   console.log(mapaDeTelas.get(tela)!.rodape);
-  mapaDeTelas.get(tela)!.executarFuncionalidade();
+  mapaDeTelas.get(tela)!.main();
 }
 
 // Inicia o script

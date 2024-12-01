@@ -1,5 +1,6 @@
 import { TInterfaceDaTela } from "../types/index.d.ts";
 import { exibirTela } from "../main.ts";
+import { green } from "@std/fmt/colors";
 
 /**
  * ```help
@@ -11,17 +12,16 @@ import { exibirTela } from "../main.ts";
  * ╚══════╝╚═╝  ╚═══╝   ╚═╝   ╚═╝  ╚═╝╚══════╝╚══════╝╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝
  * ========================================================================================
  *
- *   ==> Cliente
+ *   ==> Mensagens (Cliente)
  *
- *   1 -
- *   2 -
- *   3 -
+ *   ...mensagens
+ *
  *                                                                         Beekeepers, 2024
  * ========================================================================================
  * ```
  */
-export const TELA_CLIENTE: TInterfaceDaTela = {
-  nome: "TelaDoCliente",
+export const TELA_MENSAGENS_CLIENTE: TInterfaceDaTela = {
+  nome: "TelaMensagensCliente",
   ASCII: `
 ███████╗███╗   ██╗████████╗██████╗ ███████╗██╗     ██╗███╗   ██╗██╗  ██╗ █████╗ ███████╗
 ██╔════╝████╗  ██║╚══██╔══╝██╔══██╗██╔════╝██║     ██║████╗  ██║██║  ██║██╔══██╗██╔════╝
@@ -31,18 +31,20 @@ export const TELA_CLIENTE: TInterfaceDaTela = {
 ╚══════╝╚═╝  ╚═══╝   ╚═╝   ╚═╝  ╚═╝╚══════╝╚══════╝╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝
 ========================================================================================
 `,
-  subtitulo: "==> Cliente",
-  listaDeOpcoes: [
-    "Preciso de um profissional de costura! (╥﹏╥)",
-    "Ver mensagens recentes ",
-    "Voltar",
-  ],
+  subtitulo: "==> Mensagens (Cliente)",
+  conteudo: `
+                                                                                   10:09
+                                                                                Bom dia!
+Maria das Dores | 10:19  
+Bom dia! Como posso ajudar?
+`,
+  // listaDeOpcoes: ["Enviar nova mensagem", "", ""],
   rodape: `
                                                                         Beekeepers, 2024
 ========================================================================================
 `,
   main(): void {
-    const opcaoSelecionada = prompt("Pressione ENTER");
+    const opcaoSelecionada = prompt(`Pressione ENTER para ${green("VOLTAR")}`);
 
     switch (opcaoSelecionada) {
       case "1": {
@@ -50,13 +52,12 @@ export const TELA_CLIENTE: TInterfaceDaTela = {
         break;
       }
       case "2": {
-        console.clear();
-        exibirTela("TelaMensagensCliente");
+        // TODO:
         break;
       }
       default: {
         console.clear();
-        exibirTela("TelaPrincipal"); // Voltando ao menu
+        exibirTela("TelaDoCliente"); // Voltando ao menu
       }
     }
   },
