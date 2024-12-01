@@ -1,5 +1,5 @@
 // Importando tipos e interfaces
-import { TInterfaceDaTela, TNomeDaTela } from "./types/index.d.ts";
+import { Tela, TNomeDaTela, TExibirTelaOPTS } from "./types/index.d.ts";
 
 // Importando telas
 import {
@@ -14,9 +14,9 @@ const TOCAR_SINO = "\u0007";
 
 /**
  * Mapa contendo todas as telas do script
- * Use `MapaDeTelas.get()` passando o nome de uma {@linkcode TNomeDaTela} para acessar seus conteudo.
+ * Use `mapaDeTelas.get()` passando o nome de uma {@linkcode TNomeDaTela} para acessar seus conteudo.
  */
-const mapaDeTelas = new Map<TNomeDaTela, TInterfaceDaTela>([
+const mapaDeTelas = new Map<TNomeDaTela, Tela>([
   ["TelaPrincipal", TELA_PRINCIPAL],
   ["TelaDoCliente", TELA_CLIENTE],
   ["TelaDaCostureira", TELA_COSTUREIRA],
@@ -25,9 +25,15 @@ const mapaDeTelas = new Map<TNomeDaTela, TInterfaceDaTela>([
 
 /**
  * Exibe a tela e executa sua funcionalidade.
+ *
+ * @param  tela Nome da tela a ser exibida {@linkcode mapaDeTelas}
  */
-export function exibirTela(tela: TNomeDaTela): void {
-  console.clear();
+export function exibirTela(tela: TNomeDaTela, opts?: TExibirTelaOPTS): void {
+  // Customizando o funcionamento
+  if (opts?.clearScreen != false) {
+    console.clear();
+  }
+
   console.log(mapaDeTelas.get(tela)!.ASCII);
 
   // Subtítulo é opcional

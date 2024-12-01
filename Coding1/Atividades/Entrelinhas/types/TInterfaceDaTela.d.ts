@@ -1,6 +1,6 @@
 import { TNomeDaTela } from "./index.d.ts";
 
-export type TInterfaceDaTela = {
+export type Tela = {
   readonly nome: TNomeDaTela;
   /** "ENTRELINHAS" escrito bem grandão */
   readonly ASCII: string;

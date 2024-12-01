@@ -37,7 +37,7 @@ export const TELA_COSTUREIRA: TInterfaceDaTela = {
                                                                         Beekeepers, 2024
 ========================================================================================
 `,
-  executarFuncionalidade(): void {
+  main(): void {
     const opcaoSelecionada = prompt("Pressione ENTER");
 
     switch (opcaoSelecionada) {

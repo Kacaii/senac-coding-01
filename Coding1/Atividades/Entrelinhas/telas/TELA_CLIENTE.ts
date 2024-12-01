@@ -50,12 +50,10 @@ export const TELA_CLIENTE: TInterfaceDaTela = {
         break;
       }
       case "2": {
-        console.clear();
         exibirTela("TelaMensagensCliente");
         break;
       }
       default: {
-        console.clear();
         exibirTela("TelaPrincipal"); // Voltando ao menu
       }
     }

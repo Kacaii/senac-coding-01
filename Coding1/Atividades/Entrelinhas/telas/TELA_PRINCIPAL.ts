@@ -37,7 +37,7 @@ export const TELA_PRINCIPAL: TInterfaceDaTela = {
                                                                         Beekeepers, 2024
 ========================================================================================
 `,
-  executarFuncionalidade(): void {
+  main(): void {
     const usuarioSelecionado = prompt("");
 
     switch (usuarioSelecionado) {

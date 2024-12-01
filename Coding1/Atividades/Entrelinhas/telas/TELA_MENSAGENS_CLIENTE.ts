@@ -56,7 +56,6 @@ Bom dia! Como posso ajudar?
         break;
       }
       default: {
-        console.clear();
         exibirTela("TelaDoCliente"); // Voltando ao menu
       }
     }
