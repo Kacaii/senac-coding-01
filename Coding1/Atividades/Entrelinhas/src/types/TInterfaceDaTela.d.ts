@@ -8,6 +8,6 @@ export type Tela = {
   conteudo?: string;
   readonly listaDeOpcoes?: string[];
   readonly rodape: string;
-  /** Função principal da tela */
+  /** Função principal da tela. */
   readonly main: () => unknown;
 };

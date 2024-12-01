@@ -18,13 +18,22 @@
 ## Estrutura Do Script
 
 ```plaintext
-EntreLinhas
+EntreLinhas/
 │
-├── telas/
-├── types/
+├── bin/                # Arquivos compilados
+├── src/                # Código fonte do projeto
+│   │
+│   ├── telas/
+│   │   ├── ...
+│   │   └── index.ts    # Exportando telas
+│   │
+│   ├── types/
+│   │   ├── ...
+│   │   └── index.d.ts  # Exportando tipos
+│   │
+│   └── main.ts         # Arquivo pricipal <--
 │
-├── main.ts
-└── README.md
+└── README.md           # Descrição do projeto
 ```
 
 ## Progresso
