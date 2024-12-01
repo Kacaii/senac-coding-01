@@ -66,4 +66,4 @@ EntreLinhas
 ### Funcionalidades
 
 - Menu Principal
-  - [ ] =
+  - [x] Selecionar usuario
