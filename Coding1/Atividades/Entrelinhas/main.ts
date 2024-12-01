@@ -26,11 +26,12 @@ const mapaDeTelas = new Map<TNomeDaTela, Tela>([
 /**
  * Exibe a tela e executa sua funcionalidade.
  *
- * @param  tela Nome da tela a ser exibida {@linkcode mapaDeTelas}
+ * @param tela Nome da tela a ser exibida {@linkcode mapaDeTelas}
+ * @param opts O funcionamento dessa função pode ser personalizado.
  */
 export function exibirTela(tela: TNomeDaTela, opts?: TExibirTelaOPTS): void {
   // Customizando o funcionamento
-  if (opts?.clearScreen != false) {
+  if (opts?.limparTela != false) {
     console.clear();
   }
 

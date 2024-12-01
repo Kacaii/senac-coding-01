@@ -1,4 +1,6 @@
 export type TExibirTelaOPTS = {
-  /** Limpar a tela antes de renderizar a próxima? */
-  clearScreen?: boolean;
+  /**
+   * Limpar a tela antes de renderizar a próxima?
+   */
+  limparTela?: boolean;
 };
