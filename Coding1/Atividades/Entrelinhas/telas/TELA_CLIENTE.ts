@@ -13,9 +13,9 @@ import { exibirTela } from "../main.ts";
  *
  *   ==> Cliente
  *
- *   1 -
- *   2 -
- *   3 -
+ *   1 - Preciso de um profissional de costura! (╥﹏╥)
+ *   2 - Ver mensagens recentes 
+ *   3 - Voltar
  *                                                                         Beekeepers, 2024
  * ========================================================================================
  * ```
