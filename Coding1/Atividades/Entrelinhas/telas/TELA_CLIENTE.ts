@@ -1,4 +1,4 @@
-import { TInterfaceDaTela } from "../types/index.d.ts";
+import { Tela } from "../types/index.d.ts";
 import { exibirTela } from "../main.ts";
 
 /**
@@ -20,7 +20,7 @@ import { exibirTela } from "../main.ts";
  * ========================================================================================
  * ```
  */
-export const TELA_CLIENTE: TInterfaceDaTela = {
+export const TELA_CLIENTE: Tela = {
   nome: "TelaDoCliente",
   ASCII: `
 ███████╗███╗   ██╗████████╗██████╗ ███████╗██╗     ██╗███╗   ██╗██╗  ██╗ █████╗ ███████╗

@@ -1,4 +1,4 @@
-import { TInterfaceDaTela } from "../types/index.d.ts";
+import { Tela } from "../types/index.d.ts";
 import { exibirTela } from "../main.ts";
 import { green } from "@std/fmt/colors";
 
@@ -20,7 +20,7 @@ import { green } from "@std/fmt/colors";
  * ========================================================================================
  * ```
  */
-export const TELA_MENSAGENS_CLIENTE: TInterfaceDaTela = {
+export const TELA_MENSAGENS_CLIENTE: Tela = {
   nome: "TelaMensagensCliente",
   ASCII: `
 ███████╗███╗   ██╗████████╗██████╗ ███████╗██╗     ██╗███╗   ██╗██╗  ██╗ █████╗ ███████╗
