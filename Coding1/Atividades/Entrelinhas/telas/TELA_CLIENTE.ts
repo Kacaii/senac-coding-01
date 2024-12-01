@@ -1,4 +1,4 @@
-import { TInterfaceDaTela } from "../types/index.ts";
+import { TInterfaceDaTela } from "../types/index.d.ts";
 import { exibirTela } from "../main.ts";
 
 /**

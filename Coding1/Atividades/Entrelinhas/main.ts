@@ -1,5 +1,5 @@
 // Importando tipos e interfaces
-import { TInterfaceDaTela, TNomeDaTela } from "./types/index.ts";
+import { TInterfaceDaTela, TNomeDaTela } from "./types/index.d.ts";
 
 // Importando telas
 import {

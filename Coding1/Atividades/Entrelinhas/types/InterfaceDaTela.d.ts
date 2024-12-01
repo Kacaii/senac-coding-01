@@ -1,4 +1,4 @@
-import { TNomeDaTela } from "./index.ts";
+import { TNomeDaTela } from "./index.d.ts";
 
 export type TInterfaceDaTela = {
   readonly nome: TNomeDaTela;
