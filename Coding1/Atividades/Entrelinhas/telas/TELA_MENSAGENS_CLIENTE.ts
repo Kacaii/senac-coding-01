@@ -31,14 +31,20 @@ export const TELA_MENSAGENS_CLIENTE: Tela = {
 ╚══════╝╚═╝  ╚═══╝   ╚═╝   ╚═╝  ╚═╝╚══════╝╚══════╝╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝
 ========================================================================================
 `,
-  subtitulo: "==> Mensagens (Cliente)",
+  subtitulo: "==> Exibindo conversa mais recente:",
   conteudo: `
                                                                                    10:09
-                                                                                Bom dia!
-Maria das Dores | 10:19  
-Bom dia! Como posso ajudar?
+                                                                                bom dia!
+Maria das Dores | 10:19                                                                 
+Bom dia! Como posso ajudar?                                                             
+                                                                                   10:38
+                                               fui atacado por lobos minha camisa rasgou
+                                                                                        
+Maria das Dores | 10:38                                                                 
+misericórdia.. 🙀                                                                       
+________________________________________________________________________________________
 `,
-  // listaDeOpcoes: ["Enviar nova mensagem", "", ""],
+  listaDeOpcoes: ["---", "---", "Voltar"],
   rodape: `
                                                                         Beekeepers, 2024
 ========================================================================================
