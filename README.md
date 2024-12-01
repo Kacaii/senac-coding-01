@@ -13,16 +13,20 @@ and exercises developed as part of my studies at SENAC-PE.
 
 ## Technologies Used
 
+[![JSR @std](https://jsr.io/badges/@std)](https://jsr.io/@std)
+![Typescript](https://img.shields.io/badge/Typescript-3178C6?logo=typescript&logoColor=white)
+![Deno](https://img.shields.io/badge/Deno-70FFAF?logo=deno&logoColor=black)
+![Lazyvim](https://img.shields.io/badge/LazyVim-2E7DE9?logo=lazyvim&logoColor=white)
+
 - **Deno**: A modern JavaScript and TypeScript runtime.
 - **JavaScript**: A programming language that enables interactive web pages.
 
 ## Project Structure
 
 ```plaintext
-SENAC-Coding/
+Senac_Coding_01/
 │
-├── Coding1/                 # First Semester Content
-│   └── Atividades/          # Assignments and projects from the first semester
+├── Atividades/          # Assignments and projects from the first semester
 │
 ├── README.md                # This README file
 │
