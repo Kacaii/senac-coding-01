@@ -15,7 +15,7 @@ const TOCAR_SINO = "\u0007";
  * Mapa contendo todas as telas do script
  * Use `MapaDeTelas.get()` passando o nome de uma {@linkcode TNomeDaTela} para acessar seus conteudo.
  */
-const MapaDeTelas = new Map<TNomeDaTela, TInterfaceDaTela>([
+const mapaDeTelas = new Map<TNomeDaTela, TInterfaceDaTela>([
   ["TelaPrincipal", TELA_PRINCIPAL],
   ["TelaDoCliente", TELA_CLIENTE],
   ["TelaDaCostureira", TELA_COSTUREIRA],
@@ -26,22 +26,22 @@ const MapaDeTelas = new Map<TNomeDaTela, TInterfaceDaTela>([
  */
 export function exibirTela(tela: TNomeDaTela): void {
   console.clear();
-  console.log(MapaDeTelas.get(tela)!.ASCII);
+  console.log(mapaDeTelas.get(tela)!.ASCII);
 
   // Subtítulo é opcional
-  if (MapaDeTelas.get(tela)?.subtitulo) {
-    console.log("  " + MapaDeTelas.get(tela)!.subtitulo + "\n");
+  if (mapaDeTelas.get(tela)?.subtitulo) {
+    console.log("  " + mapaDeTelas.get(tela)!.subtitulo + "\n");
   }
 
   // Opções são opcionais
-  if (MapaDeTelas.get(tela)) {
-    MapaDeTelas.get(tela)?.listaDeOpcoes?.forEach((value, index) => {
+  if (mapaDeTelas.get(tela)) {
+    mapaDeTelas.get(tela)?.listaDeOpcoes?.forEach((value, index) => {
       console.log(`  ${index + 1} - ${value}`);
     });
   }
 
-  console.log(MapaDeTelas.get(tela)!.rodape);
-  MapaDeTelas.get(tela)!.executarFuncionalidade();
+  console.log(mapaDeTelas.get(tela)!.rodape);
+  mapaDeTelas.get(tela)!.executarFuncionalidade();
 }
 
 // Inicia o script

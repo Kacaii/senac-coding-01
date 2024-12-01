@@ -32,7 +32,11 @@ export const TELA_CLIENTE: TInterfaceDaTela = {
 ========================================================================================
 `,
   subtitulo: "==> Cliente",
-  listaDeOpcoes: ["", "", ""],
+  listaDeOpcoes: [
+    "Preciso de um profissional de costura! (╥﹏╥)",
+    "Ver mensagens recentes ",
+    "Voltar",
+  ],
   rodape: `
                                                                         Beekeepers, 2024
 ========================================================================================
