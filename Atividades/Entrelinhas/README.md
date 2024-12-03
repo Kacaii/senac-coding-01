@@ -97,7 +97,7 @@ EntreLinhas/
 
 - Tela de Cliente
 
-  - Solicitar servico.
+  - [ ] Solicitar servico.
   - [ ] Chat
 
 - Tela do Profissional

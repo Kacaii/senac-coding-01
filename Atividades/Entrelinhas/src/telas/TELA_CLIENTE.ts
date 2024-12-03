@@ -1,6 +1,8 @@
 import { Tela } from "../types/index.d.ts";
 import { exibirTela } from "../main.ts";
 
+import { green } from "@std/fmt/colors";
+
 /**
  * ```help
  * ███████╗███╗   ██╗████████╗██████╗ ███████╗██╗     ██╗███╗   ██╗██╗  ██╗ █████╗ ███████╗
@@ -33,16 +35,16 @@ export const TELA_CLIENTE: Tela = {
 `,
   subtitulo: "==> Cliente",
   listaDeOpcoes: [
-    "Preciso de um profissional de costura! (╥﹏╥)",
-    "Ver mensagens recentes ",
-    "Voltar",
+    "Solicitar serviço 🆕",
+    "Ver mensagens recentes 🗨️",
+    "Voltar 🔙",
   ],
   rodape: `
                                                                         Beekeepers, 2024
 ========================================================================================
 `,
   main(): void {
-    const opcaoSelecionada = prompt("Pressione ENTER");
+    const opcaoSelecionada = prompt(`Pressione ENTER para ${green("VOLTAR")}`);
 
     switch (opcaoSelecionada) {
       case "1": {
