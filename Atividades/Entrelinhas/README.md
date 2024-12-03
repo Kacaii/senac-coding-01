@@ -107,21 +107,13 @@ EntreLinhas/
 - Menu Principal
 
   - [x] Selecionar usuário
-  - [x] Sair do script
 
 - Tela de Cliente
 
-  - [ ] Solicitar servico.
+  - [x] Solicitar servico.
   - [x] Chat
 
 - Tela do Profissional
 
   - [x] Servicos disponiveis
-
-    - Serviços esperando para serem pegos
-    - Ajustes de calças jeans, de vestido, cofecção de cosplay, etc.)
-    - Nome da cliente, prazo de entrega.
-
   - [x] Chat
-
-    - Igual a tela de cliente mas ao contrário.
