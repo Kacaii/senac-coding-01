@@ -32,6 +32,7 @@ export const TELA_COSTUREIRA: Tela = {
 ========================================================================================
 `,
   subtitulo: "==> Profissional",
+  // TODO:
   listaDeOpcoes: ["", "", ""],
   rodape: `
                                                                         Beekeepers, 2024

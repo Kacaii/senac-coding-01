@@ -92,12 +92,40 @@ EntreLinhas/
 
 - Menu Principal
 
-  - [x] Selecionar usuario
+  - [x] Selecionar usuário
+  - [x] Sair do script
 
 - Tela de Cliente
 
+  - Solicitar servico.
   - [ ] Chat
 
 - Tela do Profissional
 
+  - [ ] Servicos disponiveis
+
+    - Serviços esperando para serem pegos
+    - Ajustes de calças jeans, de vestido, cofecção de cosplay, etc.)
+    - Nome da cliente, prazo de entrega.
+
+    > [!TIP]
+    > Poderia ser uma lista de objetos!
+
+    ```typescript
+    [
+      {
+        id: 124,
+        usuarioCliente: "@joaninha_da_silva",
+        descricao: "Me ajuda minha camisa rasgou socorro.",
+      },
+      {
+        id: 1243,
+        usuarioCliente: "@jonas_conceicao",
+        descricao: "socorro meu terno pegou fogo",
+      },
+    ];
+    ```
+
   - [ ] Chat
+
+    - Igual a tela de cliente mas ao contrário.
