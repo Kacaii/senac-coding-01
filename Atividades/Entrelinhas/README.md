@@ -108,9 +108,6 @@ EntreLinhas/
     - Ajustes de calças jeans, de vestido, cofecção de cosplay, etc.)
     - Nome da cliente, prazo de entrega.
 
-    > [!TIP]
-    > Poderia ser uma lista de objetos!
-
     ```typescript
     [
       {
