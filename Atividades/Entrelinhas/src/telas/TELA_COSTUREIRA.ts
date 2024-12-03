@@ -13,9 +13,9 @@ import { exibirTela } from "../main.ts";
  *
  *   ==> Profissional
  *
- *   1 -
- *   2 -
- *   3 -
+ *   1 - Buscar serviços
+ *   2 - Ver mensagens recentes 🗨️
+ *   3 - Voltar 🔙
  *                                                                         Beekeepers, 2024
  * ========================================================================================
  * ```

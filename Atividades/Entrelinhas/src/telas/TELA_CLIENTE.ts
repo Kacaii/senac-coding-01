@@ -15,9 +15,9 @@ import { green } from "@std/fmt/colors";
  *
  *   ==> Cliente
  *
- *   1 -
- *   2 -
- *   3 -
+ *   1 - Novo serviço 🆕
+ *   2 - Ver mensagens recentes 🗨️
+ *   3 - Voltar 🔙
  *                                                                         Beekeepers, 2024
  * ========================================================================================
  * ```
