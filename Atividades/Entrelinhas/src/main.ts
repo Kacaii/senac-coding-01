@@ -36,34 +36,37 @@ const mapaDeTelas = new Map<TNomeDaTela, Tela>([
  * @param opts O funcionamento dessa função pode ser personalizado.
  */
 export function exibirTela(tela: TNomeDaTela, opts?: TExibirTelaOPTS): void {
+  const telaData = mapaDeTelas.get(tela);
+
+  if (!telaData) {
+    console.error("Tela não disponível");
+    Deno.exit(1);
+  }
+
   // Customizando o funcionamento
   if (opts?.limparTela != false) {
     console.clear();
   }
 
-  console.log(mapaDeTelas.get(tela)!.ASCII);
+  console.log(telaData.ASCII);
 
   // Subtítulo é opcional
-  if (mapaDeTelas.get(tela)?.subtitulo) {
-    console.log("  " + mapaDeTelas.get(tela)?.subtitulo + "\n");
+  if (telaData.subtitulo) {
+    console.log("  " + telaData.subtitulo + "\n");
   }
 
-  if (opts?.counteudoPersonalizado) {
-    console.log(
-      (mapaDeTelas.get(tela)!.conteudo =
-        opts.counteudoPersonalizado || mapaDeTelas.get(tela)?.conteudo),
-    );
-  }
+  telaData.conteudo = opts?.counteudoPersonalizado ?? (telaData.conteudo || "");
+  console.log(telaData.conteudo);
 
   // Opções são opcionais
-  if (mapaDeTelas.get(tela)) {
-    mapaDeTelas.get(tela)?.listaDeOpcoes?.forEach((value, index) => {
+  if (telaData) {
+    telaData.listaDeOpcoes?.forEach((value, index) => {
       console.log(`  ${index + 1} - ${value}`);
     });
   }
 
-  console.log(mapaDeTelas.get(tela)!.rodape);
-  mapaDeTelas.get(tela)!.main();
+  console.log(telaData.rodape);
+  telaData!.main();
 }
 
 // Inicia o script
