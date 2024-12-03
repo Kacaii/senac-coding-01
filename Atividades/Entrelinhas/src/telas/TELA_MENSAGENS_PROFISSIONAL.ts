@@ -1,5 +1,6 @@
 import { Tela } from "../types/index.d.ts";
 import { exibirTela } from "../main.ts";
+import { green } from "@std/fmt/colors";
 
 /**
  * ```help
@@ -11,17 +12,16 @@ import { exibirTela } from "../main.ts";
  * ╚══════╝╚═╝  ╚═══╝   ╚═╝   ╚═╝  ╚═╝╚══════╝╚══════╝╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝
  * ========================================================================================
  *
- *   ==> Profissional
+ *   ==> Mensagens (Profissional)
  *
- *   1 -
- *   2 -
- *   3 -
+ *   ...mensagens
+ *
  *                                                                         Beekeepers, 2024
  * ========================================================================================
  * ```
  */
-export const TELA_COSTUREIRA: Tela = {
-  nome: "TelaDaCostureira",
+export const TELA_MENSAGENS_PROFISSIONAL: Tela = {
+  nome: "TelaMensagensProfissional",
   ASCII: `
 ███████╗███╗   ██╗████████╗██████╗ ███████╗██╗     ██╗███╗   ██╗██╗  ██╗ █████╗ ███████╗
 ██╔════╝████╗  ██║╚══██╔══╝██╔══██╗██╔════╝██║     ██║████╗  ██║██║  ██║██╔══██╗██╔════╝
@@ -31,27 +31,25 @@ export const TELA_COSTUREIRA: Tela = {
 ╚══════╝╚═╝  ╚═══╝   ╚═╝   ╚═╝  ╚═╝╚══════╝╚══════╝╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝
 ========================================================================================
 `,
-  subtitulo: "==> Profissional",
-  listaDeOpcoes: ["Buscar serviços", "Ver mensagens recentes 🗨️", "Voltar 🔙"],
+  subtitulo: "==> Exibindo conversa mais recente:",
+  conteudo: `
+10:09                                                                                   
+bom dia!                                                                                
+                                                                 Maria das Dores | 10:19
+                                                             Bom dia! Como posso ajudar?
+10:38                                                                                   
+fui atacado por lobos minha camisa rasgou                                               
+                                                                                        
+                                                                 Maria das Dores | 10:38
+                                                                       misericórdia.. 🙀
+________________________________________________________________________________________
+`,
   rodape: `
                                                                         Beekeepers, 2024
 ========================================================================================
 `,
   main(): void {
-    const opcaoSelecionada = prompt("Pressione ENTER");
-
-    switch (opcaoSelecionada) {
-      case "1": {
-        exibirTela("TelaBuscarServicos");
-        break;
-      }
-      case "2": {
-        exibirTela("TelaMensagensProfissional");
-        break;
-      }
-      default: {
-        exibirTela("TelaPrincipal"); // Voltando ao menu
-      }
-    }
+    prompt(`Pressione ENTER para ${green("VOLTAR")}`);
+    exibirTela("TelaDaCostureira"); // Voltando ao menu
   },
 };

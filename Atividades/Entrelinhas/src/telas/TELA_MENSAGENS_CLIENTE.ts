@@ -39,7 +39,6 @@ Maria das Dores | 10:19
 Bom dia! Como posso ajudar?                                                             
                                                                                    10:38
                                                fui atacado por lobos minha camisa rasgou
-                                                                                        
 Maria das Dores | 10:38                                                                 
 misericórdia.. 🙀                                                                       
 ________________________________________________________________________________________
@@ -50,20 +49,7 @@ ________________________________________________________________________________
 ========================================================================================
 `,
   main(): void {
-    const opcaoSelecionada = prompt(`Pressione ENTER para ${green("VOLTAR")}`);
-
-    switch (opcaoSelecionada) {
-      case "1": {
-        // TODO:
-        break;
-      }
-      case "2": {
-        // TODO:
-        break;
-      }
-      default: {
-        exibirTela("TelaDoCliente"); // Voltando ao menu
-      }
-    }
+    prompt(`Pressione ENTER para ${green("VOLTAR")}`);
+    exibirTela("TelaDoCliente"); // Voltando ao menu
   },
 };

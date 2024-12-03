@@ -7,6 +7,7 @@ import {
   TELA_CLIENTE,
   TELA_COSTUREIRA,
   TELA_MENSAGENS_CLIENTE,
+  TELA_MENSAGENS_PROFISSIONAL,
   TELA_BUSCAR_SERVICOS,
 } from "./telas/index.ts";
 
@@ -22,6 +23,7 @@ const mapaDeTelas = new Map<TNomeDaTela, Tela>([
   ["TelaDoCliente", TELA_CLIENTE],
   ["TelaMensagensCliente", TELA_MENSAGENS_CLIENTE],
   ["TelaDaCostureira", TELA_COSTUREIRA],
+  ["TelaMensagensProfissional", TELA_MENSAGENS_PROFISSIONAL],
   ["TelaBuscarServicos", TELA_BUSCAR_SERVICOS],
 ]);
 

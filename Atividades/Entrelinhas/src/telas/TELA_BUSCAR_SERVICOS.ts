@@ -60,6 +60,6 @@ export const TELA_BUSCAR_SERVICOS: Tela = {
 `,
   main: (): void => {
     prompt(`Pressione ENTER para ${green("VOLTAR")}`);
-    exibirTela("TelaPrincipal"); // Voltando ao menu
+    exibirTela("TelaDaCostureira");
   },
 };
