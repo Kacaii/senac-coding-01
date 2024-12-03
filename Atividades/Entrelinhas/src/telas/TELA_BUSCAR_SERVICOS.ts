@@ -28,11 +28,13 @@ const SERVICOS: TServico[] = [
 function montarLista(servicos: TServico[]): string[] {
   const lista = servicos.map((serv: TServico) => {
     return `
-ID: ${serv.id},
-CATEGORIA:${serv.categoria},
-USUÁRIO: @${serv.usuario},
-DESCRIÇÃO: ${serv.descricao},
-LOCALIZAÇÃO: ${serv.localizacao.cidade} - ${serv.localizacao.estado}
+----------------------------------------------------------------------------------------
+🆔 - ID: ${serv.id}
+🐱 - CATEGORIA: ${serv.categoria}
+🐝 - USUÁRIO: @${serv.usuario}
+📄 - DESCRIÇÃO: ${serv.descricao}
+🗺️ - LOCALIZAÇÃO: ${serv.localizacao.cidade} - ${serv.localizacao.estado}
+----------------------------------------------------------------------------------------
 `;
   });
 
@@ -52,26 +54,12 @@ export const TELA_BUSCAR_SERVICOS: Tela = {
     `,
   subtitulo: "==> Serviços disponíveis:",
   listaDeOpcoes: montarLista(SERVICOS),
-  conteudo: "",
   rodape: `
                                                                         Beekeepers, 2024
 ========================================================================================
 `,
   main: (): void => {
-    const opcaoSelecionada = prompt(`Pressione ENTER para ${green("VOLTAR")}`);
-
-    switch (opcaoSelecionada) {
-      case "1": {
-        // TODO:
-        break;
-      }
-      case "2": {
-        // TODO:
-        break;
-      }
-      default: {
-        exibirTela("TelaPrincipal"); // Voltando ao menu
-      }
-    }
+    prompt(`Pressione ENTER para ${green("VOLTAR")}`);
+    exibirTela("TelaPrincipal"); // Voltando ao menu
   },
 };
