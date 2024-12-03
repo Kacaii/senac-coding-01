@@ -1,5 +1,6 @@
 import { Tela } from "../types/index.d.ts";
 import { exibirTela } from "../main.ts";
+import { solicitarServico } from "./TELA_NOVO_SERVICO.ts";
 
 import { green } from "@std/fmt/colors";
 
@@ -39,12 +40,15 @@ export const TELA_CLIENTE: Tela = {
                                                                         Beekeepers, 2024
 ========================================================================================
 `,
+
   main(): void {
     const opcaoSelecionada = prompt(`Pressione ENTER para ${green("VOLTAR")}`);
 
     switch (opcaoSelecionada) {
       case "1": {
-        // TODO:
+        exibirTela("TelaNovoServico", {
+          counteudoPersonalizado: solicitarServico(),
+        });
         break;
       }
       case "2": {

@@ -1,7 +1,8 @@
 export type TNomeDaTela =
   | "TelaPrincipal"
   | "TelaDoCliente"
-  | "TelaDaCostureira"
+  | "TelaNovoServico"
   | "TelaMensagensCliente"
+  | "TelaDaCostureira"
   | "TelaMensagensProfissional"
   | "TelaBuscarServicos";

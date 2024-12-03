@@ -5,10 +5,11 @@ import { Tela, TNomeDaTela, TExibirTelaOPTS } from "./types/index.d.ts";
 import {
   TELA_PRINCIPAL,
   TELA_CLIENTE,
-  TELA_COSTUREIRA,
+  TELA_NOVO_SERVICO,
   TELA_MENSAGENS_CLIENTE,
-  TELA_MENSAGENS_PROFISSIONAL,
+  TELA_COSTUREIRA,
   TELA_BUSCAR_SERVICOS,
+  TELA_MENSAGENS_PROFISSIONAL,
 } from "./telas/index.ts";
 
 /** Usar essa constante no `stdout` ou `console.log()` resulta em um som de notificação. */
@@ -21,10 +22,11 @@ const TOCAR_SINO = "\u0007";
 const mapaDeTelas = new Map<TNomeDaTela, Tela>([
   ["TelaPrincipal", TELA_PRINCIPAL],
   ["TelaDoCliente", TELA_CLIENTE],
+  ["TelaNovoServico", TELA_NOVO_SERVICO],
   ["TelaMensagensCliente", TELA_MENSAGENS_CLIENTE],
+  ["TelaBuscarServicos", TELA_BUSCAR_SERVICOS],
   ["TelaDaCostureira", TELA_COSTUREIRA],
   ["TelaMensagensProfissional", TELA_MENSAGENS_PROFISSIONAL],
-  ["TelaBuscarServicos", TELA_BUSCAR_SERVICOS],
 ]);
 
 /**
@@ -46,9 +48,11 @@ export function exibirTela(tela: TNomeDaTela, opts?: TExibirTelaOPTS): void {
     console.log("  " + mapaDeTelas.get(tela)?.subtitulo + "\n");
   }
 
-  // Conteudo é opcional
-  if (mapaDeTelas.get(tela)?.conteudo) {
-    console.log(mapaDeTelas.get(tela)?.conteudo);
+  if (opts?.counteudoPersonalizado) {
+    console.log(
+      (mapaDeTelas.get(tela)!.conteudo =
+        opts.counteudoPersonalizado || mapaDeTelas.get(tela)?.conteudo),
+    );
   }
 
   // Opções são opcionais
