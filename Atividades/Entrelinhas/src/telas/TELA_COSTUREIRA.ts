@@ -1,5 +1,6 @@
 import { Tela } from "../types/index.d.ts";
 import { exibirTela } from "../main.ts";
+import { green } from "@std/fmt/colors";
 
 /**
  * ```help
@@ -38,7 +39,9 @@ export const TELA_COSTUREIRA: Tela = {
 ========================================================================================
 `,
   main(): void {
-    const opcaoSelecionada = prompt("Pressione ENTER");
+    const opcaoSelecionada = prompt(
+      green("Escolha uma opção") + " e Pressione ENTER",
+    );
 
     switch (opcaoSelecionada) {
       case "1": {
