@@ -1,4 +1,4 @@
-import { TNomeDaTela } from "./index.d.ts";
+import { TNomeDaTela, TServico } from "./index.d.ts";
 
 export type Tela = {
   readonly nome: TNomeDaTela;

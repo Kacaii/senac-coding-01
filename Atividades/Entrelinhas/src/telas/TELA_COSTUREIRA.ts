@@ -32,8 +32,7 @@ export const TELA_COSTUREIRA: Tela = {
 ========================================================================================
 `,
   subtitulo: "==> Profissional",
-  // TODO:
-  listaDeOpcoes: ["", "", ""],
+  listaDeOpcoes: ["Buscar serviços", "Ver mensagens recentes 🗨️", "Voltar 🔙"],
   rodape: `
                                                                         Beekeepers, 2024
 ========================================================================================
@@ -43,7 +42,7 @@ export const TELA_COSTUREIRA: Tela = {
 
     switch (opcaoSelecionada) {
       case "1": {
-        // TODO:
+        exibirTela("TelaBuscarServicos");
         break;
       }
       case "2": {

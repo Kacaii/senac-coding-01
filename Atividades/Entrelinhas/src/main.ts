@@ -7,6 +7,7 @@ import {
   TELA_CLIENTE,
   TELA_COSTUREIRA,
   TELA_MENSAGENS_CLIENTE,
+  TELA_BUSCAR_SERVICOS,
 } from "./telas/index.ts";
 
 /** Usar essa constante no `stdout` ou `console.log()` resulta em um som de notificação. */
@@ -19,8 +20,9 @@ const TOCAR_SINO = "\u0007";
 const mapaDeTelas = new Map<TNomeDaTela, Tela>([
   ["TelaPrincipal", TELA_PRINCIPAL],
   ["TelaDoCliente", TELA_CLIENTE],
-  ["TelaDaCostureira", TELA_COSTUREIRA],
   ["TelaMensagensCliente", TELA_MENSAGENS_CLIENTE],
+  ["TelaDaCostureira", TELA_COSTUREIRA],
+  ["TelaBuscarServicos", TELA_BUSCAR_SERVICOS],
 ]);
 
 /**
