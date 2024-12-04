@@ -31,7 +31,7 @@ EntreLinhas/
 │   │   ├── ...
 │   │   └── index.d.ts  # Exportando tipos
 │   │
-│   └── main.ts         # Arquivo pricipal <--
+│   └── main.ts         # Arquivo pricipal
 │
 └── README.md           # Descrição do projeto
 ```
