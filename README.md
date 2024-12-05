@@ -26,7 +26,7 @@ and exercises developed as part of my studies at SENAC-PE.
 ## Project Structure
 
 ```plaintext
-Senac_Coding_01/
+senac-coding-01
 │
 ├── Atividades/          # Assignments and projects from the first semester
 │
